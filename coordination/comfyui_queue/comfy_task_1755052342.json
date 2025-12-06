@@ -1,0 +1,75 @@
+{
+  "id": "comfy_task_1755052342",
+  "type": "pattern_visualization",
+  "pattern_spec": {
+    "style": "log-cabin",
+    "size": "queen",
+    "colors": [
+      "indigo",
+      "cream",
+      "rust"
+    ],
+    "blockFinishedIn": 12,
+    "blocksX": 8,
+    "blocksY": 8
+  },
+  "workflow": {
+    "prompt": {
+      "1": {
+        "class_type": "PatternGenerator",
+        "inputs": {
+          "pattern_type": "log-cabin",
+          "size": "queen",
+          "colors": [
+            "indigo",
+            "cream",
+            "rust"
+          ],
+          "block_size": 12,
+          "seed": 1755052342
+        }
+      },
+      "2": {
+        "class_type": "ColorPalette",
+        "inputs": {
+          "base_colors": [
+            "indigo",
+            "cream",
+            "rust"
+          ],
+          "variations": 5,
+          "harmony_type": "complementary"
+        }
+      },
+      "3": {
+        "class_type": "FabricTexture",
+        "inputs": {
+          "texture_type": "cotton",
+          "scale": 1.0,
+          "opacity": 0.3
+        }
+      },
+      "4": {
+        "class_type": "LayoutComposer",
+        "inputs": {
+          "blocks_x": 8,
+          "blocks_y": 8,
+          "sashing": 0,
+          "border": 0
+        }
+      },
+      "5": {
+        "class_type": "SaveImage",
+        "inputs": {
+          "filename_prefix": "quilt_log-cabin",
+          "images": [
+            "4",
+            0
+          ]
+        }
+      }
+    }
+  },
+  "status": "pending",
+  "created_at": 1755052342.3531258
+}

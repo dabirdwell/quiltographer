@@ -1,0 +1,42 @@
+{
+  "name": "Jules GitHub Development Workflow",
+  "steps": [
+    {
+      "step": 1,
+      "action": "clone_repository",
+      "details": "Jules clones the target repository"
+    },
+    {
+      "step": 2,
+      "action": "create_branch",
+      "details": "Create feature branch for changes"
+    },
+    {
+      "step": 3,
+      "action": "generate_code",
+      "details": "Generate or modify code based on task"
+    },
+    {
+      "step": 4,
+      "action": "run_tests",
+      "details": "Ensure all tests pass"
+    },
+    {
+      "step": 5,
+      "action": "commit_changes",
+      "details": "Commit with descriptive message"
+    },
+    {
+      "step": 6,
+      "action": "push_branch",
+      "details": "Push to GitHub"
+    },
+    {
+      "step": 7,
+      "action": "create_pr",
+      "details": "Open pull request for review"
+    }
+  ],
+  "automation_level": "semi-automated",
+  "human_review": "required for merge"
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "model": "openai/gpt-oss-20b",
+    "prompt": "Generate a complex Log Cabin quilt pattern with mixed units",
+    "pattern": "..."
+  }
+]

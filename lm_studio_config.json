@@ -1,0 +1,6 @@
+{
+  "endpoint": "http://localhost:1234",
+  "model": "openai/gpt-oss-20b",
+  "status": "active",
+  "tested_at": 1755050982.717231
+}

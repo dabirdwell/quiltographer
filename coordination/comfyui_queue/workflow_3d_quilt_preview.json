@@ -1,0 +1,9 @@
+{
+  "description": "Generate 3D draped quilt preview",
+  "steps": [
+    "Import flat pattern",
+    "Apply 3D transformation",
+    "Add lighting and shadows",
+    "Render final image"
+  ]
+}

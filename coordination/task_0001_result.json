@@ -1,0 +1,57 @@
+{
+  "task_id": "task_0001",
+  "completed_by": "claude",
+  "timestamp": "2024-01-30T10:00:00",
+  "result": {
+    "schema_name": "UniversalPatternSchema",
+    "version": "2.0.0",
+    "description": "Enhanced pattern schema with cultural preservation",
+    "structure": {
+      "metadata": {
+        "cultural_origin": {
+          "culture": "string",
+          "period": "string",
+          "region": "string",
+          "traditional_name": "string",
+          "significance": "string"
+        },
+        "attribution": {
+          "original_creator": "string",
+          "documented_by": "string",
+          "collection": "string",
+          "license": "string"
+        }
+      },
+      "pattern_definition": {
+        "blocks": [
+          {
+            "id": "string",
+            "type": "traditional|modern|hybrid",
+            "cultural_name": "string",
+            "dimensions": {
+              "finished": "number",
+              "unfinished": "number"
+            },
+            "units": [
+              {
+                "type": "HST|QST|square|strip",
+                "count": "number",
+                "dimensions": "object"
+              }
+            ]
+          }
+        ],
+        "construction_method": {
+          "traditional_technique": "string",
+          "modern_adaptation": "string",
+          "tools_required": ["string"]
+        }
+      },
+      "preservation_notes": {
+        "historical_context": "string",
+        "variations": ["string"],
+        "teaching_points": ["string"]
+      }
+    }
+  }
+}
