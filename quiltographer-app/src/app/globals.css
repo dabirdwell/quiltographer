@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Additional custom styles */
+@layer components {
+  .pattern-block {
+    @apply transition-all duration-200 hover:scale-105 cursor-pointer;
+  }
+  
+  .color-swatch {
+    @apply w-8 h-8 rounded cursor-pointer transition-transform hover:scale-110;
+  }
+  
+  .canvas-grid {
+    @apply stroke-gray-300;
+  }
+}
+
+/* Custom scrollbar */
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded hover:bg-gray-500;
+  }
+}
