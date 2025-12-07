@@ -7,14 +7,14 @@ import { HighlightedText } from '@/components/reader/Tooltip';
 import { TooltipProvider, TooltipSettings } from '@/components/reader/TooltipProvider';
 import { CuttingChecklist, extractCuttingItems } from '@/components/reader/CuttingChecklist';
 import { ViewFilters, ViewFilter, PressDirectionTracker, MeasurementsCard, extractPressSteps, countStepsByType } from '@/components/reader/ViewFilters';
-import { MiniCalculators, CalculatorButton } from '@/components/reader/MiniCalculators';
+import { MiniCalculators } from '@/components/reader/MiniCalculators';
 import { SessionWelcome, GoodStoppingPoint, ToolPrepAlert, isGoodStoppingPoint, lookAheadForTools } from '@/components/reader/SessionWelcome';
 import { QUILTING_GLOSSARY } from '@/lib/reader/glossary';
 import { usePreferences } from '@/hooks/usePreferences';
 import { useSession } from '@/hooks/useSession';
 import { extractMeasurements, convertMeasurement } from '@/lib/reader/calculators';
 
-// Type for parsed pattern from PDF or sample
+// Types
 interface PatternStep {
   number: number;
   title: string;
@@ -31,10 +31,10 @@ interface Pattern {
   finishedSize?: { width: number; height: number };
 }
 
-// Mock pattern data for demonstration (fallback when no PDF loaded)
+// Sample pattern
 const SAMPLE_PATTERN: Pattern = {
   id: 'sample-pattern',
-  name: "Sample Quilt Pattern SKINNY",
+  name: "Flying Geese Table Runner",
   steps: [
     {
       number: 1,
@@ -78,6 +78,202 @@ const SAMPLE_PATTERN: Pattern = {
 
 const theme = quiltographerTheme;
 
+/**
+ * Overlay Sheet Component - slides up from bottom
+ */
+function OverlaySheet({ 
+  isOpen, 
+  onClose, 
+  title, 
+  children 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  title: string;
+  children: React.ReactNode;
+}) {
+  if (!isOpen) return null;
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          zIndex: 100,
+          animation: 'fadeIn 0.2s ease-out',
+        }}
+      />
+      {/* Sheet */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          maxHeight: '85vh',
+          backgroundColor: theme.colors.rice,
+          borderTopLeftRadius: theme.radius.xl,
+          borderTopRightRadius: theme.radius.xl,
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.15)',
+          zIndex: 101,
+          animation: 'slideUp 0.3s ease-out',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {/* Handle */}
+        <div style={{ padding: '0.75rem', display: 'flex', justifyContent: 'center' }}>
+          <div style={{
+            width: '40px',
+            height: '4px',
+            backgroundColor: theme.colors.inactive,
+            borderRadius: theme.radius.full,
+          }} />
+        </div>
+        {/* Header */}
+        <div style={{
+          padding: '0 1.5rem 1rem',
+          borderBottom: theme.borders.hairline,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+          <h2 style={{
+            margin: 0,
+            fontSize: theme.typography.fontSize.lg,
+            color: theme.colors.indigo,
+            fontFamily: theme.typography.fontFamily.display,
+          }}>
+            {title}
+          </h2>
+          <button
+            onClick={onClose}
+            style={{
+              background: 'none',
+              border: 'none',
+              fontSize: '1.5rem',
+              color: theme.colors.inkGray,
+              cursor: 'pointer',
+              padding: '0.25rem',
+            }}
+          >
+            ×
+          </button>
+        </div>
+        {/* Content */}
+        <div style={{ 
+          padding: '1.5rem', 
+          overflowY: 'auto',
+          flex: 1,
+        }}>
+          {children}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { transform: translateY(100%); }
+          to { transform: translateY(0); }
+        }
+      `}</style>
+    </>
+  );
+}
+
+/**
+ * Upload Modal
+ */
+function UploadModal({
+  isOpen,
+  onClose,
+  onUpload,
+  isUploading,
+  error,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  onUpload: (file: File) => void;
+  isUploading: boolean;
+  error: string | null;
+}) {
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') {
+      onUpload(file);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) onUpload(file);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <OverlaySheet isOpen={isOpen} onClose={onClose} title="Load Pattern">
+      <div
+        onDrop={handleDrop}
+        onDragOver={(e) => e.preventDefault()}
+        style={{
+          padding: '3rem 2rem',
+          backgroundColor: theme.colors.washi,
+          borderRadius: theme.radius.lg,
+          border: `2px dashed ${theme.colors.inactive}`,
+          textAlign: 'center',
+          cursor: 'pointer',
+        }}
+      >
+        <input
+          type="file"
+          accept=".pdf"
+          onChange={handleFileSelect}
+          style={{ display: 'none' }}
+          id="pdf-upload-modal"
+        />
+        <label htmlFor="pdf-upload-modal" style={{ cursor: 'pointer', display: 'block' }}>
+          {isUploading ? (
+            <p style={{ color: theme.colors.sage, margin: 0, fontSize: theme.typography.fontSize.lg }}>
+              Parsing pattern...
+            </p>
+          ) : (
+            <>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📄</div>
+              <p style={{ color: theme.colors.inkBlack, margin: 0, fontSize: theme.typography.fontSize.lg }}>
+                Drop a PDF pattern here
+              </p>
+              <p style={{ color: theme.colors.inkGray, margin: '0.5rem 0 0', fontSize: theme.typography.fontSize.sm }}>
+                or click to browse
+              </p>
+            </>
+          )}
+        </label>
+      </div>
+      {error && (
+        <div style={{
+          marginTop: '1rem',
+          padding: '1rem',
+          backgroundColor: `${theme.colors.persimmon}15`,
+          borderRadius: theme.radius.md,
+          color: theme.colors.persimmon,
+          textAlign: 'center',
+        }}>
+          {error}
+        </div>
+      )}
+    </OverlaySheet>
+  );
+}
+
 function PatternReaderContent() {
   const [pattern, setPattern] = useState<Pattern>(SAMPLE_PATTERN);
   const [currentStep, setCurrentStep] = useState(1);
@@ -87,9 +283,12 @@ function PatternReaderContent() {
   const [aiHelpType, setAiHelpType] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  
+  // Overlay states
+  const [showUpload, setShowUpload] = useState(false);
+  const [showCutList, setShowCutList] = useState(false);
   const [showCalculators, setShowCalculators] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [viewFilter, setViewFilter] = useState<ViewFilter>('all');
 
   // Hooks
   const { preferences, toggleUnits, setPreferences } = usePreferences();
@@ -123,56 +322,6 @@ function PatternReaderContent() {
   // Extract data for features
   const cuttingItems = useMemo(() => extractCuttingItems(pattern.steps), [pattern.steps]);
   const pressSteps = useMemo(() => extractPressSteps(pattern.steps), [pattern.steps]);
-  const stepCounts = useMemo(() => {
-    const counts = countStepsByType(pattern.steps);
-    return { all: pattern.steps.length, ...counts };
-  }, [pattern.steps]);
-
-  // Extract measurements for reference card
-  const measurements = useMemo(() => {
-    const allMeasurements: Array<{ label: string; value: string; valueCm?: string; context?: string }> = [];
-
-    pattern.steps.forEach(s => {
-      const extracted = extractMeasurements(s.instruction);
-      extracted.forEach(m => {
-        if (m.unit === 'inches' && !allMeasurements.some(existing => existing.value === m.original)) {
-          const converted = convertMeasurement(m.value, 'inches');
-          allMeasurements.push({
-            label: m.original.includes('x') ? 'Dimension' : 'Size',
-            value: m.original,
-            valueCm: `${converted.converted}cm`,
-          });
-        }
-      });
-    });
-
-    return allMeasurements.slice(0, 8); // Limit to 8 most common
-  }, [pattern.steps]);
-
-  // Filter steps based on view filter
-  const filteredStepNumbers = useMemo(() => {
-    if (viewFilter === 'all') {
-      return pattern.steps.map(s => s.number);
-    }
-
-    return pattern.steps
-      .filter(s => {
-        const text = s.instruction.toLowerCase();
-        const techniques = (s.techniques || []).join(' ').toLowerCase();
-
-        switch (viewFilter) {
-          case 'cutting':
-            return text.includes('cut') || techniques.includes('cutting');
-          case 'pressing':
-            return text.includes('press') || text.includes('iron') || techniques.includes('pressing');
-          case 'measurements':
-            return !!text.match(/\d+(?:½|¼|¾|\.?\d*)?["″]/);
-          default:
-            return true;
-        }
-      })
-      .map(s => s.number);
-  }, [pattern.steps, viewFilter]);
 
   // Check for good stopping point
   const stoppingPointInfo = useMemo(() => isGoodStoppingPoint(step.instruction, step.title), [step]);
@@ -183,7 +332,7 @@ function PatternReaderContent() {
     [currentStep, pattern.steps]
   );
 
-  // Detect press direction from instruction
+  // Detect press direction
   useEffect(() => {
     const text = step.instruction.toLowerCase();
     if (text.includes('press')) {
@@ -219,7 +368,6 @@ function PatternReaderContent() {
 
       const parsedPattern = await response.json();
 
-      // Transform parsed pattern to our format
       const transformedPattern: Pattern = {
         id: parsedPattern.id || `pattern-${Date.now()}`,
         name: parsedPattern.name || parsedPattern.metadata?.name || file.name.replace('.pdf', ''),
@@ -241,28 +389,12 @@ function PatternReaderContent() {
       setPattern(transformedPattern);
       setCurrentStep(1);
       setAiClarification(null);
-      setViewFilter('all');
+      setShowUpload(false);
+      clearSession();
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : 'Upload failed');
     } finally {
       setIsUploading(false);
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (file && file.type === 'application/pdf') {
-      handleFileUpload(file);
-    } else {
-      setUploadError('Please drop a PDF file');
-    }
-  };
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      handleFileUpload(file);
     }
   };
 
@@ -330,389 +462,211 @@ function PatternReaderContent() {
     return "The final touch — well done";
   };
 
-  const resetToUpload = () => {
-    setPattern(SAMPLE_PATTERN);
-    setCurrentStep(1);
-    setAiClarification(null);
-    setUploadError(null);
-    setViewFilter('all');
-    clearSession();
-  };
-
   const navigateToStep = (stepNum: number) => {
-    setCurrentStep(stepNum);
-    setAiClarification(null);
-    setAiHelpType(null);
-  };
-
-  // Navigate filtered steps
-  const navigateFilteredStep = (direction: 'prev' | 'next') => {
-    const currentIndex = filteredStepNumbers.indexOf(currentStep);
-    if (direction === 'prev' && currentIndex > 0) {
-      navigateToStep(filteredStepNumbers[currentIndex - 1]);
-    } else if (direction === 'next' && currentIndex < filteredStepNumbers.length - 1) {
-      navigateToStep(filteredStepNumbers[currentIndex + 1]);
+    if (stepNum >= 1 && stepNum <= pattern.steps.length) {
+      setCurrentStep(stepNum);
+      setAiClarification(null);
+      setAiHelpType(null);
+      setShowTechnique(null);
     }
   };
 
+  const handlePrevious = () => {
+    navigateToStep(currentStep - 1);
+  };
+
+  const handleNext = () => {
+    completeStep(currentStep);
+    navigateToStep(currentStep + 1);
+  };
+
   return (
-    <WashiSurface variant="light" style={{ minHeight: '100vh' }}>
-      {/* Session Welcome Modal */}
-      {isReturningUser && (
-        <SessionWelcome
-          patternName={pattern.name}
-          currentStep={session?.currentStep || 1}
-          totalSteps={pattern.steps.length}
-          timeSinceLastVisit={formatTimeSince()}
-          progressSummary={getProgressSummary()}
-          onContinue={() => {
-            if (session?.currentStep) {
-              setCurrentStep(session.currentStep);
-            }
-            dismissReturnMessage();
-          }}
-          onStartOver={() => {
-            setCurrentStep(1);
-            clearSession();
-            dismissReturnMessage();
-          }}
-          onDismiss={dismissReturnMessage}
-        />
-      )}
-
-      {/* Header */}
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      backgroundColor: theme.colors.washi,
+      backgroundImage: theme.textures.washiFiber,
+    }}>
+      {/* ===== STICKY HEADER ===== */}
       <header style={{
-        padding: theme.spacing.breathe,
-        borderBottom: theme.borders.hairline,
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
         backgroundColor: theme.colors.rice,
+        borderBottom: theme.borders.hairline,
+        padding: '0.75rem 1rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        boxShadow: theme.shadows.subtle,
       }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          maxWidth: '900px',
-          margin: '0 auto'
-        }}>
-          <h1 style={{
-            margin: 0,
-            fontSize: theme.typography.fontSize.xl,
-            color: theme.colors.indigo,
-            fontWeight: 500,
-            letterSpacing: '0.02em',
-            fontFamily: theme.typography.fontFamily.display,
-          }}>
-            Pattern Reader — {pattern.name}
-          </h1>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <button
-              onClick={() => setShowSettings(!showSettings)}
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: showSettings ? theme.colors.indigo : 'transparent',
-                color: showSettings ? theme.colors.rice : theme.colors.bamboo,
-                border: theme.borders.subtle,
-                borderRadius: theme.radius.sm,
-                cursor: 'pointer',
-                fontSize: theme.typography.fontSize.sm,
-                transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
-              }}
-            >
-              ⚙️ Settings
-            </button>
-            <button
-              onClick={resetToUpload}
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: 'transparent',
-                border: theme.borders.subtle,
-                borderRadius: theme.radius.sm,
-                cursor: 'pointer',
-                color: theme.colors.bamboo,
-                fontSize: theme.typography.fontSize.sm,
-                transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
-              }}
-            >
-              ← New Pattern
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main style={{ padding: theme.spacing.rest, maxWidth: '900px', margin: '0 auto' }}>
-        {/* Settings Panel */}
-        {showSettings && (
-          <div style={{ marginBottom: theme.spacing.rest }}>
-            <TooltipSettings />
-            <div style={{
-              marginTop: '1rem',
-              padding: theme.spacing.breathe,
-              backgroundColor: theme.colors.washi,
-              borderRadius: theme.radius.lg,
-            }}>
-              <h3 style={{
-                margin: '0 0 1rem 0',
-                color: theme.colors.indigo,
-                fontSize: theme.typography.fontSize.base,
-                fontWeight: 600,
-              }}>
-                Display Settings
-              </h3>
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                cursor: 'pointer',
-              }}>
-                <input
-                  type="checkbox"
-                  checked={preferences.units === 'metric'}
-                  onChange={toggleUnits}
-                  style={{ width: '18px', height: '18px' }}
-                />
-                <span style={{ color: theme.colors.inkBlack }}>
-                  Show metric measurements
-                </span>
-              </label>
-            </div>
-          </div>
-        )}
-
-        {/* Upload Error */}
-        {uploadError && (
-          <div style={{
-            marginBottom: theme.spacing.breathe,
-            padding: theme.spacing.breathe,
-            backgroundColor: 'rgba(231, 111, 81, 0.1)',
-            borderRadius: theme.radius.md,
-            border: `1px solid ${theme.colors.persimmon}`,
-            textAlign: 'center',
-          }}>
-            <p style={{ color: theme.colors.persimmon, margin: 0 }}>{uploadError}</p>
-          </div>
-        )}
-
-        {/* Drop zone for PDF upload */}
-        <div
-          onDrop={handleDrop}
-          onDragOver={(e) => e.preventDefault()}
+        {/* Left: Pattern name */}
+        <button
+          onClick={() => setShowUpload(true)}
           style={{
-            marginBottom: theme.spacing.rest,
-            padding: theme.spacing.breathe,
-            backgroundColor: theme.colors.washiDark,
-            borderRadius: theme.radius.lg,
-            border: `2px dashed ${theme.colors.inactive}`,
-            textAlign: 'center',
+            background: 'none',
+            border: 'none',
             cursor: 'pointer',
-            transition: `all ${theme.timing.breathe} ${theme.timing.easeOut}`,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            color: theme.colors.indigo,
+            fontFamily: theme.typography.fontFamily.display,
+            fontSize: theme.typography.fontSize.sm,
           }}
         >
-          <input
-            type="file"
-            accept=".pdf"
-            onChange={handleFileSelect}
-            style={{ display: 'none' }}
-            id="pdf-upload"
-          />
-          <label htmlFor="pdf-upload" style={{ cursor: 'pointer', display: 'block' }}>
-            {isUploading ? (
-              <p style={{ color: theme.colors.sage, margin: 0 }}>Parsing pattern...</p>
-            ) : (
-              <>
-                <p style={{ color: theme.colors.inkGray, margin: 0, fontSize: theme.typography.fontSize.sm }}>
-                  Drop a PDF pattern here, or click to browse
-                </p>
-                <p style={{ color: theme.colors.inkGray, margin: '0.5rem 0 0', fontSize: theme.typography.fontSize.xs, opacity: 0.7 }}>
-                  Currently showing: {pattern === SAMPLE_PATTERN ? 'Sample Pattern' : pattern.name}
-                </p>
-              </>
-            )}
-          </label>
-        </div>
-
-        {/* View Filters */}
-        <div style={{ marginBottom: theme.spacing.breathe }}>
-          <ViewFilters
-            currentFilter={viewFilter}
-            onFilterChange={setViewFilter}
-            stepCounts={stepCounts}
-          />
-        </div>
-
-        {/* Cutting Checklist (shown in cutting view or if items exist) */}
-        {(viewFilter === 'cutting' || cuttingItems.length > 0) && viewFilter !== 'pressing' && viewFilter !== 'measurements' && (
-          <div style={{ marginBottom: theme.spacing.rest }}>
-            <CuttingChecklist items={cuttingItems} patternId={pattern.id} />
-          </div>
-        )}
-
-        {/* Press Direction Tracker (shown in pressing view) */}
-        {viewFilter === 'pressing' && pressSteps.length > 0 && (
-          <div style={{ marginBottom: theme.spacing.rest }}>
-            <PressDirectionTracker
-              pressSteps={pressSteps}
-              currentStep={currentStep}
-              onStepClick={navigateToStep}
-            />
-          </div>
-        )}
-
-        {/* Measurements Card (shown in measurements view) */}
-        {viewFilter === 'measurements' && measurements.length > 0 && (
-          <div style={{ marginBottom: theme.spacing.rest }}>
-            <MeasurementsCard
-              measurements={measurements}
-              showMetric={preferences.units === 'metric'}
-              onToggleMetric={toggleUnits}
-            />
-          </div>
-        )}
-
-        {/* Progress Section with Kumihimo */}
-        <div style={{
-          marginBottom: theme.spacing.rest,
-          backgroundColor: theme.colors.rice,
-          padding: theme.spacing.breathe,
-          borderRadius: theme.radius.lg,
-          boxShadow: theme.shadows.soft,
-        }}>
-          {/* Encouragement */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: theme.spacing.breathe,
-            color: theme.colors.sage,
-            fontSize: theme.typography.fontSize.sm,
-            fontStyle: 'italic',
-            fontFamily: theme.typography.fontFamily.display,
+          <span style={{ fontSize: '1rem' }}>📄</span>
+          <span style={{ 
+            maxWidth: '150px', 
+            overflow: 'hidden', 
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
           }}>
-            {getEncouragement()}
-          </div>
+            {pattern.name}
+          </span>
+        </button>
 
-          {/* Kumihimo Progress Bar */}
-          <div style={{ marginBottom: '1rem', padding: '0 1rem' }}>
-            <KumihimoProgress current={currentStep} total={pattern.steps.length} />
-          </div>
-
-          {/* Step indicators */}
-          <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {pattern.steps.map((s, index) => {
-              const isFiltered = filteredStepNumbers.includes(s.number);
-              return (
-                <button
-                  key={index}
-                  onClick={() => navigateToStep(index + 1)}
-                  style={{
-                    width: '36px',
-                    height: '36px',
-                    backgroundColor: currentStep === index + 1 ? theme.colors.indigo : theme.colors.washiDark,
-                    color: currentStep === index + 1 ? theme.colors.rice : theme.colors.inkGray,
-                    border: 'none',
-                    borderRadius: theme.radius.full,
-                    cursor: 'pointer',
-                    fontSize: theme.typography.fontSize.sm,
-                    fontWeight: currentStep === index + 1 ? 600 : 400,
-                    transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
-                    boxShadow: currentStep === index + 1 ? theme.shadows.soft : 'none',
-                    opacity: isFiltered ? 1 : 0.4,
-                  }}
-                >
-                  {index + 1}
-                </button>
-              );
-            })}
-          </div>
+        {/* Center: Step navigation */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem',
+        }}>
+          <button
+            onClick={handlePrevious}
+            disabled={currentStep <= 1}
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: theme.radius.full,
+              border: 'none',
+              backgroundColor: currentStep <= 1 ? theme.colors.washiDark : theme.colors.indigo,
+              color: currentStep <= 1 ? theme.colors.inactive : theme.colors.rice,
+              cursor: currentStep <= 1 ? 'default' : 'pointer',
+              fontSize: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            ←
+          </button>
+          <span style={{
+            color: theme.colors.indigo,
+            fontWeight: 600,
+            fontSize: theme.typography.fontSize.base,
+            minWidth: '60px',
+            textAlign: 'center',
+          }}>
+            {currentStep} / {pattern.steps.length}
+          </span>
+          <button
+            onClick={handleNext}
+            disabled={currentStep >= pattern.steps.length}
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: theme.radius.full,
+              border: 'none',
+              backgroundColor: currentStep >= pattern.steps.length ? theme.colors.washiDark : theme.colors.indigo,
+              color: currentStep >= pattern.steps.length ? theme.colors.inactive : theme.colors.rice,
+              cursor: currentStep >= pattern.steps.length ? 'default' : 'pointer',
+              fontSize: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            →
+          </button>
         </div>
+
+        {/* Right: Settings */}
+        <button
+          onClick={() => setShowSettings(true)}
+          style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: theme.radius.full,
+            border: theme.borders.hairline,
+            backgroundColor: 'transparent',
+            cursor: 'pointer',
+            fontSize: '1rem',
+          }}
+        >
+          ⚙️
+        </button>
+      </header>
+
+      {/* ===== MAIN CONTENT ===== */}
+      <main style={{
+        flex: 1,
+        padding: '1.5rem 1rem',
+        maxWidth: '700px',
+        margin: '0 auto',
+        width: '100%',
+      }}>
+        {/* Returning User Welcome */}
+        {isReturningUser && session && (
+          <SessionWelcome
+            patternName={pattern.name}
+            lastStep={session.currentStep}
+            timeAway={formatTimeSince(session.lastActive)}
+            onContinue={() => { navigateToStep(session.currentStep); dismissReturnMessage(); }}
+            onStartOver={() => { navigateToStep(1); clearSession(); }}
+            onDismiss={dismissReturnMessage}
+          />
+        )}
 
         {/* Tool Prep Alerts */}
         {toolAlerts.map(alert => (
           <ToolPrepAlert
             key={alert.tool}
             tool={alert.tool}
-            stepsAhead={alert.stepNumber}
+            stepsAhead={alert.stepNumber - currentStep}
             prepTime={alert.prepTime}
           />
         ))}
 
-        {/* Step Content Card */}
-        <WashiSurface variant="rice" elevated style={{ borderRadius: theme.radius.lg, padding: theme.spacing.rest }}>
-          {/* Step Header */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            marginBottom: theme.spacing.breathe,
+        {/* Step Card */}
+        <WashiSurface variant="rice" elevated style={{ 
+          borderRadius: theme.radius.lg, 
+          padding: '1.5rem',
+          marginBottom: '1rem',
+        }}>
+          {/* Step Title */}
+          <h2 style={{
+            margin: '0 0 1rem 0',
+            color: theme.colors.indigo,
+            fontSize: theme.typography.fontSize.xl,
+            fontWeight: 500,
+            fontFamily: theme.typography.fontFamily.display,
+            textAlign: 'center',
           }}>
-            <div>
-              <div style={{
-                color: theme.colors.inkGray,
-                fontSize: theme.typography.fontSize.xs,
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                marginBottom: '0.25rem'
-              }}>
-                Step {currentStep} of {pattern.steps.length}
-                {viewFilter !== 'all' && (
-                  <span style={{ color: theme.colors.sage, marginLeft: '0.5rem' }}>
-                    ({filteredStepNumbers.indexOf(currentStep) + 1} of {filteredStepNumbers.length} {viewFilter})
-                  </span>
-                )}
-              </div>
-              <h2 style={{
-                margin: 0,
-                color: theme.colors.indigo,
-                fontSize: theme.typography.fontSize['2xl'],
-                fontWeight: 500,
-                fontFamily: theme.typography.fontFamily.display,
-              }}>
-                {step.title}
-              </h2>
-            </div>
-
-            {/* Font Size Controls */}
-            <div style={{ display: 'flex', gap: '0.25rem' }}>
-              {(['normal', 'large', 'xlarge'] as const).map(size => (
-                <button
-                  key={size}
-                  onClick={() => setPreferences(prev => ({ ...prev, fontSize: size }))}
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    border: preferences.fontSize === size ? `2px solid ${theme.colors.persimmon}` : theme.borders.subtle,
-                    backgroundColor: preferences.fontSize === size ? theme.colors.washi : theme.colors.rice,
-                    borderRadius: theme.radius.sm,
-                    cursor: 'pointer',
-                    fontSize: size === 'normal' ? '11px' : size === 'large' ? '14px' : '17px',
-                    color: theme.colors.inkBlack,
-                    transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
-                  }}
-                >
-                  A
-                </button>
-              ))}
-            </div>
-          </div>
+            {step.title}
+          </h2>
 
           {/* Note */}
           {step.note && (
             <div style={{
               padding: '0.75rem 1rem',
-              backgroundColor: `${theme.colors.clay}22`,
-              borderLeft: `3px solid ${theme.colors.clay}`,
-              borderRadius: `0 ${theme.radius.sm} ${theme.radius.sm} 0`,
-              marginBottom: theme.spacing.breathe,
+              backgroundColor: `${theme.colors.clay}15`,
+              borderRadius: theme.radius.md,
+              marginBottom: '1rem',
               fontSize: theme.typography.fontSize.sm,
               color: theme.colors.inkBlack,
             }}>
-              <span style={{ opacity: 0.7 }}>Note:</span> {step.note}
+              💡 {step.note}
             </div>
           )}
 
-          {/* Main Instruction with Highlighted Terms */}
+          {/* Main Instruction */}
           <div style={{
             fontSize: fontSizes[preferences.fontSize],
             lineHeight: theme.typography.lineHeight.relaxed,
             color: theme.colors.inkBlack,
-            marginBottom: theme.spacing.breathe,
+            marginBottom: '1.5rem',
             fontFamily: theme.typography.fontFamily.body,
           }}>
             <HighlightedText
@@ -723,26 +677,19 @@ function PatternReaderContent() {
           </div>
 
           {/* Visual Diagram */}
-          {step.techniques && (
-            <VisualDiagram
-              techniques={step.techniques}
-              instruction={step.instruction}
-              step={currentStep}
-            />
+          {step.techniques && step.techniques.length > 0 && (
+            <div style={{ marginBottom: '1.5rem' }}>
+              <VisualDiagram
+                techniques={step.techniques}
+                instruction={step.instruction}
+                step={currentStep}
+              />
+            </div>
           )}
 
-          {/* Techniques */}
+          {/* Techniques Tags */}
           {step.techniques && step.techniques.length > 0 && (
-            <div style={{ marginBottom: theme.spacing.breathe }}>
-              <div style={{
-                fontSize: theme.typography.fontSize.xs,
-                color: theme.colors.inkGray,
-                marginBottom: '0.5rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em'
-              }}>
-                Techniques used
-              </div>
+            <div style={{ marginBottom: '1rem' }}>
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                 {step.techniques.map((tech, idx) => (
                   <button
@@ -766,13 +713,13 @@ function PatternReaderContent() {
             </div>
           )}
 
-          {/* AI Help Buttons */}
+          {/* AI Help Buttons - Always visible */}
           <div style={{
             display: 'flex',
             gap: '0.5rem',
-            paddingTop: theme.spacing.breathe,
+            paddingTop: '1rem',
             borderTop: theme.borders.hairline,
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
           }}>
             <button
               onClick={() => handleAIHelp('explain')}
@@ -786,10 +733,9 @@ function PatternReaderContent() {
                 cursor: isLoadingAI ? 'wait' : 'pointer',
                 fontSize: theme.typography.fontSize.sm,
                 opacity: isLoadingAI && aiHelpType === 'explain' ? 0.7 : 1,
-                transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
               }}
             >
-              {isLoadingAI && aiHelpType === 'explain' ? '...' : 'Explain this'}
+              {isLoadingAI && aiHelpType === 'explain' ? '...' : '💬 Explain'}
             </button>
             <button
               onClick={() => handleAIHelp('simplify')}
@@ -802,10 +748,9 @@ function PatternReaderContent() {
                 borderRadius: theme.radius.md,
                 cursor: isLoadingAI ? 'wait' : 'pointer',
                 fontSize: theme.typography.fontSize.sm,
-                transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
               }}
             >
-              {isLoadingAI && aiHelpType === 'simplify' ? '...' : 'Simplify'}
+              {isLoadingAI && aiHelpType === 'simplify' ? '...' : '🌱 Simplify'}
             </button>
             <button
               onClick={() => handleAIHelp('tools')}
@@ -813,23 +758,22 @@ function PatternReaderContent() {
               style={{
                 padding: '0.5rem 1rem',
                 backgroundColor: aiHelpType === 'tools' ? theme.colors.clay : 'transparent',
-                color: aiHelpType === 'tools' ? theme.colors.rice : theme.colors.clay,
+                color: aiHelpType === 'tools' ? theme.colors.sumi : theme.colors.bamboo,
                 border: `1px solid ${theme.colors.clay}`,
                 borderRadius: theme.radius.md,
                 cursor: isLoadingAI ? 'wait' : 'pointer',
                 fontSize: theme.typography.fontSize.sm,
-                transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
               }}
             >
-              {isLoadingAI && aiHelpType === 'tools' ? '...' : 'What tools?'}
+              {isLoadingAI && aiHelpType === 'tools' ? '...' : '🔧 Tools'}
             </button>
           </div>
 
-          {/* AI Response */}
+          {/* AI Response - Inline */}
           {aiClarification && (
             <div style={{
-              marginTop: theme.spacing.breathe,
-              padding: theme.spacing.breathe,
+              marginTop: '1rem',
+              padding: '1rem',
               backgroundColor: theme.colors.washi,
               borderRadius: theme.radius.md,
               borderLeft: `3px solid ${theme.colors.sage}`,
@@ -858,7 +802,6 @@ function PatternReaderContent() {
                     cursor: 'pointer',
                     color: theme.colors.inkGray,
                     fontSize: '1.2rem',
-                    padding: '0 0.25rem'
                   }}
                 >
                   ×
@@ -874,98 +817,227 @@ function PatternReaderContent() {
                   __html: aiClarification
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                     .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                    .replace(/^# (.*$)/gm, `<h4 style="margin: 0.5rem 0; color: ${theme.colors.indigo};">$1</h4>`)
                     .replace(/^- (.*$)/gm, '• $1<br/>')
                 }}
               />
             </div>
           )}
-
-          {/* Good Stopping Point */}
-          {stoppingPointInfo.isStop && (
-            <GoodStoppingPoint reason={stoppingPointInfo.reason} />
-          )}
         </WashiSurface>
 
-        {/* Pro Tips */}
+        {/* Good Stopping Point */}
+        {stoppingPointInfo.isStop && (
+          <div style={{ marginBottom: '1rem' }}>
+            <GoodStoppingPoint reason={stoppingPointInfo.reason} />
+          </div>
+        )}
+
+        {/* Pro Tip / Warning */}
         {step.warning && (
           <div style={{
-            marginTop: theme.spacing.breathe,
-            padding: theme.spacing.breathe,
-            backgroundColor: `${theme.colors.sage}18`,
+            padding: '1rem',
+            backgroundColor: `${theme.colors.sage}12`,
             borderRadius: theme.radius.md,
+            marginBottom: '1rem',
           }}>
             <div style={{
               fontWeight: 500,
               color: theme.colors.sage,
-              marginBottom: '0.5rem',
+              marginBottom: '0.25rem',
               fontSize: theme.typography.fontSize.sm,
             }}>
-              Pro Tip
+              ✨ Pro Tip
             </div>
             <div style={{ fontSize: theme.typography.fontSize.sm, color: theme.colors.inkBlack }}>
               {step.warning}
             </div>
           </div>
         )}
-
-        {/* Navigation */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginTop: theme.spacing.rest,
-        }}>
-          <button
-            onClick={() => viewFilter === 'all' ? navigateToStep(Math.max(1, currentStep - 1)) : navigateFilteredStep('prev')}
-            disabled={viewFilter === 'all' ? currentStep === 1 : filteredStepNumbers.indexOf(currentStep) === 0}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: (viewFilter === 'all' ? currentStep === 1 : filteredStepNumbers.indexOf(currentStep) === 0) ? theme.colors.washiDark : theme.colors.indigo,
-              color: (viewFilter === 'all' ? currentStep === 1 : filteredStepNumbers.indexOf(currentStep) === 0) ? theme.colors.inkGray : theme.colors.rice,
-              border: 'none',
-              borderRadius: theme.radius.md,
-              cursor: (viewFilter === 'all' ? currentStep === 1 : filteredStepNumbers.indexOf(currentStep) === 0) ? 'default' : 'pointer',
-              fontSize: theme.typography.fontSize.sm,
-              transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
-            }}
-          >
-            ← Previous
-          </button>
-          <button
-            onClick={() => {
-              completeStep(currentStep);
-              if (viewFilter === 'all') {
-                navigateToStep(Math.min(pattern.steps.length, currentStep + 1));
-              } else {
-                navigateFilteredStep('next');
-              }
-            }}
-            disabled={viewFilter === 'all' ? currentStep === pattern.steps.length : filteredStepNumbers.indexOf(currentStep) === filteredStepNumbers.length - 1}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: (viewFilter === 'all' ? currentStep === pattern.steps.length : filteredStepNumbers.indexOf(currentStep) === filteredStepNumbers.length - 1) ? theme.colors.washiDark : theme.colors.indigo,
-              color: (viewFilter === 'all' ? currentStep === pattern.steps.length : filteredStepNumbers.indexOf(currentStep) === filteredStepNumbers.length - 1) ? theme.colors.inkGray : theme.colors.rice,
-              border: 'none',
-              borderRadius: theme.radius.md,
-              cursor: (viewFilter === 'all' ? currentStep === pattern.steps.length : filteredStepNumbers.indexOf(currentStep) === filteredStepNumbers.length - 1) ? 'default' : 'pointer',
-              fontSize: theme.typography.fontSize.sm,
-              transition: `all ${theme.timing.quick} ${theme.timing.easeOut}`,
-            }}
-          >
-            Next →
-          </button>
-        </div>
       </main>
 
-      {/* Calculator Button & Modal */}
-      <CalculatorButton onClick={() => setShowCalculators(true)} />
+      {/* ===== STICKY FOOTER ===== */}
+      <footer style={{
+        position: 'sticky',
+        bottom: 0,
+        backgroundColor: theme.colors.rice,
+        borderTop: theme.borders.hairline,
+        padding: '0.75rem 1rem 1rem',
+        boxShadow: '0 -2px 10px rgba(0,0,0,0.05)',
+      }}>
+        {/* Progress */}
+        <div style={{ marginBottom: '0.75rem', padding: '0 0.5rem' }}>
+          <KumihimoProgress current={currentStep} total={pattern.steps.length} />
+        </div>
+
+        {/* Encouragement */}
+        <div style={{
+          textAlign: 'center',
+          marginBottom: '0.75rem',
+          color: theme.colors.sage,
+          fontSize: theme.typography.fontSize.sm,
+          fontStyle: 'italic',
+          fontFamily: theme.typography.fontFamily.display,
+        }}>
+          {getEncouragement()}
+        </div>
+
+        {/* Quick Access Buttons */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '0.5rem',
+        }}>
+          {cuttingItems.length > 0 && (
+            <button
+              onClick={() => setShowCutList(true)}
+              style={{
+                padding: '0.5rem 1rem',
+                backgroundColor: theme.colors.washi,
+                border: theme.borders.hairline,
+                borderRadius: theme.radius.md,
+                cursor: 'pointer',
+                fontSize: theme.typography.fontSize.sm,
+                color: theme.colors.inkBlack,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+              }}
+            >
+              ✂️ Cut List
+            </button>
+          )}
+          <button
+            onClick={() => setShowCalculators(true)}
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: theme.colors.washi,
+              border: theme.borders.hairline,
+              borderRadius: theme.radius.md,
+              cursor: 'pointer',
+              fontSize: theme.typography.fontSize.sm,
+              color: theme.colors.inkBlack,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+            }}
+          >
+            🧮 Calculators
+          </button>
+        </div>
+      </footer>
+
+      {/* ===== OVERLAYS ===== */}
+      
+      {/* Upload Modal */}
+      <UploadModal
+        isOpen={showUpload}
+        onClose={() => setShowUpload(false)}
+        onUpload={handleFileUpload}
+        isUploading={isUploading}
+        error={uploadError}
+      />
+
+      {/* Cut List Overlay */}
+      <OverlaySheet
+        isOpen={showCutList}
+        onClose={() => setShowCutList(false)}
+        title="Cutting Checklist"
+      >
+        <CuttingChecklist items={cuttingItems} patternId={pattern.id} />
+      </OverlaySheet>
+
+      {/* Calculators - has its own modal */}
       <MiniCalculators
         isOpen={showCalculators}
         onClose={() => setShowCalculators(false)}
         defaultWidth={pattern.finishedSize?.width}
         defaultHeight={pattern.finishedSize?.height}
       />
-    </WashiSurface>
+
+      {/* Settings Overlay */}
+      <OverlaySheet
+        isOpen={showSettings}
+        onClose={() => setShowSettings(false)}
+        title="Settings"
+      >
+        <div style={{ marginBottom: '1.5rem' }}>
+          <h3 style={{
+            margin: '0 0 1rem 0',
+            color: theme.colors.indigo,
+            fontSize: theme.typography.fontSize.base,
+            fontWeight: 600,
+          }}>
+            Text Size
+          </h3>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            {(['normal', 'large', 'xlarge'] as const).map(size => (
+              <button
+                key={size}
+                onClick={() => setPreferences(prev => ({ ...prev, fontSize: size }))}
+                style={{
+                  flex: 1,
+                  padding: '0.75rem',
+                  border: preferences.fontSize === size ? `2px solid ${theme.colors.persimmon}` : theme.borders.subtle,
+                  backgroundColor: preferences.fontSize === size ? theme.colors.washi : theme.colors.rice,
+                  borderRadius: theme.radius.md,
+                  cursor: 'pointer',
+                  fontSize: size === 'normal' ? '14px' : size === 'large' ? '18px' : '22px',
+                  color: theme.colors.inkBlack,
+                }}
+              >
+                Aa
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginBottom: '1.5rem' }}>
+          <h3 style={{
+            margin: '0 0 1rem 0',
+            color: theme.colors.indigo,
+            fontSize: theme.typography.fontSize.base,
+            fontWeight: 600,
+          }}>
+            Measurements
+          </h3>
+          <label style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            cursor: 'pointer',
+          }}>
+            <input
+              type="checkbox"
+              checked={preferences.units === 'metric'}
+              onChange={toggleUnits}
+              style={{ width: '20px', height: '20px' }}
+            />
+            <span style={{ color: theme.colors.inkBlack }}>
+              Show metric (cm) alongside inches
+            </span>
+          </label>
+        </div>
+
+        <TooltipSettings />
+
+        <div style={{ marginTop: '2rem', paddingTop: '1rem', borderTop: theme.borders.hairline }}>
+          <button
+            onClick={() => { setShowUpload(true); setShowSettings(false); }}
+            style={{
+              width: '100%',
+              padding: '0.75rem',
+              backgroundColor: 'transparent',
+              border: theme.borders.subtle,
+              borderRadius: theme.radius.md,
+              cursor: 'pointer',
+              color: theme.colors.indigo,
+              fontSize: theme.typography.fontSize.sm,
+            }}
+          >
+            📄 Load Different Pattern
+          </button>
+        </div>
+      </OverlaySheet>
+    </div>
   );
 }
 

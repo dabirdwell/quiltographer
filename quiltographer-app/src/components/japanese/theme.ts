@@ -18,6 +18,7 @@ export const quiltographerTheme = {
     // Functional colors
     inkBlack: '#2d2d2d',     // Body text
     inkGray: '#6b7280',      // Secondary text
+    inkLight: '#9ca3af',     // Tertiary text, hints
     silk: '#dc2626',         // Active/selected states
     bamboo: '#8b4513',       // Wood accents, handles
     
