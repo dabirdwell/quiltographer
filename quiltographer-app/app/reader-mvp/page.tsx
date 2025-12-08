@@ -298,9 +298,11 @@ export default function PatternReaderMVP() {
                 ☰
               </button>
             </header>
-            <MiniCalculators 
-              defaultQuiltWidth={pattern.finishedSize?.width}
-              defaultQuiltHeight={pattern.finishedSize?.height}
+            <MiniCalculators
+              isOpen={true}
+              onClose={() => {}}
+              defaultWidth={pattern.finishedSize?.width}
+              defaultHeight={pattern.finishedSize?.height}
             />
           </WashiSurface>
         );

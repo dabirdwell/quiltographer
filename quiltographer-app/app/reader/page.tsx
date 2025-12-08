@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { VisualDiagram } from './VisualDiagram';
+import { VisualDiagram } from '@/components/reader/VisualDiagram';
 import { quiltographerTheme, WashiSurface, KumihimoProgress } from '@/components/japanese';
 import { HighlightedText } from '@/components/reader/Tooltip';
 import { TooltipProvider, TooltipSettings } from '@/components/reader/TooltipProvider';
@@ -611,8 +611,15 @@ function PatternReaderContent() {
         {isReturningUser && session && (
           <SessionWelcome
             patternName={pattern.name}
-            lastStep={session.currentStep}
-            timeAway={formatTimeSince(session.lastActive)}
+            currentStep={session.currentStep}
+            totalSteps={pattern.steps.length}
+            timeSinceLastVisit={formatTimeSince()}
+            progressSummary={{
+              stepsCompleted: session.completedSteps?.length || 0,
+              percentComplete: Math.round((session.currentStep / pattern.steps.length) * 100),
+              lastPressInfo: null,
+              nextPressHint: null,
+            }}
             onContinue={() => { navigateToStep(session.currentStep); dismissReturnMessage(); }}
             onStartOver={() => { navigateToStep(1); clearSession(); }}
             onDismiss={dismissReturnMessage}
