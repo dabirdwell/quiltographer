@@ -1,0 +1,9 @@
+{
+  "description": "Generate 5 color variations of Log Cabin pattern",
+  "steps": [
+    "Generate base pattern",
+    "Apply color variations",
+    "Add fabric textures",
+    "Create layout preview"
+  ]
+}

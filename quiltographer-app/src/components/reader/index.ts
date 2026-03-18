@@ -11,5 +11,6 @@ export { MiniCalculators, CalculatorButton } from './MiniCalculators';
 export { SessionWelcome, GoodStoppingPoint, ToolPrepAlert } from './SessionWelcome';
 
 // New mode-based components
+export { MaterialsList } from './MaterialsList';
 export { MakeMode } from './MakeMode';
 export { FanDrawer } from './FanDrawer';

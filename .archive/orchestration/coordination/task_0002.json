@@ -1,0 +1,12 @@
+{
+  "id": "task_0002",
+  "type": "design",
+  "description": "Create PDF parsing rules for quilt patterns",
+  "assigned_to": "claude",
+  "status": "assigned",
+  "dependencies": [],
+  "input_data": {},
+  "output_data": {},
+  "created_at": "2025-08-12T22:14:01.455606",
+  "completed_at": null
+}

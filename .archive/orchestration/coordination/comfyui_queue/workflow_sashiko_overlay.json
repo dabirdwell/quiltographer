@@ -1,0 +1,9 @@
+{
+  "description": "Add Sashiko stitching patterns as overlay",
+  "steps": [
+    "Import base pattern",
+    "Generate Sashiko motifs",
+    "Overlay with transparency",
+    "Export with stitch guides"
+  ]
+}

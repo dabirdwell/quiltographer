@@ -1,9 +1,0 @@
-{
-  "description": "Create Irish Chain pattern with different scales",
-  "steps": [
-    "Generate chain pattern",
-    "Scale to different sizes",
-    "Apply traditional colors",
-    "Export as SVG"
-  ]
-}

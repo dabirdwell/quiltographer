@@ -1,15 +1,40 @@
+'use client';
+
+import { HSTDiagram } from '@/components/diagrams/HSTDiagram';
+
 export default function TestPage() {
   return (
-    <div className="min-h-screen bg-blue-500 p-8">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Tailwind Test</h1>
-        <p className="text-gray-600 mb-4">
-          If you can see this with blue background and white card, Tailwind is working!
-        </p>
-        <div className="flex gap-2">
-          <div className="w-8 h-8 bg-red-500 rounded"></div>
-          <div className="w-8 h-8 bg-green-500 rounded"></div>
-          <div className="w-8 h-8 bg-blue-500 rounded"></div>
+    <div className="min-h-screen bg-stone-100 p-8">
+      <div className="max-w-2xl mx-auto space-y-8">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-stone-800 mb-2">Technique Diagrams</h1>
+          <p className="text-stone-600">Click to step through • Click diagram or use arrows</p>
+        </div>
+
+        {/* HST Diagram - Default */}
+        <div>
+          <h2 className="text-xl font-semibold text-stone-700 mb-4">Half Square Triangle (HST)</h2>
+          <HSTDiagram />
+        </div>
+
+        {/* HST - Warm palette */}
+        <div>
+          <h2 className="text-xl font-semibold text-stone-700 mb-4">HST - Amber and Rust</h2>
+          <HSTDiagram 
+            lightColor="#fef3c7"
+            darkColor="#92400e"
+            finishedSize='5"'
+          />
+        </div>
+
+        {/* HST - Cool palette */}
+        <div>
+          <h2 className="text-xl font-semibold text-stone-700 mb-4">HST - Sky and Ocean</h2>
+          <HSTDiagram 
+            lightColor="#e0f2fe"
+            darkColor="#0c4a6e"
+            finishedSize='3.5"'
+          />
         </div>
       </div>
     </div>

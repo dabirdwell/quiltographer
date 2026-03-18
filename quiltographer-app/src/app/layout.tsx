@@ -7,8 +7,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Quiltographer - Modern Quilt Design Studio",
-  description: "Where tradition meets innovation in quilt design",
+  title: "Quiltographer — Finally Understand Your Quilt Patterns",
+  description: "Upload any PDF quilt pattern. Get clear, step-by-step instructions. Ask AI when you're confused. Built for quilters.",
 };
 
 export default function RootLayout({

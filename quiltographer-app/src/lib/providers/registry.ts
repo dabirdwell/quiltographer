@@ -3,6 +3,7 @@ import { ComprehensionProvider } from './comprehension/interface';
 import { VisualizationProvider } from './visualization/interface';
 
 import { GeminiExtractionProvider } from './extraction/gemini';
+import { PdfLocalExtractionProvider } from './extraction/pdf-local';
 import { OpenAIComprehensionProvider } from './comprehension/openai';
 import { TemplateVisualizationProvider } from './visualization/templates';
 
@@ -18,6 +19,10 @@ class ProviderRegistry {
     if (this.initialized) return;
 
     // Extraction providers (in order of preference)
+    // pdf-local is primary — free, fast, no API key needed
+    this.extractionProviders.set('pdf-local', new PdfLocalExtractionProvider());
+
+    // Gemini as fallback for scanned/image PDFs
     const googleApiKey = process.env.GOOGLE_AI_API_KEY;
     if (googleApiKey) {
       this.extractionProviders.set('gemini', new GeminiExtractionProvider(googleApiKey));
@@ -69,7 +74,7 @@ class ProviderRegistry {
       }
     }
 
-    throw new Error('No extraction provider available. Please set GOOGLE_AI_API_KEY.');
+    throw new Error('No extraction provider available. Install pdf-parse or set GOOGLE_AI_API_KEY.');
   }
 
   async getComprehensionProvider(preferred?: string): Promise<ComprehensionProvider> {
@@ -129,7 +134,7 @@ class ProviderRegistry {
     const missing: string[] = [];
 
     if (this.extractionProviders.size === 0) {
-      missing.push('extraction (set GOOGLE_AI_API_KEY)');
+      missing.push('extraction (install pdf-parse or set GOOGLE_AI_API_KEY)');
     }
 
     if (this.comprehensionProviders.size === 0) {

@@ -29,3 +29,4 @@ hive-mind-prompt-*.txt
 node_modules/
 .next/
 
+.archive/

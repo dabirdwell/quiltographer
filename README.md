@@ -1,140 +1,84 @@
-# Quiltographer - AI-Powered Quilt Design Platform
+# Quiltographer
 
-## 🎯 Project Vision
-Quiltographer revolutionizes quilt design by combining traditional quilting wisdom with modern AI capabilities, creating an inclusive platform that preserves cultural heritage while enabling innovation.
+**Finally understand your quilt patterns.** Upload any PDF pattern. Get clear, step-by-step instructions. Ask AI when you're confused.
 
-## 📁 Project Knowledge Files
+Built by Humanity & AI LLC.
 
-### Essential Documentation
-1. **[QUILTOGRAPHER-KNOWLEDGE-BASE.md](./QUILTOGRAPHER-KNOWLEDGE-BASE.md)**
-   - Complete project context and structure
-   - Current development status
-   - Technical decisions and architecture
-   - Use this as primary reference for all development
+## Quick Start
 
-2. **[PREFERENCES-AND-INSTRUCTIONS.md](./PREFERENCES-AND-INSTRUCTIONS.md)**
-   - How to work on this project
-   - Code style and standards
-   - Communication preferences
-   - Development workflow
-
-3. **[QUICK-REFERENCE.md](./QUICK-REFERENCE.md)**
-   - Essential commands and status
-   - Quick access to key information
-   - Current swarm details
-
-4. **[CLAUDE-CODE-SETUP.md](./CLAUDE-CODE-SETUP.md)**
-   - Installation instructions for Claude Code
-   - MCP server configuration
-   - Troubleshooting guide
-
-## 🚀 Getting Started
-
-### Current Status
-- **Discovery Swarm**: Active but workers idle
-- **Session ID**: `session-1753631529354-xvvo1rxv7`
-- **Next Step**: Install Claude Code to activate workers
-
-### Quick Setup
 ```bash
-# 1. Install Claude Code
-npm install -g @anthropic-ai/claude-code
-
-# 2. Run activation script
-chmod +x INSTALL-AND-ACTIVATE.sh
-./INSTALL-AND-ACTIVATE.sh
-
-# 3. Monitor progress
-./monitor-swarm.sh
+cd quiltographer-app
+npm install
+npm run dev
 ```
 
-## 🏗️ Project Structure
+Open [http://localhost:3000](http://localhost:3000) for the landing page, or go directly to [/reader](http://localhost:3000/reader) to upload a pattern.
+
+## Features
+
+- **PDF Pattern Reader** — Upload any quilt pattern PDF, get step-by-step instructions
+- **AI Clarification** — "I don't understand this step" button powered by Claude Haiku
+- **Materials Checklist** — Check off materials as you gather them (persisted)
+- **Session Persistence** — Close the browser, come back tomorrow, resume where you left off
+- **Font Scaling** — 100%, 150%, 200%, 300% — readable at arm's length
+- **High Contrast Mode** — For bright sewing rooms or low-vision quilters
+- **Mobile/Tablet First** — 48px touch targets, responsive layout
+- **Abbreviation Decoder** — RST, HST, WOF, FPP automatically expanded
+
+## Pricing
+
+- **Free** — 3 patterns per month
+- **Pro** — $4.99/mo, unlimited patterns + unlimited AI clarifications
+- **Beta Pass** — `?beta=quilt2026` URL parameter unlocks full access
+
+## Project Structure
+
 ```
-quiltographer/
-├── 📚 Knowledge Files (START HERE)
-│   ├── QUILTOGRAPHER-KNOWLEDGE-BASE.md
-│   ├── PREFERENCES-AND-INSTRUCTIONS.md
-│   ├── QUICK-REFERENCE.md
-│   └── CLAUDE-CODE-SETUP.md
-├── 🤖 AI/Swarm Configuration
-│   ├── .claude/         # Agent configurations
-│   ├── .hive-mind/      # Swarm system
-│   └── .swarm/          # Memory database
-├── 📝 Documentation
-│   └── docs/
-│       ├── architecture/
-│       └── swarm-progress.md
-├── 🛠️ Scripts
-│   ├── monitor-swarm.sh
-│   ├── INSTALL-AND-ACTIVATE.sh
-│   └── [other helper scripts]
-└── 💻 Source (to be created)
-    └── src/
-        ├── components/
-        ├── lib/
-        └── [implementation]
-```
-
-## 🎨 Design Philosophy
-- **Japanese Aesthetics**: Ma (間), Wabi-sabi (侘寂), Shibui (渋い)
-- **Accessibility First**: WCAG AAA compliance
-- **Cultural Preservation**: Respect for traditional patterns
-- **Community Centric**: Knowledge sharing and collaboration
-
-## 🛠️ Tech Stack (Pending Swarm Confirmation)
-- **Frontend**: Next.js 14, Tailwind CSS, SVG-first approach
-- **Backend**: tRPC, PostgreSQL with Drizzle ORM
-- **AI**: OpenAI API, Pinecone vector DB
-- **Deployment**: Vercel
-
-## 📋 Development Phases
-1. **Discovery & Architecture** (Current)
-2. **Foundation Setup**
-3. **Pattern Engine Development**
-4. **UI Implementation**
-5. **AI Integration**
-6. **Community Features**
-
-## 🤝 How to Contribute
-
-### For AI Assistants
-1. Always read `QUILTOGRAPHER-KNOWLEDGE-BASE.md` first
-2. Check swarm memory for existing decisions
-3. Follow preferences in `PREFERENCES-AND-INSTRUCTIONS.md`
-4. Use Desktop Commander for direct execution
-5. Update progress tracking after major work
-
-### For Developers
-1. Install dependencies and Claude Code
-2. Review architecture decisions in swarm memory
-3. Follow the code style guide
-4. Ensure accessibility in all features
-5. Document cultural considerations
-
-## 📊 Monitoring Commands
-```bash
-# Check swarm status
-npx claude-flow@alpha hive-mind status
-
-# View memory
-npx claude-flow@alpha memory query "search-term"
-
-# Real-time monitoring
-npx claude-flow@alpha monitor --follow
-
-# Check all status
-./check-swarm-status.sh
+quiltographer-app/     # Next.js application
+  src/app/             # Pages and API routes
+    page.tsx           # Landing page
+    reader/page.tsx    # Pattern Reader (core product)
+    api/parse-pdf/     # PDF extraction endpoint
+    api/clarify/       # AI clarification endpoint (Claude Haiku)
+    api/stripe/        # Checkout + webhook
+  src/components/      # UI components
+    reader/            # StepContent, PatternUpload, MaterialsList
+    fan/               # Step navigation
+    ui/                # Design system (Button, Text, Surface, etc.)
+    japanese/          # Theme system
+  src/lib/             # Business logic
+    reader/            # Schema, calculators, glossary
+    stripe/            # Config + client
+    providers/         # AI provider registry
+packages/              # Shared schemas and parser
+test-patterns/         # Sample PDFs for testing
 ```
 
-## 🎯 Current Priority
-**Install Claude Code** to activate the idle swarm workers and begin the discovery phase. Six research tasks are already loaded in memory waiting to be processed.
+## Environment Variables
 
-## 📞 Support
-- Check swarm memory for decisions
-- Review documentation in `docs/`
-- Monitor progress with provided scripts
-- Use Desktop Commander for all file operations
+```
+ANTHROPIC_API_KEY=     # Required for AI clarification (Claude Haiku)
+GOOGLE_AI_API_KEY=     # Optional: Gemini for vision-based PDF extraction
+OPENAI_API_KEY=        # Optional: GPT-4o-mini for deep comprehension
+STRIPE_SECRET_KEY=     # For payments (optional in dev)
+STRIPE_WEBHOOK_SECRET= # For subscription webhooks
+STRIPE_PRO_PRICE_ID=   # Stripe price ID for Pro tier
+```
 
----
+## Current State (March 2026)
 
-**Remember**: Quiltographer is more than software - it's a bridge between tradition and innovation, preserving cultural heritage while enabling creative expression.
+- `npm run dev` starts cleanly
+- 6 of 8 test PDFs parse successfully (2 are preview cards, correctly rejected)
+- Reader UI displays steps with prev/next, materials checklist, AI clarification
+- Font scaling works at 200%+ without layout breaking
+- AI clarification calls Claude Haiku API and returns useful rewrites
+- Landing page with pricing, email capture, and Stripe checkout
+- Beta pass URL (`?beta=quilt2026`) grants full access
+- Session persistence via localStorage
+- Keyboard navigation (arrows, M for materials, Esc to go back)
+
+## Parser Capabilities
+
+Handles: "Step N:" format, numbered instructions, yardage extraction, fat quarters, strips, precuts, backing/binding/batting, abbreviation expansion, technique detection, section-aware step numbering.
+
+Known limitations: Image-only PDFs (1-page preview cards) contain no extractable text. Some patterns embed early steps in images. Fabric names are approximate when not labeled in the PDF.

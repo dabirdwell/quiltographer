@@ -1,6 +1,0 @@
-{
-  "type": "accessibility_review",
-  "prompt": "Review these accessibility features for a quilting app: adjustable text size, high contrast mode, screen reader support, progress tracking. What's missing for elderly users or those with visual impairments?",
-  "status": "pending",
-  "created_at": 1755048677.483649
-}

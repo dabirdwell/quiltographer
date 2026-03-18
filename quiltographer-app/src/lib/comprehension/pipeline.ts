@@ -17,20 +17,20 @@ export interface PipelineOptions {
   visualizationProvider?: string;
   onProgress?: ProgressCallback;
   skipDiagrams?: boolean;
+  fileName?: string;
 }
 
 // Identify steps from extracted markdown
 function identifySteps(markdown: string): Array<{ title: string; instruction: string }> {
   const steps: Array<{ title: string; instruction: string }> = [];
-
-  // Split by common step patterns
   const lines = markdown.split('\n');
+  
   let currentStep: { title: string; instruction: string } | null = null;
+  let preamble = ''; // Content before first step (metadata, supplies, etc.)
 
   for (const line of lines) {
-    // Match step headers: "Step 1:", "1.", "## Step 1", etc.
-    const stepMatch = line.match(/^(?:#{1,3}\s*)?(?:Step\s+)?(\d+)[.:)]\s*(.*)$/i) ||
-                      line.match(/^#{1,3}\s+(.+)$/);
+    // Only match explicit step patterns: "Step 1:", "Step 2: Cut Strip Sets", etc.
+    const stepMatch = line.match(/^(?:#{1,3}\s*)?Step\s+(\d+)\s*[.:]\s*(.*)$/i);
 
     if (stepMatch) {
       // Save previous step
@@ -39,13 +39,18 @@ function identifySteps(markdown: string): Array<{ title: string; instruction: st
       }
 
       // Start new step
+      const stepNum = stepMatch[1];
+      const stepTitle = stepMatch[2]?.trim() || `Step ${stepNum}`;
       currentStep = {
-        title: stepMatch[2]?.trim() || stepMatch[1]?.trim() || `Step ${steps.length + 1}`,
+        title: stepTitle,
         instruction: '',
       };
     } else if (currentStep) {
       // Add content to current step
       currentStep.instruction += line + '\n';
+    } else {
+      // Before first step — this is preamble (title, supplies, notes)
+      preamble += line + '\n';
     }
   }
 
@@ -54,12 +59,42 @@ function identifySteps(markdown: string): Array<{ title: string; instruction: st
     steps.push(currentStep);
   }
 
-  // If no steps found, treat entire content as one step
+  // If no explicit steps found, try heading-based splitting as fallback
+  if (steps.length === 0) {
+    let fallbackStep: { title: string; instruction: string } | null = null;
+    
+    for (const line of lines) {
+      const headingMatch = line.match(/^#{1,3}\s+(.+)$/);
+      
+      if (headingMatch) {
+        if (fallbackStep && fallbackStep.instruction.trim()) {
+          steps.push(fallbackStep);
+        }
+        fallbackStep = {
+          title: headingMatch[1].trim(),
+          instruction: '',
+        };
+      } else if (fallbackStep) {
+        fallbackStep.instruction += line + '\n';
+      }
+    }
+    
+    if (fallbackStep && fallbackStep.instruction.trim()) {
+      steps.push(fallbackStep);
+    }
+  }
+
+  // If still nothing, treat entire content as one step
   if (steps.length === 0 && markdown.trim()) {
     steps.push({
       title: 'Instructions',
       instruction: markdown,
     });
+  }
+
+  // Inject preamble context into first step if we have it
+  if (preamble.trim() && steps.length > 0) {
+    steps[0].instruction = `[Pattern Context]\n${preamble.trim()}\n\n[Step Instructions]\n${steps[0].instruction}`;
   }
 
   return steps;

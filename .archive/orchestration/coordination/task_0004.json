@@ -1,0 +1,14 @@
+{
+  "id": "task_0004",
+  "type": "implement",
+  "description": "Build pattern schema TypeScript interfaces",
+  "assigned_to": null,
+  "status": "pending",
+  "dependencies": [
+    "task_0001"
+  ],
+  "input_data": {},
+  "output_data": {},
+  "created_at": "2025-08-12T22:14:01.456042",
+  "completed_at": null
+}
