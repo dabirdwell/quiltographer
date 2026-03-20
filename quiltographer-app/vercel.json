@@ -7,6 +7,7 @@
   "regions": ["iad1"],
   "env": {
     "STRIPE_SECRET_KEY": "@stripe-secret-key",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@stripe-publishable-key",
     "STRIPE_PRO_PRICE_ID": "@stripe-pro-price-id",
     "STRIPE_WEBHOOK_SECRET": "@stripe-webhook-secret",
     "ANTHROPIC_API_KEY": "@anthropic-api-key",

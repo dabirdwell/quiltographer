@@ -56,14 +56,41 @@ test-patterns/         # Sample PDFs for testing
 
 ## Environment Variables
 
-```
-ANTHROPIC_API_KEY=     # Required for AI clarification (Claude Haiku)
-GOOGLE_AI_API_KEY=     # Optional: Gemini for vision-based PDF extraction
-OPENAI_API_KEY=        # Optional: GPT-4o-mini for deep comprehension
-STRIPE_SECRET_KEY=     # For payments (optional in dev)
-STRIPE_WEBHOOK_SECRET= # For subscription webhooks
-STRIPE_PRO_PRICE_ID=   # Stripe price ID for Pro tier
-```
+Copy `quiltographer-app/.env.example` to `quiltographer-app/.env.local` and fill in your keys:
+
+| Variable | Required | Description |
+|---|---|---|
+| `STRIPE_SECRET_KEY` | Yes | Stripe secret key (`sk_test_...` or `sk_live_...`) |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Yes | Stripe publishable key (`pk_test_...` or `pk_live_...`) |
+| `STRIPE_PRO_PRICE_ID` | Yes | Stripe Price ID for the Pro tier |
+| `STRIPE_WEBHOOK_SECRET` | Yes | Stripe webhook signing secret (`whsec_...`) |
+| `ANTHROPIC_API_KEY` | Yes | Claude Haiku API key for AI clarifications |
+| `NEXT_PUBLIC_APP_URL` | Yes | Your app URL (e.g. `http://localhost:3000` or production URL) |
+| `GOOGLE_AI_API_KEY` | No | Gemini for vision-based PDF extraction |
+| `OPENAI_API_KEY` | No | GPT-4o-mini for deep comprehension |
+
+## Deploy to Vercel
+
+1. Push this repo to GitHub.
+
+2. Import the project in [Vercel](https://vercel.com/new):
+   - Set **Root Directory** to `quiltographer-app`
+   - Framework will auto-detect as **Next.js**
+
+3. Add environment variables in Vercel project settings (Settings > Environment Variables):
+   - `STRIPE_SECRET_KEY`
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+   - `STRIPE_PRO_PRICE_ID`
+   - `STRIPE_WEBHOOK_SECRET`
+   - `ANTHROPIC_API_KEY`
+   - `NEXT_PUBLIC_APP_URL` (set to your production domain, e.g. `https://quiltographer.com`)
+
+4. Deploy. Vercel will run `npm install && npm run build` automatically.
+
+5. After deploy, configure the Stripe webhook:
+   - In [Stripe Dashboard > Webhooks](https://dashboard.stripe.com/webhooks), create an endpoint pointing to `https://<your-domain>/api/stripe/webhook`
+   - Subscribe to events: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`
+   - Copy the signing secret to `STRIPE_WEBHOOK_SECRET` in Vercel
 
 ## Current State (March 2026)
 
