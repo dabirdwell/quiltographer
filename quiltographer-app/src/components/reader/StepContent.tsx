@@ -173,8 +173,8 @@ export function StepContent({
           </Stack>
         )}
 
-        {/* AI Help Buttons */}
-        <Stack direction="horizontal" gap="xs" className="mb-breathe pt-2 border-t border-ink-faint/20 flex-wrap">
+        {/* AI Help Buttons — 48px min touch targets on mobile */}
+        <Stack direction="horizontal" gap="xs" className="mb-breathe pt-2 border-t border-ink-faint/20 flex-wrap [&_button]:min-h-[48px]">
           <Button
             variant="primary"
             color={clarification ? 'sage' : 'indigo'}

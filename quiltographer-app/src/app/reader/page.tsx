@@ -308,6 +308,7 @@ export default function PatternReaderPage() {
       id: step.id,
       label: step.title || `Step ${step.number}`,
       shortLabel: `${step.number}`,
+      section: step.section,
     })) || [];
 
   const highContrastStyles: React.CSSProperties = highContrast
@@ -495,6 +496,20 @@ export default function PatternReaderPage() {
                   );
                 }}
               />
+            )}
+
+            {/* Section header divider — show when entering a new section */}
+            {currentStep.section && currentStep.section !== 'General' && (
+              currentStepIndex === 0 ||
+              pattern.steps[currentStepIndex - 1]?.section !== currentStep.section
+            ) && (
+              <div className={`text-center py-2 px-4 rounded-lg font-semibold text-sm uppercase tracking-wider ${
+                highContrast
+                  ? 'bg-gray-700 text-yellow-300 border border-gray-600'
+                  : 'bg-indigo/10 text-indigo border border-indigo/20'
+              }`}>
+                {currentStep.section}
+              </div>
             )}
 
             {pattern.summary && currentStepIndex === 0 && (

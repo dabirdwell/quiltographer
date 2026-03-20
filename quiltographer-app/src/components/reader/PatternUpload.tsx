@@ -120,7 +120,9 @@ export function PatternUpload({
             >
               📄
             </div>
+            {/* Desktop: drag-and-drop message; Mobile: prominent file picker */}
             <p
+              className="hidden sm:block"
               style={{
                 fontSize: quiltographerTheme.typography.fontSize.xl,
                 color: quiltographerTheme.colors.indigo,
@@ -131,6 +133,18 @@ export function PatternUpload({
               Drop your pattern PDF here
             </p>
             <p
+              className="sm:hidden"
+              style={{
+                fontSize: quiltographerTheme.typography.fontSize.xl,
+                color: quiltographerTheme.colors.indigo,
+                fontFamily: quiltographerTheme.typography.fontFamily.display,
+                marginBottom: '0.5rem',
+              }}
+            >
+              Upload your pattern PDF
+            </p>
+            <p
+              className="hidden sm:block"
               style={{
                 fontSize: quiltographerTheme.typography.fontSize.base,
                 color: quiltographerTheme.colors.inkGray,
@@ -144,6 +158,8 @@ export function PatternUpload({
               style={{
                 display: 'inline-block',
                 padding: '0.75rem 1.5rem',
+                minHeight: '48px',
+                minWidth: '160px',
                 backgroundColor: quiltographerTheme.colors.persimmon,
                 color: quiltographerTheme.colors.rice,
                 borderRadius: quiltographerTheme.radius.md,
@@ -153,6 +169,8 @@ export function PatternUpload({
                 cursor: 'pointer',
                 transition: `all ${quiltographerTheme.timing.quick} ${quiltographerTheme.timing.easeOut}`,
                 boxShadow: quiltographerTheme.shadows.soft,
+                lineHeight: '48px',
+                textAlign: 'center',
               }}
             >
               Choose PDF

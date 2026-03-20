@@ -78,42 +78,89 @@ function extractSteps(text: string): Array<{
     tips: Array<{ text: string }>;
   }> = [];
 
-  // First, identify sections in the pattern (Block Assembly, Quilt Assembly, etc.)
-  const sectionHeaders = [
+  // --- Issue 2: Section-scoped step numbering ---
+  // Detect section headers in the text (lines ending with ":" or matching assembly/cutting/piecing)
+  const sectionHeaderPatterns = [
+    /^(block\s+assembly)\s*[:\-]?\s*$/im,
+    /^(quilt\s+(?:top\s+)?assembly)\s*[:\-]?\s*$/im,
+    /^(finishing)\s*[:\-]?\s*$/im,
+    /^(borders?)\s*[:\-]?\s*$/im,
+    /^(sashing)\s*[:\-]?\s*$/im,
+    /^(binding)\s*[:\-]?\s*$/im,
+    /^(piecing)\s*[:\-]?\s*$/im,
+    /^(cutting\s+instructions?)\s*[:\-]?\s*$/im,
+    /^(construction)\s*[:\-]?\s*$/im,
+    /^(make\s+the\s+blocks?)\s*[:\-]?\s*$/im,
+    /^(assemble\s+the\s+quilt)\s*[:\-]?\s*$/im,
+    /^(add\s+borders?)\s*[:\-]?\s*$/im,
+  ];
+
+  // Also detect section headers inline — lines containing these keywords near step definitions
+  const sectionKeywords = [
     'block assembly', 'quilt assembly', 'quilt top assembly', 'finishing',
     'border', 'borders', 'sashing', 'binding', 'piecing',
     'cutting instructions', 'construction', 'assembly',
     'make the blocks', 'assemble the quilt', 'add borders',
   ];
 
-  // Find section boundaries
+  // Find section boundaries by scanning text
   const sections: Array<{ name: string; startIdx: number }> = [];
   const lowerText = text.toLowerCase();
-  for (const header of sectionHeaders) {
+  for (const keyword of sectionKeywords) {
     let searchFrom = 0;
     while (true) {
-      const idx = lowerText.indexOf(header, searchFrom);
+      const idx = lowerText.indexOf(keyword, searchFrom);
       if (idx === -1) break;
-      // Check it's at the start of a line (or near it)
       const lineStart = text.lastIndexOf('\n', idx);
       const prefix = text.slice(Math.max(0, lineStart), idx).trim();
       if (prefix.length < 5) {
-        sections.push({ name: header, startIdx: idx });
+        // Capitalize section name for display
+        const displayName = keyword.replace(/\b\w/g, c => c.toUpperCase());
+        sections.push({ name: displayName, startIdx: idx });
       }
-      searchFrom = idx + header.length;
+      searchFrom = idx + keyword.length;
     }
   }
   sections.sort((a, b) => a.startIdx - b.startIdx);
+  // Deduplicate overlapping sections (e.g., "assembly" inside "block assembly")
+  const dedupedSections: Array<{ name: string; startIdx: number }> = [];
+  for (const sec of sections) {
+    const isDuplicate = dedupedSections.some(
+      existing => Math.abs(existing.startIdx - sec.startIdx) < 20
+    );
+    if (!isDuplicate) {
+      dedupedSections.push(sec);
+    } else {
+      // Keep the longer (more specific) name
+      const existingIdx = dedupedSections.findIndex(
+        existing => Math.abs(existing.startIdx - sec.startIdx) < 20
+      );
+      if (existingIdx >= 0 && sec.name.length > dedupedSections[existingIdx].name.length) {
+        dedupedSections[existingIdx] = sec;
+      }
+    }
+  }
 
-  // Find which section a text position belongs to
   function getSectionName(pos: number): string {
     let sectionName = 'General';
-    for (const sec of sections) {
+    for (const sec of dedupedSections) {
       if (sec.startIdx <= pos) sectionName = sec.name;
       else break;
     }
     return sectionName;
   }
+
+  // --- Issue 3: Track original step numbers to detect mid-count starts ---
+  let firstOriginalStepNum = Infinity;
+  let lastOriginalStepNum = 0;
+
+  // Collect raw steps with their original numbers and positions
+  const rawSteps: Array<{
+    originalNum: number;
+    position: number;
+    instruction: string;
+    section: string;
+  }> = [];
 
   // Match "Step X:" or "Step X." patterns
   const stepRegex = /Step\s+(\d+)[:\.]?\s*([^]*?)(?=Step\s+\d+[:\.]|$)/gi;
@@ -130,6 +177,52 @@ function extractSteps(text: string): Array<{
     if (rawInstruction.length < 10) continue;
 
     const section = getSectionName(match.index);
+
+    if (stepNum < firstOriginalStepNum) firstOriginalStepNum = stepNum;
+    if (stepNum > lastOriginalStepNum) lastOriginalStepNum = stepNum;
+
+    rawSteps.push({
+      originalNum: stepNum,
+      position: match.index,
+      instruction: rawInstruction,
+      section,
+    });
+  }
+
+  // --- Issue 2: Section-scope step numbering ---
+  // If we have duplicate original step numbers across different sections, prefix with section
+  const stepNumCounts = new Map<number, number>();
+  for (const rs of rawSteps) {
+    stepNumCounts.set(rs.originalNum, (stepNumCounts.get(rs.originalNum) || 0) + 1);
+  }
+  const hasDuplicateNums = Array.from(stepNumCounts.values()).some(count => count > 1);
+
+  // --- Issue 3: If first step > 1, note that earlier steps are in images ---
+  let imageStepsNote = '';
+  if (firstOriginalStepNum > 1 && rawSteps.length > 0) {
+    imageStepsNote = `Note: Steps 1-${firstOriginalStepNum - 1} are in diagram images in the pattern PDF.`;
+  }
+
+  // Build final steps with section-scoped numbering
+  let globalStepCounter = 1;
+
+  // If steps start mid-count, add the image note as an info step
+  if (imageStepsNote) {
+    steps.push({
+      id: 'step-image-note',
+      number: globalStepCounter++,
+      title: 'Visual Steps (in pattern images)',
+      section: rawSteps[0]?.section || 'General',
+      instruction: imageStepsNote,
+      clarifiedInstruction: imageStepsNote,
+      techniques: [],
+      warnings: [{ type: 'important', message: imageStepsNote }],
+      tips: [{ text: 'Refer to the printed pattern PDF for the diagram-based steps' }],
+    });
+  }
+
+  for (const rs of rawSteps) {
+    const rawInstruction = rs.instruction;
 
     // Detect techniques
     const techniques: string[] = [];
@@ -173,8 +266,8 @@ function extractSteps(text: string): Array<{
       tips.push({ text: 'Chain piecing saves thread and speeds up repetitive steps' });
     }
 
-    // Extract title
-    let title = `Step ${stepNum}`;
+    // Extract title — include section prefix if duplicates exist
+    let title = `Step ${rs.originalNum}`;
     const titleExtract = rawInstruction.match(/^([A-Z][a-zA-Z\s]{2,40}?)(?:[.\-\u2013:,;]|\s{2}|\sUsing|\sWith|\sSew(?:ing)?|\sCut(?:ting)?|\sPlace|\sTake|\sPress)/);
     if (titleExtract) {
       title = titleExtract[1].trim();
@@ -185,17 +278,29 @@ function extractSteps(text: string): Array<{
       }
     }
 
+    // Section-scope the title if there are duplicate step numbers
+    const sectionDisplay = rs.section !== 'General' ? rs.section : '';
+    if (hasDuplicateNums && sectionDisplay) {
+      title = `${sectionDisplay}: ${title}`;
+    }
+
+    // Annotate with original step number if renumbered
+    const originalAnnotation = (firstOriginalStepNum > 1)
+      ? ` (originally Step ${rs.originalNum})`
+      : '';
+
     steps.push({
-      id: `step-${steps.length + 1}`,
-      number: steps.length + 1,
-      title,
-      section,
+      id: `step-${globalStepCounter}`,
+      number: globalStepCounter,
+      title: title + originalAnnotation,
+      section: rs.section,
       instruction: rawInstruction,
       clarifiedInstruction: expandAbbreviations(rawInstruction),
       techniques,
       warnings,
       tips,
     });
+    globalStepCounter++;
   }
 
   // If no "Step N:" found, try numbered list patterns "1." "2." etc.
@@ -204,7 +309,6 @@ function extractSteps(text: string): Array<{
     while ((match = numberedRegex.exec(text)) !== null) {
       const rawInstruction = match[2].trim().replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
       if (rawInstruction.length < 15) continue;
-      // Only include if it looks like an instruction
       const lower = rawInstruction.toLowerCase();
       const isInstruction = ['sew', 'cut', 'press', 'place', 'trim', 'join', 'attach', 'arrange', 'fold', 'pin', 'gather', 'make', 'assemble']
         .some(verb => lower.includes(verb));
@@ -261,6 +365,11 @@ function extractMaterials(text: string): Array<{
   // Look for the materials/fabric section to focus extraction
   const materialsSection = findSection(text, ['fabric requirements', 'materials needed', 'materials', 'you will need', 'fabric needed', 'supply list']);
 
+  // --- Issue 4: Better fabric name extraction ---
+  // Common color names to help identify fabric descriptions
+  const colorNames = /\b(white|black|cream|ivory|red|blue|green|yellow|orange|purple|pink|gray|grey|brown|navy|teal|coral|burgundy|charcoal|aqua|gold|silver|tan|beige|rose|lavender|sage|indigo|mauve|plum|olive|mint|peach|rust|wine|cranberry|sky|ocean|forest|dark|light|medium|pale|deep|bright|soft|warm|cool)\b/i;
+  const skuPattern = /\b[A-Z]{2,5}[-\s]?\d{3,6}\b/;
+
   // Look for "Fabric A" / "Fabric B" type labels with amounts
   const fabricLabelRegex = /(?:Fabric\s+)?([A-H])\s*[-–:]\s*(.+?)(?:\n|$)/gi;
   let match;
@@ -270,11 +379,44 @@ function extractMaterials(text: string): Array<{
     const detail = match[2].trim();
     const yardMatch = detail.match(/(\d+(?:[-\/]\d+)?)\s*yards?/i);
     if (yardMatch) {
-      // Try to get a color or description
-      const descMatch = detail.match(/^([^,\d]+)/);
-      const desc = descMatch ? descMatch[1].trim() : '';
-      const name = desc && desc.length > 2 && desc.length < 30 ? `${label} (${desc})` : label;
-      addMaterial(name, yardMatch[1] + ' yards', 'fabric');
+      // Try multiple strategies to find a meaningful name
+      let fabricDesc = '';
+      // Look for quoted name: "Artisan Batiks"
+      const quotedName = detail.match(/["'\u201c\u201d]([^"'\u201c\u201d]+)["'\u201c\u201d]/);
+      if (quotedName) {
+        fabricDesc = quotedName[1].trim();
+      }
+      // Look for color name in the detail
+      if (!fabricDesc) {
+        const colorMatch = detail.match(colorNames);
+        if (colorMatch) {
+          // Get more context around the color
+          const colorIdx = detail.toLowerCase().indexOf(colorMatch[0].toLowerCase());
+          const surrounding = detail.slice(Math.max(0, colorIdx - 15), colorIdx + colorMatch[0].length + 15).trim();
+          const cleanSurrounding = surrounding.replace(/\d+(?:[-\/]\d+)?\s*yards?/i, '').replace(/[,\-–:]+\s*$/, '').replace(/^\s*[,\-–:]+/, '').trim();
+          if (cleanSurrounding.length > 2 && cleanSurrounding.length < 30) {
+            fabricDesc = cleanSurrounding;
+          } else {
+            fabricDesc = colorMatch[0].charAt(0).toUpperCase() + colorMatch[0].slice(1);
+          }
+        }
+      }
+      // Look for SKU number
+      if (!fabricDesc) {
+        const skuMatch = detail.match(skuPattern);
+        if (skuMatch) {
+          fabricDesc = skuMatch[0];
+        }
+      }
+      // Look for descriptive text before the yardage
+      if (!fabricDesc) {
+        const descMatch = detail.match(/^([^,\d]+)/);
+        fabricDesc = descMatch ? descMatch[1].trim() : '';
+      }
+      const displayName = fabricDesc && fabricDesc.length > 2 && fabricDesc.length < 30
+        ? `${label} — ${fabricDesc}`
+        : label;
+      addMaterial(displayName, yardMatch[1] + ' yards', 'fabric');
     }
   }
 
@@ -289,21 +431,43 @@ function extractMaterials(text: string): Array<{
     let fabricName = idx < fabricLetters.length ? `Fabric ${fabricLetters[idx]}` : `Fabric ${idx + 1}`;
 
     // Try to extract a meaningful name from context
-    // Pattern: "Color Name - X yards" or "Description: X yards"
+    // Strategy 1: "Color Name - X yards" or "Description: X yards"
     const labelMatch = context.match(/([A-Z][A-Za-z\s/&]+?)\s*[:–\-]\s*$/);
     if (labelMatch && labelMatch[1].length < 30) {
       fabricName = labelMatch[1].trim();
     } else {
-      // Try context before the number: "1/4 yard Fabric A" or "#12345 Name"
-      const beforeMatch = context.match(/(?:#\d+\s+)?([A-Z][A-Za-z\s']+?)\s*$/);
-      if (beforeMatch && beforeMatch[1].length > 2 && beforeMatch[1].length < 30) {
-        fabricName = beforeMatch[1].trim();
+      // Strategy 2: Quoted name nearby
+      const quotedMatch = context.match(/["'\u201c\u201d]([^"'\u201c\u201d]+)["'\u201c\u201d]/);
+      if (quotedMatch && quotedMatch[1].length > 2 && quotedMatch[1].length < 30) {
+        fabricName = quotedMatch[1].trim();
       } else {
-        // Try "X yards FabricName" after the match
-        const afterMatch = text.slice(match.index + match[0].length, match.index + match[0].length + 50);
-        const afterLabel = afterMatch.match(/^\s+(?:of\s+)?([A-Z][A-Za-z\s']{2,25}?)(?:\s*[\n(,;]|$)/);
-        if (afterLabel) {
-          fabricName = afterLabel[1].trim();
+        // Strategy 3: Color name in context
+        const colorMatch = context.match(colorNames);
+        if (colorMatch) {
+          const beforeColor = context.slice(0, context.toLowerCase().lastIndexOf(colorMatch[0].toLowerCase()) + colorMatch[0].length);
+          const nameCandidate = beforeColor.replace(/^.*?([A-Z][A-Za-z\s']{0,25})$/, '$1').trim();
+          if (nameCandidate.length > 2 && nameCandidate.length < 30) {
+            fabricName = nameCandidate;
+          }
+        } else {
+          // Strategy 4: SKU number
+          const skuMatch = context.match(skuPattern);
+          if (skuMatch) {
+            fabricName = `Fabric (${skuMatch[0]})`;
+          } else {
+            // Strategy 5: Context before the number
+            const beforeMatch = context.match(/(?:#\d+\s+)?([A-Z][A-Za-z\s']+?)\s*$/);
+            if (beforeMatch && beforeMatch[1].length > 2 && beforeMatch[1].length < 30) {
+              fabricName = beforeMatch[1].trim();
+            } else {
+              // Strategy 6: "X yards FabricName" after the match
+              const afterMatch = text.slice(match.index + match[0].length, match.index + match[0].length + 50);
+              const afterLabel = afterMatch.match(/^\s+(?:of\s+)?([A-Z][A-Za-z\s']{2,25}?)(?:\s*[\n(,;]|$)/);
+              if (afterLabel) {
+                fabricName = afterLabel[1].trim();
+              }
+            }
+          }
         }
       }
     }
@@ -390,33 +554,64 @@ function findSection(text: string, headers: string[]): string | null {
 }
 
 function extractMetadata(text: string, fileName: string) {
-  // Start with filename as fallback
+  // --- Issue 1: Robust name extraction ---
+  // Start with filename as fallback (cleaned up)
   let name = fileName
-    .replace('.pdf', '')
+    .replace(/\.pdf$/i, '')
     .replace(/[-_]+/g, ' ')
     .replace(/([a-z])([A-Z])/g, '$1 $2') // camelCase split
     .trim();
 
-  // Try "Project Name: X" pattern (Robert Kaufman style)
+  // Try explicit "Project Name: X" pattern (Robert Kaufman style)
   const projectNameMatch = text.match(/Project\s*Name[:\s]+([^\n]+)/i);
   if (projectNameMatch) {
     name = projectNameMatch[1].trim();
   } else {
-    // Try to find pattern name near the top — skip metadata lines
-    const lines = text.split('\n').slice(0, 30);
+    // Try to find the actual pattern name from the top of the document
+    // Strategy: scan top lines, skip ALL metadata-like lines, pick the best candidate
+    const lines = text.split('\n').slice(0, 40);
+    const candidates: Array<{ text: string; score: number }> = [];
+
     for (const line of lines) {
       const trimmed = line.trim();
-      if (trimmed.length < 3 || trimmed.length > 50) continue;
+      if (trimmed.length < 3 || trimmed.length > 60) continue;
+      // Skip known metadata patterns
       if (SKIP_NAME_PATTERNS.some(pattern => pattern.test(trimmed))) continue;
       if (trimmed.includes('www.') || trimmed.includes('@') || trimmed.includes('©')) continue;
       if (/^\d/.test(trimmed)) continue;
-      // Skip lines that are mostly numbers/punctuation
       if (trimmed.replace(/[^a-zA-Z]/g, '').length < 3) continue;
-      // Skip lines that look like fabric codes
       if (/^[A-Z]{2,5}-\d+/.test(trimmed)) continue;
-      name = trimmed;
-      break;
+      // Skip lines that look like "Difficulty Rating: X" even partially
+      if (/difficulty|rating|beginner|intermediate|advanced|skill\s*level/i.test(trimmed)) continue;
+      // Skip lines that look like dimensions
+      if (/^\d+["\u201d]?\s*x\s*\d+/i.test(trimmed)) continue;
+      // Skip "Designed by" and similar attribution lines
+      if (/^(?:designed|pattern|created|made)\s+by/i.test(trimmed)) continue;
+      // Skip lines that are just a URL or publisher
+      if (/^(?:robert\s+kaufman|free\s*spirit|moda|riley\s+blake)/i.test(trimmed)) continue;
+
+      // Score candidates — prefer title-like lines
+      let score = 10;
+      // Shorter lines that are title-like get higher scores
+      if (trimmed.length >= 5 && trimmed.length <= 35) score += 5;
+      // Lines with mixed case (title case) get bonus
+      if (/^[A-Z][a-z]/.test(trimmed)) score += 3;
+      // ALL CAPS lines are likely headings (pattern names)
+      if (trimmed === trimmed.toUpperCase() && /[A-Z]/.test(trimmed)) score += 4;
+      // Lines that don't contain common metadata words
+      if (!/fabric|yard|inch|size|quilt|free|pattern|page/i.test(trimmed)) score += 2;
+      // Lines with evocative/pattern-like names get bonus
+      if (/bloom|rose|flight|cascade|cobblestone|aurora|garden|star|diamond|wave|storm|sunset|meadow/i.test(trimmed)) score += 5;
+
+      candidates.push({ text: trimmed, score });
     }
+
+    // Pick the highest-scoring candidate
+    if (candidates.length > 0) {
+      candidates.sort((a, b) => b.score - a.score);
+      name = candidates[0].text;
+    }
+    // else: falls through to filename-based name (already set)
   }
 
   // Difficulty

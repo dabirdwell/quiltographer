@@ -10,6 +10,7 @@ interface ClarificationResult {
   clarification: string | null;
   isLoading: boolean;
   error: string | null;
+  remaining: number | null;
   requestClarification: (instruction: string, context?: string) => Promise<string | null>;
   reset: () => void;
 }
@@ -31,10 +32,11 @@ interface ClarificationResult {
  */
 export function useClarification(options: UseClarificationOptions = {}): ClarificationResult {
   const { apiEndpoint = '/api/clarify' } = options;
-  
+
   const [clarification, setClarification] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [remaining, setRemaining] = useState<number | null>(null);
 
   const requestClarification = useCallback(async (
     instruction: string,
@@ -42,12 +44,15 @@ export function useClarification(options: UseClarificationOptions = {}): Clarifi
   ): Promise<string | null> => {
     setIsLoading(true);
     setError(null);
-    
+
     try {
+      // Include session ID and pro status for rate limiting
+      const isPro = typeof window !== 'undefined' && localStorage.getItem('quiltographer-beta') === 'true';
       const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-pro-user': isPro ? 'true' : 'false',
         },
         body: JSON.stringify({
           instruction,
@@ -55,12 +60,19 @@ export function useClarification(options: UseClarificationOptions = {}): Clarifi
         }),
       });
 
+      if (response.status === 429) {
+        const data = await response.json();
+        setError(data.error || 'Rate limit reached');
+        return null;
+      }
+
       if (!response.ok) {
         throw new Error('Failed to get clarification');
       }
 
       const data = await response.json();
       setClarification(data.clarification);
+      if (data.remaining !== undefined) setRemaining(data.remaining);
       return data.clarification;
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unknown error';
@@ -81,6 +93,7 @@ export function useClarification(options: UseClarificationOptions = {}): Clarifi
     clarification,
     isLoading,
     error,
+    remaining,
     requestClarification,
     reset,
   };
@@ -138,6 +151,7 @@ export function useMockClarification(): ClarificationResult {
     clarification,
     isLoading,
     error,
+    remaining: null,
     requestClarification,
     reset,
   };

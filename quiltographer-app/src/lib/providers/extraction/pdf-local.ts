@@ -80,7 +80,18 @@ export class PdfLocalExtractionProvider implements ExtractionProvider {
       const line = lines[i];
 
       // Detect title (first substantial line, often the pattern name)
+      // Issue 1: Skip lines that are metadata, not the pattern name
       if (!title && line.length > 3 && line.length < 80 && !line.match(/^(www\.|http|©|page)/i)) {
+        // Skip metadata lines
+        if (/^(difficulty|rating|beginner|intermediate|advanced|easy|expert|skill\s*level|designed\s*by|copyright|free\s*pattern|quilt\s*size|finished\s*size|fabric|materials|cutting|instructions)/i.test(line)) {
+          markdownLines.push(line);
+          continue;
+        }
+        // Skip dimension-like lines
+        if (/^\d+["\u201d]?\s*x\s*\d+/i.test(line)) {
+          markdownLines.push(line);
+          continue;
+        }
         title = line;
         markdownLines.push(`# ${line}`);
         continue;
