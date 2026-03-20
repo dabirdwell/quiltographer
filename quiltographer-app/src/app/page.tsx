@@ -353,7 +353,8 @@ export default function LandingPage() {
                 <li className="flex gap-2"><span className="text-sage">✓</span> Step-by-step reader</li>
                 <li className="flex gap-2"><span className="text-sage">✓</span> Materials checklist</li>
                 <li className="flex gap-2"><span className="text-sage">✓</span> Progress saving</li>
-                <li className="flex gap-2"><span className="text-ink-light">—</span> <span className="text-ink-light">Limited AI clarifications</span></li>
+                <li className="flex gap-2"><span className="text-sage">✓</span> 10 AI clarifications per session</li>
+                <li className="flex gap-2"><span className="text-ink-light">—</span> <span className="text-ink-light">No priority parsing</span></li>
               </ul>
               <Link
                 href="/reader"
@@ -364,21 +365,23 @@ export default function LandingPage() {
             </div>
 
             {/* Pro tier */}
-            <div className="border-2 border-persimmon rounded-2xl p-8 bg-white relative overflow-hidden">
+            <div className="border-2 border-persimmon rounded-2xl p-8 bg-white relative overflow-hidden shadow-lg">
               <div className="absolute top-0 right-0 bg-persimmon text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                RECOMMENDED
+                BEST VALUE
               </div>
               <h3 className="text-2xl font-bold text-indigo mb-2">Pro</h3>
               <p className="text-ink-gray mb-6">Unlimited everything</p>
-              <div className="text-4xl font-bold text-indigo mb-6">
+              <div className="text-4xl font-bold text-indigo mb-1">
                 $4.99<span className="text-lg font-normal text-ink-gray">/mo</span>
               </div>
+              <p className="text-sm text-ink-light mb-6">Cancel anytime</p>
               <ul className="space-y-3 mb-8 text-ink-gray">
                 <li className="flex gap-2"><span className="text-persimmon">✓</span> <strong>Unlimited patterns</strong></li>
                 <li className="flex gap-2"><span className="text-persimmon">✓</span> <strong>Unlimited AI clarifications</strong></li>
+                <li className="flex gap-2"><span className="text-persimmon">✓</span> <strong>Priority parsing</strong></li>
                 <li className="flex gap-2"><span className="text-sage">✓</span> Step-by-step reader</li>
                 <li className="flex gap-2"><span className="text-sage">✓</span> Materials checklist</li>
-                <li className="flex gap-2"><span className="text-sage">✓</span> Priority parsing</li>
+                <li className="flex gap-2"><span className="text-sage">✓</span> Advanced diagrams</li>
               </ul>
               <button
                 onClick={handleUpgrade}

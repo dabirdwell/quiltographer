@@ -14,6 +14,13 @@ export { activeSubscriptions };
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
+      return NextResponse.json(
+        { error: "Stripe webhook not configured" },
+        { status: 503 }
+      );
+    }
+
     const body = await request.text();
     const signature = request.headers.get("stripe-signature");
 
@@ -57,10 +64,15 @@ export async function POST(request: NextRequest) {
         ).toISOString();
 
         if (subscriptionId) {
-          const sub = await getStripe().subscriptions.retrieve(subscriptionId);
-          currentPeriodEnd = new Date(
-            sub.current_period_end * 1000
-          ).toISOString();
+          const sub = await getStripe().subscriptions.retrieve(subscriptionId, {
+            expand: ['items.data'],
+          });
+          const item = sub.items?.data?.[0];
+          if (item) {
+            currentPeriodEnd = new Date(
+              item.current_period_end * 1000
+            ).toISOString();
+          }
         }
 
         activeSubscriptions.set(customerId, {
@@ -86,9 +98,10 @@ export async function POST(request: NextRequest) {
             ? "pro"
             : "cancelled";
 
-        const currentPeriodEnd = new Date(
-          subscription.current_period_end * 1000
-        ).toISOString();
+        const item = subscription.items?.data?.[0];
+        const currentPeriodEnd = item
+          ? new Date(item.current_period_end * 1000).toISOString()
+          : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
 
         activeSubscriptions.set(customerId, {
           customerId,
