@@ -1,0 +1,137 @@
+{
+  "id": "demo-irish-chain",
+  "name": "Double Irish Chain Throw",
+  "description": "Interlocking chains of color weave across this classic design. Two simple blocks combine to create a pattern that looks far more complex than it is.",
+  "difficulty": 3,
+  "estimatedTime": 8,
+  "finishedSize": { "width": 54, "height": 72, "unit": "inches" },
+  "summary": "Alternate two block types — a 25-patch chain block and a plain block with corner squares — to create the iconic Irish Chain pattern. Strip piecing makes the 25-patch blocks surprisingly fast.",
+  "materials": [
+    { "id": "m1", "name": "Chain fabric (green solid)", "type": "fabric", "quantity": "2 yards" },
+    { "id": "m2", "name": "Background fabric (ivory)", "type": "fabric", "quantity": "3 yards" },
+    { "id": "m3", "name": "Accent fabric (gold)", "type": "fabric", "quantity": "1/2 yard", "notes": "Center of chain blocks" },
+    { "id": "m4", "name": "Border fabric (green solid)", "type": "fabric", "quantity": "1 yard" },
+    { "id": "m5", "name": "Backing fabric", "type": "fabric", "quantity": "3 1/2 yards" },
+    { "id": "m6", "name": "Batting", "type": "notion", "quantity": "58\" x 76\"" },
+    { "id": "m7", "name": "Binding fabric (green)", "type": "fabric", "quantity": "1/2 yard" },
+    { "id": "m8", "name": "Rotary cutter and mat", "type": "tool" },
+    { "id": "m9", "name": "6\" x 24\" ruler", "type": "tool" }
+  ],
+  "cuttingInstructions": [
+    {
+      "id": "c1",
+      "fabric": "Chain fabric (green solid)",
+      "pieces": [
+        { "shape": "strip", "quantity": 14, "dimensions": "2 1/2\" x WOF", "notes": "For strip sets" },
+        { "shape": "square", "quantity": 48, "dimensions": "2 1/2\" x 2 1/2\"", "notes": "Corner squares for Block B" }
+      ]
+    },
+    {
+      "id": "c2",
+      "fabric": "Background fabric (ivory)",
+      "pieces": [
+        { "shape": "strip", "quantity": 12, "dimensions": "2 1/2\" x WOF", "notes": "For strip sets" },
+        { "shape": "rectangle", "quantity": 24, "dimensions": "2 1/2\" x 6 1/2\"", "notes": "Block B side rectangles" },
+        { "shape": "square", "quantity": 12, "dimensions": "6 1/2\" x 6 1/2\"", "notes": "Block B center" }
+      ]
+    },
+    {
+      "id": "c3",
+      "fabric": "Accent fabric (gold)",
+      "pieces": [{ "shape": "strip", "quantity": 2, "dimensions": "2 1/2\" x WOF", "notes": "For center row of chain block" }]
+    },
+    {
+      "id": "c4",
+      "fabric": "Border fabric (green solid)",
+      "pieces": [{ "shape": "strip", "quantity": 7, "dimensions": "4 1/2\" x WOF", "notes": "Piece together for border lengths" }]
+    },
+    {
+      "id": "c5",
+      "fabric": "Binding fabric (green)",
+      "pieces": [{ "shape": "strip", "quantity": 7, "dimensions": "2 1/2\" x WOF" }]
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1", "number": 1, "title": "Make Strip Set X (Chain Row)", "section": "Strip Piecing",
+      "instruction": "Sew strips in this order: green, ivory, green, ivory, green. Press all seams toward the green. Make 4 of Strip Set X. Sub-cut each into 2 1/2\" segments. You need 48 segments total.",
+      "techniques": ["strip piecing", "pressing"],
+      "warnings": [{ "type": "important", "message": "Press consistently toward the green in all strip sets — this enables seam nesting during block assembly." }],
+      "tips": [{ "text": "Each WOF strip set yields about 16 segments, so 4 strip sets gives you plenty.", "source": "ai" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s2", "number": 2, "title": "Make Strip Set Y (Alternating Row)", "section": "Strip Piecing",
+      "instruction": "Sew strips in this order: ivory, green, ivory, green, ivory. Press seams toward the green. Make 2 of Strip Set Y. Sub-cut into 2 1/2\" segments. You need 24 segments.",
+      "techniques": ["strip piecing", "pressing"],
+      "warnings": [],
+      "tips": [],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s3", "number": 3, "title": "Make Strip Set Z (Center Row)", "section": "Strip Piecing",
+      "instruction": "Sew strips: green, ivory, gold, ivory, green. Press seams toward the green and gold. Make 2 of Strip Set Z. Sub-cut into 2 1/2\" segments. You need 12 segments.",
+      "techniques": ["strip piecing", "pressing"],
+      "warnings": [],
+      "tips": [{ "text": "The gold accent in the center row is what gives the Irish Chain its sparkle.", "source": "pattern" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s4", "number": 4, "title": "Assemble Block A (Chain Block)", "section": "Block Assembly",
+      "instruction": "For each Block A, arrange 5 rows: X-Y-Z-Y-X. Sew rows together, nesting seams at every intersection. Press row seams open or in alternating directions. Block should measure 10 1/2\" x 10 1/2\" unfinished. Make 12 blocks.",
+      "techniques": ["nesting seams", "pressing"],
+      "warnings": [{ "type": "critical", "message": "All 12 Chain blocks must measure exactly 10 1/2\" square. If they don't, check your seam allowance and re-measure." }],
+      "tips": [{ "text": "Chain-piece all 12 blocks through each row before pressing.", "source": "community" }],
+      "estimatedTime": 30
+    },
+    {
+      "id": "s5", "number": 5, "title": "Assemble Block B (Setting Block)", "section": "Block Assembly",
+      "instruction": "For each Block B: sew a 2 1/2\" green corner square to each end of two 2 1/2\" x 6 1/2\" ivory rectangles (makes the top and bottom rows). The center row is: ivory rectangle, 6 1/2\" ivory center square, ivory rectangle. Sew three rows together. Block measures 10 1/2\" x 10 1/2\" unfinished. Make 12 blocks.",
+      "techniques": ["pressing"],
+      "warnings": [],
+      "tips": [{ "text": "Block B looks plain now, but when set next to Block A, the green corners complete the chain pattern.", "source": "ai" }],
+      "estimatedTime": 25
+    },
+    {
+      "id": "s6", "number": 6, "title": "Arrange Quilt Layout", "section": "Quilt Assembly",
+      "instruction": "Lay out blocks in 6 rows of 4, alternating A and B blocks in a checkerboard. Row 1: A-B-A-B. Row 2: B-A-B-A. The green squares in Block B should align with the chains in Block A to form continuous diagonal chains.",
+      "techniques": ["design wall"],
+      "warnings": [{ "type": "important", "message": "Double-check that the chains connect diagonally before sewing. Rotate blocks if chains don't line up." }],
+      "tips": [{ "text": "Step back from your layout and squint — the diagonal chains should be immediately visible.", "source": "ai" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s7", "number": 7, "title": "Sew Rows and Join", "section": "Quilt Assembly",
+      "instruction": "Sew blocks into rows, pressing seams toward Block B (which has fewer seams and is flatter). Join rows, nesting seams at block intersections. Press row seams open for a flat quilt top.",
+      "techniques": ["nesting seams", "pressing"],
+      "warnings": [],
+      "tips": [{ "text": "Pin at every block intersection — the chain alignment depends on these junctions being precise.", "source": "pattern" }],
+      "estimatedTime": 25
+    },
+    {
+      "id": "s8", "number": 8, "title": "Add Borders", "section": "Borders",
+      "instruction": "Piece border strips end-to-end to get the required lengths. Measure through the quilt center. Add side borders first (should be about 60 1/2\"), then top/bottom (about 54 1/2\"). Press toward borders.",
+      "techniques": ["border application"],
+      "warnings": [{ "type": "important", "message": "Piece border strips with diagonal seams to reduce bulk at the joins." }],
+      "tips": [{ "text": "If your quilt center measurement differs from the pattern, trust your measurement — your quilt is the authority.", "source": "ai" }],
+      "estimatedTime": 15
+    },
+    {
+      "id": "s9", "number": 9, "title": "Quilt and Bind", "section": "Finishing",
+      "instruction": "Layer backing, batting, and quilt top. Baste thoroughly — this is a larger quilt and needs secure basting. Quilt with crosshatch lines through the chain, or stitch in the ditch along the chain edges. Trim and bind with 2 1/2\" green strips.",
+      "techniques": ["basting", "crosshatch quilting", "binding"],
+      "warnings": [],
+      "tips": [
+        { "text": "Crosshatch quilting at 45 degrees echoes the diagonal chain pattern beautifully.", "source": "ai" },
+        { "text": "For a throw quilt, machine binding is perfectly acceptable and much faster than hand-stitching.", "source": "community" }
+      ],
+      "estimatedTime": 180
+    }
+  ],
+  "source": {
+    "fileName": "demo-irish-chain-throw.pdf",
+    "parsedAt": "2026-01-15T00:00:00.000Z",
+    "pages": 5,
+    "designer": "Quiltographer Demo"
+  }
+}

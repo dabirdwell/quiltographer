@@ -1,0 +1,141 @@
+{
+  "id": "demo-flying-geese",
+  "name": "Flying Geese Table Runner",
+  "description": "A flock of flying geese marching across your table. The no-waste flying geese method makes this faster than you'd expect.",
+  "difficulty": 3,
+  "estimatedTime": 5,
+  "finishedSize": { "width": 16, "height": 52, "unit": "inches" },
+  "summary": "Create 24 flying geese units using the no-waste method (4-at-a-time), arrange in three columns with sashing, add borders, and finish into an elegant table runner.",
+  "materials": [
+    { "id": "m1", "name": "Goose fabric (teal solid)", "type": "fabric", "quantity": "3/4 yard" },
+    { "id": "m2", "name": "Background fabric (cream)", "type": "fabric", "quantity": "1 yard" },
+    { "id": "m3", "name": "Sashing fabric (gray)", "type": "fabric", "quantity": "1/4 yard" },
+    { "id": "m4", "name": "Border fabric (teal)", "type": "fabric", "quantity": "1/2 yard" },
+    { "id": "m5", "name": "Backing fabric", "type": "fabric", "quantity": "1 yard" },
+    { "id": "m6", "name": "Batting", "type": "notion", "quantity": "20\" x 56\"" },
+    { "id": "m7", "name": "Binding fabric", "type": "fabric", "quantity": "1/3 yard" },
+    { "id": "m8", "name": "Rotary cutter and mat", "type": "tool" },
+    { "id": "m9", "name": "Square ruler (6 1/2\")", "type": "tool" }
+  ],
+  "cuttingInstructions": [
+    {
+      "id": "c1",
+      "fabric": "Goose fabric (teal solid)",
+      "pieces": [{ "shape": "square", "quantity": 6, "dimensions": "5 1/4\" x 5 1/4\"", "notes": "Each yields 4 flying geese" }]
+    },
+    {
+      "id": "c2",
+      "fabric": "Background fabric (cream)",
+      "pieces": [{ "shape": "square", "quantity": 24, "dimensions": "2 7/8\" x 2 7/8\"" }]
+    },
+    {
+      "id": "c3",
+      "fabric": "Sashing fabric (gray)",
+      "pieces": [{ "shape": "strip", "quantity": 2, "dimensions": "1 1/2\" x 48 1/2\"" }]
+    },
+    {
+      "id": "c4",
+      "fabric": "Border fabric (teal)",
+      "pieces": [
+        { "shape": "strip", "quantity": 2, "dimensions": "2 1/2\" x 52 1/2\"", "notes": "Long sides" },
+        { "shape": "strip", "quantity": 2, "dimensions": "2 1/2\" x 16 1/2\"", "notes": "Short ends" }
+      ]
+    },
+    {
+      "id": "c5",
+      "fabric": "Binding fabric",
+      "pieces": [{ "shape": "strip", "quantity": 4, "dimensions": "2 1/2\" x WOF" }]
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1", "number": 1, "title": "Mark Background Squares", "section": "Preparation",
+      "instruction": "Draw a diagonal line from corner to corner on the wrong side of all 24 background squares (2 7/8\"). Use a fine pencil or Frixion pen.",
+      "techniques": ["marking"],
+      "warnings": [],
+      "tips": [{ "text": "Frixion pens disappear with heat from your iron — no visible marks on the finished quilt.", "source": "ai" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s2", "number": 2, "title": "No-Waste Flying Geese — First Seam", "section": "Flying Geese Units",
+      "instruction": "Place 2 background squares on opposite corners of one large goose square, RST (Right Sides Together). The drawn lines should form a continuous diagonal across the large square. Sew 1/4\" on BOTH sides of the drawn line.",
+      "techniques": ["RST", "no-waste flying geese"],
+      "warnings": [{ "type": "critical", "message": "Sew on BOTH sides of the line. This is what makes the no-waste method work — you get 4 geese from each large square." }],
+      "tips": [{ "text": "Chain-piece all 6 sets at once for efficiency.", "source": "pattern" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s3", "number": 3, "title": "Cut and Press First Pair", "section": "Flying Geese Units",
+      "instruction": "Cut ON the drawn line to separate into two units. Press each unit open — the background triangles press away from the goose. You now have 2 heart-shaped units.",
+      "techniques": ["pressing"],
+      "warnings": [],
+      "tips": [{ "text": "Press from the front to make sure the seam is fully open and flat.", "source": "ai" }],
+      "estimatedTime": 5
+    },
+    {
+      "id": "s4", "number": 4, "title": "No-Waste Flying Geese — Second Seam", "section": "Flying Geese Units",
+      "instruction": "Place one background square on each heart-shaped unit, RST, with the drawn line running from the center point to the outer corner. Sew 1/4\" on both sides of the drawn line. Cut on the line, press open.",
+      "techniques": ["RST", "no-waste flying geese"],
+      "warnings": [{ "type": "important", "message": "Make sure the diagonal line runs from the point where the first two triangles meet to the opposite corner." }],
+      "tips": [],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s5", "number": 5, "title": "Trim Flying Geese", "section": "Flying Geese Units",
+      "instruction": "Trim all 24 flying geese units to 2 1/2\" x 4 1/2\". The goose point should be 1/4\" from the top edge, and background corners should be 1/4\" from each side.",
+      "techniques": ["squaring up"],
+      "warnings": [{ "type": "critical", "message": "Don't cut off the goose points! Leave a full 1/4\" seam allowance above each point." }],
+      "tips": [{ "text": "A dedicated flying geese ruler makes trimming much faster and more accurate.", "source": "community" }],
+      "estimatedTime": 15
+    },
+    {
+      "id": "s6", "number": 6, "title": "Arrange Columns", "section": "Runner Assembly",
+      "instruction": "Arrange flying geese into 3 columns of 8, all pointing the same direction (toward one end of the runner). Lay them out on your table to preview the finished look.",
+      "techniques": [],
+      "warnings": [],
+      "tips": [{ "text": "All geese pointing the same way creates movement. Try alternating for a different look.", "source": "ai" }],
+      "estimatedTime": 5
+    },
+    {
+      "id": "s7", "number": 7, "title": "Sew Columns", "section": "Runner Assembly",
+      "instruction": "Sew each column of 8 geese together, matching points carefully. Press all seams in the same direction within each column. Each column should measure 4 1/2\" x 48 1/2\".",
+      "techniques": ["nesting seams", "pressing"],
+      "warnings": [{ "type": "important", "message": "Pin at each goose point intersection. The points are the star of this pattern — don't lose them in the seam!" }],
+      "tips": [],
+      "estimatedTime": 15
+    },
+    {
+      "id": "s8", "number": 8, "title": "Add Sashing Between Columns", "section": "Runner Assembly",
+      "instruction": "Sew the 1 1/2\" sashing strips between the three columns. Press seams toward the sashing.",
+      "techniques": ["sashing"],
+      "warnings": [],
+      "tips": [{ "text": "Pin sashing at every geese seam junction to keep everything aligned.", "source": "pattern" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s9", "number": 9, "title": "Add Borders", "section": "Runner Assembly",
+      "instruction": "Sew long border strips to the sides, then short strips to the ends. Press seams toward borders. Your runner top should now measure 16 1/2\" x 52 1/2\".",
+      "techniques": ["border application"],
+      "warnings": [],
+      "tips": [{ "text": "Measure through the center, not along the edges, for accurate border lengths.", "source": "ai" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s10", "number": 10, "title": "Quilt and Bind", "section": "Finishing",
+      "instruction": "Layer backing, batting, and runner top. Baste, then quilt — straight lines 1/4\" from each seam echo the geese beautifully. Trim, bind with 2 1/2\" strips using your preferred method.",
+      "techniques": ["basting", "echo quilting", "binding"],
+      "warnings": [],
+      "tips": [
+        { "text": "Walking foot quilting with straight lines is the easiest finish for this pattern.", "source": "ai" },
+        { "text": "Spray basting is faster than pin basting for small projects like runners.", "source": "community" }
+      ],
+      "estimatedTime": 60
+    }
+  ],
+  "source": {
+    "fileName": "demo-flying-geese-runner.pdf",
+    "parsedAt": "2026-01-15T00:00:00.000Z",
+    "pages": 3,
+    "designer": "Quiltographer Demo"
+  }
+}

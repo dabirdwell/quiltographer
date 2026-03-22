@@ -1,0 +1,168 @@
+{
+  "id": "demo-lone-star",
+  "name": "Lone Star Wall Hanging",
+  "description": "Eight diamond points radiate from the center in this show-stopping design. Precision strip-piecing tames the complexity — the result looks harder than it is.",
+  "difficulty": 5,
+  "estimatedTime": 12,
+  "finishedSize": { "width": 40, "height": 40, "unit": "inches" },
+  "summary": "Build a stunning eight-pointed star from strip-pieced diamonds in a graduated color sequence. Set with corner squares and side triangles, add borders, and finish into a striking wall hanging.",
+  "materials": [
+    { "id": "m1", "name": "Fabric 1 — dark navy", "type": "fabric", "quantity": "1/2 yard", "notes": "Star tips" },
+    { "id": "m2", "name": "Fabric 2 — medium blue", "type": "fabric", "quantity": "1/2 yard" },
+    { "id": "m3", "name": "Fabric 3 — light blue", "type": "fabric", "quantity": "1/2 yard" },
+    { "id": "m4", "name": "Fabric 4 — pale gold", "type": "fabric", "quantity": "1/2 yard", "notes": "Star center" },
+    { "id": "m5", "name": "Background fabric (cream)", "type": "fabric", "quantity": "1 yard" },
+    { "id": "m6", "name": "Border fabric (dark navy)", "type": "fabric", "quantity": "3/4 yard" },
+    { "id": "m7", "name": "Backing fabric", "type": "fabric", "quantity": "1 1/2 yards" },
+    { "id": "m8", "name": "Batting", "type": "notion", "quantity": "44\" x 44\"" },
+    { "id": "m9", "name": "Binding fabric", "type": "fabric", "quantity": "1/3 yard" },
+    { "id": "m10", "name": "Rotary cutter and mat", "type": "tool" },
+    { "id": "m11", "name": "45-degree ruler or 60-degree diamond ruler", "type": "tool" },
+    { "id": "m12", "name": "Stiletto or seam guide", "type": "tool" },
+    { "id": "m13", "name": "Design wall or flannel board", "type": "tool" }
+  ],
+  "cuttingInstructions": [
+    {
+      "id": "c1",
+      "fabric": "Fabric 1 — dark navy",
+      "pieces": [{ "shape": "strip", "quantity": 4, "dimensions": "2\" x WOF" }]
+    },
+    {
+      "id": "c2",
+      "fabric": "Fabric 2 — medium blue",
+      "pieces": [{ "shape": "strip", "quantity": 4, "dimensions": "2\" x WOF" }]
+    },
+    {
+      "id": "c3",
+      "fabric": "Fabric 3 — light blue",
+      "pieces": [{ "shape": "strip", "quantity": 4, "dimensions": "2\" x WOF" }]
+    },
+    {
+      "id": "c4",
+      "fabric": "Fabric 4 — pale gold",
+      "pieces": [{ "shape": "strip", "quantity": 4, "dimensions": "2\" x WOF" }]
+    },
+    {
+      "id": "c5",
+      "fabric": "Background fabric (cream)",
+      "pieces": [
+        { "shape": "square", "quantity": 4, "dimensions": "10 1/2\" x 10 1/2\"", "notes": "Corner squares" },
+        { "shape": "square", "quantity": 2, "dimensions": "15 1/4\" x 15 1/4\"", "notes": "Cut diagonally twice for 4 side setting triangles (cut 2 squares, yielding 8 triangles — use 4)" }
+      ]
+    },
+    {
+      "id": "c6",
+      "fabric": "Border fabric (dark navy)",
+      "pieces": [{ "shape": "strip", "quantity": 4, "dimensions": "3 1/2\" x 44\"" }]
+    },
+    {
+      "id": "c7",
+      "fabric": "Binding fabric",
+      "pieces": [{ "shape": "strip", "quantity": 5, "dimensions": "2 1/2\" x WOF" }]
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1", "number": 1, "title": "Sew Strip Sets", "section": "Strip Piecing",
+      "instruction": "Sew 4 strip sets, each with one strip of each fabric in order: Fabric 1 (navy), Fabric 2 (medium blue), Fabric 3 (light blue), Fabric 4 (gold). Sew with 1/4\" seams, pressing all seams in the same direction. Each strip set should measure 6 1/2\" wide.",
+      "techniques": ["strip piecing", "pressing", "quarter-inch seam"],
+      "warnings": [{ "type": "critical", "message": "Press all seams in the SAME direction across all 4 strip sets. This is essential for matching seams in the diamonds." }],
+      "tips": [{ "text": "Sew strips alternating direction (top-to-bottom, then bottom-to-top) to prevent bowing.", "source": "ai" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s2", "number": 2, "title": "Cut Diamond Segments", "section": "Strip Piecing",
+      "instruction": "Using a 45-degree angle on your ruler, cut each strip set into 2\"-wide diamond segments at a 45-degree angle. You need 8 segments from each strip set (32 total).",
+      "techniques": ["45-degree cutting"],
+      "warnings": [{ "type": "critical", "message": "The 45-degree angle must be precise. Use the 45-degree line on your ruler aligned with a seam line, not the edge of the fabric." }],
+      "tips": [{ "text": "Cut the first angled edge, then measure 2\" for each segment. Re-check the angle every 3-4 cuts.", "source": "pattern" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s3", "number": 3, "title": "Arrange Diamond Points", "section": "Star Assembly",
+      "instruction": "On your design wall, arrange 4 diamond segments into one star point, offsetting each by one color position to create the graduated effect. The gold (Fabric 4) meets at the star center, navy at the tips. Arrange all 8 points.",
+      "techniques": ["design wall"],
+      "warnings": [],
+      "tips": [{ "text": "Number your points 1-8 with sticky notes so you don't mix up the arrangement.", "source": "ai" }],
+      "estimatedTime": 15
+    },
+    {
+      "id": "s4", "number": 4, "title": "Sew Diamond Points", "section": "Star Assembly",
+      "instruction": "For each star point: sew the 4 segments together, carefully matching the seam intersections. The seams should nest because they were all pressed the same direction. Pin at each intersection. Make 8 identical diamond points.",
+      "techniques": ["nesting seams", "Y-seams"],
+      "warnings": [{ "type": "important", "message": "Do NOT sew into the 1/4\" seam allowance at the ends of each point — you need that free for the Y-seam later." }],
+      "tips": [{ "text": "Use a stiletto to hold seam intersections aligned as they feed under the presser foot.", "source": "community" }],
+      "estimatedTime": 30
+    },
+    {
+      "id": "s5", "number": 5, "title": "Join Star Halves", "section": "Star Assembly",
+      "instruction": "Sew diamond points into pairs (4 pairs). Then sew pairs into halves (2 halves of 4 points each). Pin carefully at the center where all points meet.",
+      "techniques": ["matching points"],
+      "warnings": [{ "type": "critical", "message": "The center junction where 8 points meet is the most visible part of the star. Take extra time here — pin, check from the front, adjust, then sew." }],
+      "tips": [{ "text": "Press the center seam open (not to one side) to distribute the bulk of 8 converging seams.", "source": "ai" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s6", "number": 6, "title": "Complete the Star", "section": "Star Assembly",
+      "instruction": "Sew the two halves together, matching the center point precisely. Press the center seam open. Your star should be symmetrical and flat.",
+      "techniques": ["matching points", "pressing"],
+      "warnings": [{ "type": "important", "message": "If the center puckers, the seam allowances may be caught. Carefully pick out the center inch and re-sew, making sure seam allowances are free." }],
+      "tips": [],
+      "estimatedTime": 15
+    },
+    {
+      "id": "s7", "number": 7, "title": "Set In Corner Squares", "section": "Setting",
+      "instruction": "Set the 4 corner squares (10 1/2\") into the spaces between star points using Y-seams. For each: pin one edge of the square to one diamond point, sew from the outer edge to the inner corner — stop 1/4\" from the end. Pivot, pin the adjacent edge to the next diamond point, and sew from the inner corner outward.",
+      "techniques": ["Y-seams", "set-in seams"],
+      "warnings": [{ "type": "critical", "message": "Y-seams require stopping exactly 1/4\" from the inner corner. Mark the stopping point on the wrong side of the square." }],
+      "tips": [{ "text": "Sew Y-seams slowly — accuracy matters more than speed here.", "source": "ai" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s8", "number": 8, "title": "Set In Side Triangles", "section": "Setting",
+      "instruction": "Set the 4 side triangles into the remaining spaces between star points, using the same Y-seam technique. The long side of each triangle aligns with the outer edges of two adjacent diamond points.",
+      "techniques": ["Y-seams", "set-in seams"],
+      "warnings": [{ "type": "important", "message": "Side triangles are cut oversized. Don't trim until the entire top is assembled." }],
+      "tips": [],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s9", "number": 9, "title": "Square Up and Add Borders", "section": "Borders",
+      "instruction": "Trim the quilt top to square, leaving 1/4\" seam allowance beyond the star points. Add 3 1/2\" border strips: sides first, then top and bottom. Press seams toward the border.",
+      "techniques": ["squaring up", "border application"],
+      "warnings": [{ "type": "important", "message": "Measure through the center to determine border lengths. The edges may have stretched." }],
+      "tips": [{ "text": "Pin borders generously — every 2-3 inches — to prevent waviness.", "source": "pattern" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s10", "number": 10, "title": "Quilt the Star", "section": "Finishing",
+      "instruction": "Layer backing, batting, and quilt top. Baste. Quilt in the ditch around each diamond and along the color bands. Add echo quilting in the background areas. For the border, try a cable or straight-line design.",
+      "techniques": ["stitch in the ditch", "echo quilting"],
+      "warnings": [],
+      "tips": [{ "text": "Quilting in the ditch along the diamond seams really makes the star pop off the background.", "source": "ai" }],
+      "estimatedTime": 120
+    },
+    {
+      "id": "s11", "number": 11, "title": "Add Hanging Sleeve", "section": "Finishing",
+      "instruction": "Before binding, sew a 4\" hanging sleeve to the top back of the quilt. Cut a strip 8 1/2\" x the quilt width, hem the short ends, fold in half lengthwise, and baste the raw edges to the top edge of the quilt back.",
+      "techniques": ["hanging sleeve"],
+      "warnings": [],
+      "tips": [{ "text": "The binding will cover the raw edges of the sleeve when you attach it.", "source": "pattern" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s12", "number": 12, "title": "Bind and Finish", "section": "Finishing",
+      "instruction": "Join binding strips, press in half lengthwise. Attach to quilt front with 1/4\" seam, mitering corners. Fold to back and hand-stitch. Add a label with your name, date, and pattern name.",
+      "techniques": ["binding", "mitered corners"],
+      "warnings": [],
+      "tips": [{ "text": "Hand-stitching the binding is meditative and gives the cleanest finish on a wall hanging where the edges are visible.", "source": "community" }],
+      "estimatedTime": 45
+    }
+  ],
+  "source": {
+    "fileName": "demo-lone-star-wall-hanging.pdf",
+    "parsedAt": "2026-01-15T00:00:00.000Z",
+    "pages": 6,
+    "designer": "Quiltographer Demo"
+  }
+}

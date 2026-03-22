@@ -5,20 +5,23 @@ import Link from 'next/link';
 
 const SAMPLE_PATTERNS = [
   {
+    id: 'demo-log-cabin',
     name: 'Log Cabin Classic',
     difficulty: 'Beginner',
-    steps: 8,
+    steps: 10,
     thumbnail: '🏠',
     desc: 'The timeless log cabin — strips around a center square. A perfect first quilt.',
   },
   {
+    id: 'demo-flying-geese',
     name: 'Flying Geese Table Runner',
     difficulty: 'Intermediate',
-    steps: 12,
+    steps: 10,
     thumbnail: '🪿',
-    desc: 'A flock of flying geese marching across your table. Strip piecing makes it fast.',
+    desc: 'A flock of flying geese marching across your table. No-waste method makes it fast.',
   },
   {
+    id: 'demo-nine-patch',
     name: 'Nine-Patch Baby Quilt',
     difficulty: 'Beginner',
     steps: 6,
@@ -26,11 +29,20 @@ const SAMPLE_PATTERNS = [
     desc: 'Nine squares, endless charm. Quick enough to finish before the baby arrives.',
   },
   {
+    id: 'demo-lone-star',
     name: 'Lone Star Wall Hanging',
     difficulty: 'Advanced',
-    steps: 18,
+    steps: 12,
     thumbnail: '⭐',
     desc: 'Eight diamond points radiate from the center. Precision cutting pays off here.',
+  },
+  {
+    id: 'demo-irish-chain',
+    name: 'Double Irish Chain Throw',
+    difficulty: 'Intermediate',
+    steps: 9,
+    thumbnail: '🍀',
+    desc: 'Interlocking chains of color weave across this classic design. Two simple blocks, one stunning result.',
   },
 ];
 
@@ -272,13 +284,13 @@ export default function LandingPage() {
             Try These Examples
           </h2>
           <p className="text-ink-gray text-center mb-12 text-lg">
-            See how Quiltographer handles real patterns. Upload your own or start with one of these.
+            Try the reader with a real pattern — no upload needed. Pick one and start reading.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SAMPLE_PATTERNS.map((pattern, i) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SAMPLE_PATTERNS.map((pattern) => (
               <Link
-                key={i}
-                href="/reader"
+                key={pattern.id}
+                href={`/reader?demo=${pattern.id}`}
                 className="group block p-5 rounded-xl border-2 border-ink-gray/10 hover:border-persimmon/50 transition-colors bg-washi"
               >
                 <div className="text-4xl mb-3">{pattern.thumbnail}</div>

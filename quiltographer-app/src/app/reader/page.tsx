@@ -64,6 +64,7 @@ export default function PatternReaderPage() {
   const [showMaterials, setShowMaterials] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
   const [fontScale, setFontScale] = useState<FontScale>(1);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
   // Session persistence
   const [pendingSession, setPendingSession] = useState<PatternSession | null>(null);
@@ -71,13 +72,48 @@ export default function PatternReaderPage() {
 
   const { isLoading: isClarifying, requestClarification } = useClarification();
 
-  // Check for beta pass in URL params
+  // Check for beta pass and demo mode in URL params
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('beta') === 'quilt2026') {
       localStorage.setItem('quiltographer-beta', 'true');
     }
-  }, []);
+
+    // Demo mode: load a sample pattern by ID
+    const demoId = params.get('demo');
+    if (demoId && !pattern) {
+      const fileMap: Record<string, string> = {
+        'demo-log-cabin': 'log-cabin-classic',
+        'demo-flying-geese': 'flying-geese-runner',
+        'demo-nine-patch': 'nine-patch-baby',
+        'demo-lone-star': 'lone-star-wall-hanging',
+        'demo-irish-chain': 'irish-chain-throw',
+      };
+      const fileName = fileMap[demoId];
+      if (fileName) {
+        setViewState('processing');
+        setProcessingMessage('Loading demo pattern...');
+        setProcessingProgress(50);
+        fetch(`/sample-patterns/${fileName}.json`)
+          .then((res) => res.json())
+          .then((data: ReaderPattern) => {
+            setPattern(data);
+            setCurrentStepIndex(0);
+            setCompletedSteps([]);
+            setCheckedMaterials([]);
+            setClarifications({});
+            setProcessingProgress(100);
+            setViewState('reading');
+            setPendingSession(null);
+            setIsDemoMode(true);
+          })
+          .catch(() => {
+            setError('Failed to load demo pattern.');
+            setViewState('upload');
+          });
+      }
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // On mount, check for a saved session to offer resume
   useEffect(() => {
@@ -341,6 +377,11 @@ export default function PatternReaderPage() {
             <Text size="sm" color="muted" className="truncate hidden md:block">
               — {pattern.name}
             </Text>
+          )}
+          {isDemoMode && (
+            <span className="px-2 py-0.5 rounded-full bg-persimmon/15 text-persimmon text-xs font-semibold hidden sm:inline">
+              Demo
+            </span>
           )}
         </Stack>
         <Stack direction="horizontal" gap="xs" align="center" className="flex-shrink-0">

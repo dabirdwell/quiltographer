@@ -1,0 +1,145 @@
+{
+  "id": "demo-log-cabin",
+  "name": "Log Cabin Classic",
+  "description": "The timeless log cabin block — strips around a center square. A perfect first quilt project that teaches accurate seam allowances and pressing.",
+  "difficulty": 2,
+  "estimatedTime": 4,
+  "finishedSize": { "width": 60, "height": 72, "unit": "inches" },
+  "summary": "Build 20 log cabin blocks from a center square outward, adding light and dark strips in rounds. Arrange blocks in a Barn Raising setting for a dramatic on-point effect, then add borders and finish.",
+  "materials": [
+    { "id": "m1", "name": "Light prints (assorted)", "type": "fabric", "quantity": "2 yards total" },
+    { "id": "m2", "name": "Dark prints (assorted)", "type": "fabric", "quantity": "2 yards total" },
+    { "id": "m3", "name": "Center square fabric (red solid)", "type": "fabric", "quantity": "1/4 yard" },
+    { "id": "m4", "name": "Border fabric (dark navy)", "type": "fabric", "quantity": "1 1/2 yards" },
+    { "id": "m5", "name": "Backing fabric", "type": "fabric", "quantity": "4 yards" },
+    { "id": "m6", "name": "Batting", "type": "notion", "quantity": "64\" x 76\"" },
+    { "id": "m7", "name": "Binding fabric", "type": "fabric", "quantity": "1/2 yard" },
+    { "id": "m8", "name": "Rotary cutter and mat", "type": "tool" },
+    { "id": "m9", "name": "6\" x 24\" acrylic ruler", "type": "tool" },
+    { "id": "m10", "name": "1/4\" presser foot", "type": "tool" }
+  ],
+  "cuttingInstructions": [
+    {
+      "id": "c1",
+      "fabric": "Center square fabric (red solid)",
+      "pieces": [{ "shape": "square", "quantity": 20, "dimensions": "2 1/2\" x 2 1/2\"" }]
+    },
+    {
+      "id": "c2",
+      "fabric": "Light prints (assorted)",
+      "pieces": [{ "shape": "strip", "quantity": 40, "dimensions": "2 1/2\" x WOF", "notes": "Sub-cut into varying lengths as you build each round" }]
+    },
+    {
+      "id": "c3",
+      "fabric": "Dark prints (assorted)",
+      "pieces": [{ "shape": "strip", "quantity": 40, "dimensions": "2 1/2\" x WOF", "notes": "Sub-cut into varying lengths as you build each round" }]
+    },
+    {
+      "id": "c4",
+      "fabric": "Border fabric (dark navy)",
+      "pieces": [
+        { "shape": "strip", "quantity": 2, "dimensions": "4 1/2\" x 64 1/2\"", "notes": "Side borders" },
+        { "shape": "strip", "quantity": 2, "dimensions": "4 1/2\" x 60 1/2\"", "notes": "Top/bottom borders" }
+      ]
+    },
+    {
+      "id": "c5",
+      "fabric": "Binding fabric",
+      "pieces": [{ "shape": "strip", "quantity": 7, "dimensions": "2 1/2\" x WOF" }]
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1", "number": 1, "title": "Prepare Center Squares", "section": "Cutting",
+      "instruction": "Cut 20 center squares at 2 1/2\" x 2 1/2\" from the red solid fabric. Press all squares with starch for stability.",
+      "techniques": ["rotary cutting"],
+      "warnings": [],
+      "tips": [{ "text": "A little spray starch now prevents stretching later.", "source": "ai" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s2", "number": 2, "title": "Cut Light and Dark Strips", "section": "Cutting",
+      "instruction": "Cut all light and dark print fabrics into 2 1/2\" x WOF (Width of Fabric) strips. You'll sub-cut these to length as you build each block.",
+      "techniques": ["rotary cutting", "strip cutting"],
+      "warnings": [{ "type": "important", "message": "Keep light and dark strips separated — mixing them up changes the block design." }],
+      "tips": [{ "text": "Stack up to 4 layers and cut multiple strips at once to save time.", "source": "community" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s3", "number": 3, "title": "First Round — Light Strips", "section": "Block Assembly",
+      "instruction": "Place a center square RST (Right Sides Together) with a light strip. Sew with a 1/4\" seam along one side. Press seam toward the strip. Trim strip even with the square. Rotate 90° and add a second light strip the same way.",
+      "techniques": ["RST", "quarter-inch seam", "pressing"],
+      "warnings": [],
+      "tips": [{ "text": "Use a 1/4\" presser foot for consistent seams throughout.", "source": "pattern" }],
+      "estimatedTime": 5
+    },
+    {
+      "id": "s4", "number": 4, "title": "First Round — Dark Strips", "section": "Block Assembly",
+      "instruction": "Rotate 90° again. Add a dark strip RST along the next side. Sew, press toward dark, trim. Rotate 90° and add the fourth strip (dark) to complete Round 1. Your unit should now measure 4 1/2\" square.",
+      "techniques": ["RST", "pressing"],
+      "warnings": [{ "type": "important", "message": "Check your block measures 4 1/2\" square after Round 1. If it's off, check your seam allowance." }],
+      "tips": [{ "text": "Always press toward the most recently added strip.", "source": "ai" }],
+      "estimatedTime": 5
+    },
+    {
+      "id": "s5", "number": 5, "title": "Continue Building Rounds", "section": "Block Assembly",
+      "instruction": "Repeat the pattern: 2 light strips, then 2 dark strips per round, always rotating 90° clockwise after each strip. Complete 3 full rounds total. Each finished block should measure 12 1/2\" x 12 1/2\" unfinished.",
+      "techniques": ["RST", "chain-piecing", "pressing"],
+      "warnings": [{ "type": "critical", "message": "Square up each block to 12 1/2\" after the final round. Blocks must be identical for the quilt to lay flat." }],
+      "tips": [
+        { "text": "Chain-piece all 20 blocks through each step to save time and thread.", "source": "ai" },
+        { "text": "Use a square ruler to check squareness after each round.", "source": "community" }
+      ],
+      "estimatedTime": 60
+    },
+    {
+      "id": "s6", "number": 6, "title": "Arrange Blocks — Barn Raising Layout", "section": "Quilt Assembly",
+      "instruction": "Arrange all 20 blocks in 5 rows of 4, rotating blocks so the light sides form concentric diamonds radiating from the center (Barn Raising setting). Take a photo of your layout before sewing.",
+      "techniques": ["design wall"],
+      "warnings": [],
+      "tips": [{ "text": "Use a design wall or lay blocks on a bed. Step back and squint to check the overall pattern.", "source": "ai" }],
+      "estimatedTime": 15
+    },
+    {
+      "id": "s7", "number": 7, "title": "Sew Rows Together", "section": "Quilt Assembly",
+      "instruction": "Sew blocks into rows, pressing seams in alternating directions (odd rows left, even rows right). Then join rows, nesting seams at intersections. Press row seams open or to one side.",
+      "techniques": ["nesting seams", "pressing"],
+      "warnings": [{ "type": "important", "message": "Pin at every seam intersection before sewing rows together." }],
+      "tips": [{ "text": "Alternating press directions lets seams nest together for perfect intersections.", "source": "pattern" }],
+      "estimatedTime": 30
+    },
+    {
+      "id": "s8", "number": 8, "title": "Add Borders", "section": "Borders",
+      "instruction": "Measure your quilt top through the center (not the edges). Sew side borders first, then top and bottom. Press seams toward the border fabric.",
+      "techniques": ["border application", "measuring"],
+      "warnings": [{ "type": "important", "message": "Always measure through the center — edges can stretch and give a false measurement." }],
+      "tips": [{ "text": "Pin borders at the center, then quarters, then eighths for even distribution.", "source": "ai" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s9", "number": 9, "title": "Baste and Quilt", "section": "Finishing",
+      "instruction": "Make a quilt sandwich: backing (wrong side up), batting, quilt top (right side up). Baste with pins or spray. Quilt as desired — stitch in the ditch along block seams works beautifully for log cabins.",
+      "techniques": ["basting", "stitch in the ditch"],
+      "warnings": [{ "type": "critical", "message": "Backing and batting should extend 2-3 inches beyond the quilt top on all sides." }],
+      "tips": [{ "text": "For a beginner-friendly option, stitch in the ditch along the block seams and borders.", "source": "ai" }],
+      "estimatedTime": 120
+    },
+    {
+      "id": "s10", "number": 10, "title": "Bind the Quilt", "section": "Finishing",
+      "instruction": "Join binding strips end to end with diagonal seams. Press in half lengthwise, wrong sides together. Attach to quilt front with 1/4\" seam, mitering corners. Fold to back and hand-stitch or machine-stitch in place.",
+      "techniques": ["binding", "mitered corners"],
+      "warnings": [],
+      "tips": [
+        { "text": "Diagonal seams on binding joins distribute bulk better than straight seams.", "source": "pattern" },
+        { "text": "Add a label to the back with your name, date, and the recipient!", "source": "community" }
+      ],
+      "estimatedTime": 45
+    }
+  ],
+  "source": {
+    "fileName": "demo-log-cabin-classic.pdf",
+    "parsedAt": "2026-01-15T00:00:00.000Z",
+    "pages": 4,
+    "designer": "Quiltographer Demo"
+  }
+}

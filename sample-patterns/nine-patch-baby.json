@@ -1,0 +1,103 @@
+{
+  "id": "demo-nine-patch",
+  "name": "Nine-Patch Baby Quilt",
+  "description": "Nine squares, endless charm. Quick enough to finish before the baby arrives. A great beginner project with satisfying results.",
+  "difficulty": 1,
+  "estimatedTime": 3,
+  "finishedSize": { "width": 36, "height": 45, "unit": "inches" },
+  "summary": "Strip-piece 12 nine-patch blocks and alternate them with solid squares for a classic checkerboard baby quilt. Simple enough for a first project, charming enough to become an heirloom.",
+  "materials": [
+    { "id": "m1", "name": "Print fabric A (animals)", "type": "fabric", "quantity": "1/2 yard" },
+    { "id": "m2", "name": "Print fabric B (stripes)", "type": "fabric", "quantity": "1/2 yard" },
+    { "id": "m3", "name": "Solid white", "type": "fabric", "quantity": "1 yard" },
+    { "id": "m4", "name": "Backing fabric (flannel)", "type": "fabric", "quantity": "1 1/2 yards" },
+    { "id": "m5", "name": "Lightweight batting", "type": "notion", "quantity": "40\" x 49\"", "notes": "Use a low-loft batting for a baby quilt — it stays soft" },
+    { "id": "m6", "name": "Binding fabric", "type": "fabric", "quantity": "1/3 yard" },
+    { "id": "m7", "name": "Rotary cutter and mat", "type": "tool" },
+    { "id": "m8", "name": "Iron and pressing surface", "type": "tool" }
+  ],
+  "cuttingInstructions": [
+    {
+      "id": "c1",
+      "fabric": "Print fabric A (animals)",
+      "pieces": [{ "shape": "strip", "quantity": 4, "dimensions": "3 1/2\" x WOF" }]
+    },
+    {
+      "id": "c2",
+      "fabric": "Print fabric B (stripes)",
+      "pieces": [{ "shape": "strip", "quantity": 4, "dimensions": "3 1/2\" x WOF" }]
+    },
+    {
+      "id": "c3",
+      "fabric": "Solid white",
+      "pieces": [
+        { "shape": "strip", "quantity": 6, "dimensions": "3 1/2\" x WOF", "notes": "For strip sets" },
+        { "shape": "square", "quantity": 8, "dimensions": "9 1/2\" x 9 1/2\"", "notes": "Alternate plain blocks" }
+      ]
+    },
+    {
+      "id": "c4",
+      "fabric": "Binding fabric",
+      "pieces": [{ "shape": "strip", "quantity": 5, "dimensions": "2 1/2\" x WOF" }]
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1", "number": 1, "title": "Make Strip Set A", "section": "Strip Piecing",
+      "instruction": "Sew one Print A strip, one white strip, and one Print A strip together along the long edges, RST (Right Sides Together). Press seams toward the print. Make 2 of Strip Set A.",
+      "techniques": ["RST", "strip piecing", "pressing"],
+      "warnings": [],
+      "tips": [{ "text": "Alternate sewing direction on each strip to prevent bowing. Sew strip 1 left-to-right, strip 2 right-to-left.", "source": "ai" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s2", "number": 2, "title": "Make Strip Set B", "section": "Strip Piecing",
+      "instruction": "Sew one white strip, one Print B strip, and one white strip together along the long edges, RST. Press seams toward the print. Make 2 of Strip Set B.",
+      "techniques": ["RST", "strip piecing", "pressing"],
+      "warnings": [],
+      "tips": [{ "text": "Use the same seam allowance and pressing direction for all strip sets — consistency is everything.", "source": "pattern" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s3", "number": 3, "title": "Sub-Cut Strip Sets", "section": "Strip Piecing",
+      "instruction": "Sub-cut Strip Set A into 3 1/2\" segments (you need 24 A segments). Sub-cut Strip Set B into 3 1/2\" segments (you need 12 B segments). Use your ruler to keep cuts perpendicular to the seams.",
+      "techniques": ["rotary cutting"],
+      "warnings": [{ "type": "important", "message": "Square up the selvage end before cutting segments. A crooked first cut makes every segment off." }],
+      "tips": [{ "text": "You should get about 11-12 segments per strip set, so 2 of each gives you plenty.", "source": "ai" }],
+      "estimatedTime": 10
+    },
+    {
+      "id": "s4", "number": 4, "title": "Assemble Nine-Patch Blocks", "section": "Block Assembly",
+      "instruction": "Arrange segments: A-B-A (print corners, white center). Sew the three segments together, nesting seams at intersections. Press. Each block should measure 9 1/2\" x 9 1/2\" unfinished. Make 12 blocks.",
+      "techniques": ["nesting seams", "pressing"],
+      "warnings": [{ "type": "important", "message": "Nest the seams — since Strip Set A and B are pressed in opposite directions, seams should lock together perfectly." }],
+      "tips": [{ "text": "Chain-piece all 12 blocks at once: feed all first pairs through, then all second pairs.", "source": "community" }],
+      "estimatedTime": 20
+    },
+    {
+      "id": "s5", "number": 5, "title": "Arrange and Sew Quilt Top", "section": "Quilt Assembly",
+      "instruction": "Lay out blocks in 5 rows: alternate nine-patch blocks with solid white 9 1/2\" squares in a checkerboard. Row 1: nine-patch, white, nine-patch, white (4 blocks). Row 2: white, nine-patch, white, nine-patch. Continue for 5 rows. Sew blocks into rows, pressing seams toward white squares. Join rows, nesting seams.",
+      "techniques": ["nesting seams", "pressing"],
+      "warnings": [],
+      "tips": [{ "text": "Take a photo of your layout before sewing so you don't lose your arrangement.", "source": "ai" }],
+      "estimatedTime": 25
+    },
+    {
+      "id": "s6", "number": 6, "title": "Quilt and Bind", "section": "Finishing",
+      "instruction": "Layer flannel backing (wrong side up), batting, and quilt top (right side up). Baste with safety pins every 4-5 inches. Quilt with simple straight lines, a gentle stipple, or tie with yarn at block corners. Trim edges even and bind with 2 1/2\" strips.",
+      "techniques": ["basting", "quilting", "binding"],
+      "warnings": [{ "type": "important", "message": "Wash baby quilts before gifting to soften and pre-shrink. Use a gentle detergent." }],
+      "tips": [
+        { "text": "Tying is the fastest finish — use embroidery floss or baby yarn at each block intersection.", "source": "ai" },
+        { "text": "Flannel backing is extra cozy for baby quilts and easier to baste because it grips.", "source": "community" }
+      ],
+      "estimatedTime": 60
+    }
+  ],
+  "source": {
+    "fileName": "demo-nine-patch-baby.pdf",
+    "parsedAt": "2026-01-15T00:00:00.000Z",
+    "pages": 2,
+    "designer": "Quiltographer Demo"
+  }
+}
