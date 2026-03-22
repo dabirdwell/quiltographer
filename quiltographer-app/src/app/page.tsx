@@ -96,7 +96,12 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#fdf4e3' }}>
-      {/* Beta banner */}
+      {/* Preview banner */}
+      <div className="bg-indigo text-white text-center py-2 text-sm font-medium tracking-wide">
+        Beta — Free during preview. Pro features coming soon.
+      </div>
+
+      {/* Beta pass banner */}
       {isBeta && (
         <div className="bg-sage text-white text-center py-2 text-sm font-medium">
           Beta Pass Active — Full access unlocked
