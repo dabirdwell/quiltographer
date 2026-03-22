@@ -5,6 +5,8 @@ import { FanNavigation } from '@/components/fan/FanNavigation';
 import { PatternUpload } from '@/components/reader/PatternUpload';
 import { StepContent } from '@/components/reader/StepContent';
 import { MaterialsList } from '@/components/reader/MaterialsList';
+import { DifficultyEstimator } from '@/components/reader/DifficultyEstimator';
+import { FabricCalculator } from '@/components/reader/FabricCalculator';
 import { quiltographerTheme } from '@/components/japanese/theme';
 import { Text, Stack, Surface, Button, Callout, Container, ProgressBar } from '@/components/ui';
 import { useClarification } from '@/hooks/useClarification';
@@ -65,6 +67,7 @@ export default function PatternReaderPage() {
   const [highContrast, setHighContrast] = useState(false);
   const [fontScale, setFontScale] = useState<FontScale>(1);
   const [isDemoMode, setIsDemoMode] = useState(false);
+  const [showAnalysis, setShowAnalysis] = useState(false);
 
   // Session persistence
   const [pendingSession, setPendingSession] = useState<PatternSession | null>(null);
@@ -505,9 +508,23 @@ export default function PatternReaderPage() {
         {/* Reading view */}
         {viewState === 'reading' && pattern && currentStep && (
           <Stack gap="breathe">
-            {/* Materials toggle button — 48px min touch target */}
+            {/* Toggle buttons — Materials & Analysis */}
             {pattern.materials && pattern.materials.length > 0 && (
-              <div className="flex justify-end">
+              <div className="flex justify-end gap-2 flex-wrap">
+                <button
+                  onClick={() => setShowAnalysis(prev => !prev)}
+                  className={`min-h-[48px] px-4 py-2 rounded-lg text-sm font-semibold border transition-colors ${
+                    showAnalysis
+                      ? highContrast
+                        ? 'border-yellow-400 bg-yellow-400/20 text-yellow-300'
+                        : 'border-persimmon/30 bg-persimmon/10 text-persimmon'
+                      : highContrast
+                        ? 'border-gray-500 bg-gray-800 text-white hover:bg-gray-700'
+                        : 'border-ink-faint/30 bg-washi hover:bg-washi-dark text-ink-black'
+                  }`}
+                >
+                  {showAnalysis ? '📊 Hide Analysis' : '📊 Analysis'}
+                </button>
                 <button
                   onClick={() => setShowMaterials(prev => !prev)}
                   className={`min-h-[48px] px-4 py-2 rounded-lg text-sm font-semibold border transition-colors ${
@@ -537,6 +554,14 @@ export default function PatternReaderPage() {
                   );
                 }}
               />
+            )}
+
+            {/* Analysis panels — Difficulty & Fabric Calculator */}
+            {showAnalysis && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <DifficultyEstimator pattern={pattern} />
+                <FabricCalculator pattern={pattern} />
+              </div>
             )}
 
             {/* Section header divider — show when entering a new section */}

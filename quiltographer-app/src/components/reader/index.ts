@@ -14,3 +14,7 @@ export { SessionWelcome, GoodStoppingPoint, ToolPrepAlert } from './SessionWelco
 export { MaterialsList } from './MaterialsList';
 export { MakeMode } from './MakeMode';
 export { FanDrawer } from './FanDrawer';
+
+// Analysis tools
+export { DifficultyEstimator } from './DifficultyEstimator';
+export { FabricCalculator } from './FabricCalculator';
