@@ -417,6 +417,25 @@ export default function PatternReaderPage() {
             {highContrast ? '◑' : '◐'}
           </button>
 
+          {viewState === 'reading' && pattern && (
+            <button
+              onClick={() => {
+                sessionStorage.setItem('quiltographer-assistant-pattern', JSON.stringify(pattern));
+                window.location.href = '/assistant';
+              }}
+              className={`min-w-[48px] min-h-[48px] flex items-center justify-center rounded-lg text-sm font-semibold border transition-colors ${
+                highContrast
+                  ? 'border-persimmon bg-persimmon/20 text-persimmon hover:bg-persimmon/30'
+                  : 'border-persimmon/40 bg-persimmon/10 text-persimmon hover:bg-persimmon/20'
+              }`}
+              aria-label="Ask AI Assistant about this pattern"
+              title="Ask AI Assistant"
+            >
+              <span className="hidden sm:inline">Ask AI</span>
+              <span className="sm:hidden">AI</span>
+            </button>
+          )}
+
           {(viewState === 'reading' || viewState === 'processing') && (
             <button
               onClick={handleBackToUpload}
