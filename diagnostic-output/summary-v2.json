@@ -8,7 +8,22 @@
       "materialsCount": 9,
       "cuttingCount": 6,
       "totalPieces": 14,
-      "name": "BAROQUE BLOOM"
+      "name": "BAROQUE BLOOM",
+      "size": {
+        "width": 46,
+        "height": 54,
+        "unit": "inches"
+      },
+      "textLength": 3160,
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting"
+      ],
+      "sections": [
+        "Binding",
+        "Borders"
+      ]
     },
     {
       "file": "CoastalShells_Collage.pdf",
@@ -18,7 +33,24 @@
       "materialsCount": 17,
       "cuttingCount": 2,
       "totalPieces": 8,
-      "name": "COLLAGE"
+      "name": "COLLAGE",
+      "size": {
+        "width": 54,
+        "height": 65,
+        "unit": "inches"
+      },
+      "textLength": 4254,
+      "techniques": [
+        "cutting",
+        "pressing",
+        "piecing",
+        "trimming"
+      ],
+      "sections": [
+        "Binding",
+        "Cutting Instructions",
+        "Assembly"
+      ]
     },
     {
       "file": "Color-Cascade.pdf",
@@ -28,7 +60,23 @@
       "materialsCount": 10,
       "cuttingCount": 10,
       "totalPieces": 25,
-      "name": "COLOR CASCADE"
+      "name": "COLOR CASCADE",
+      "size": {
+        "width": 55,
+        "height": 73,
+        "unit": "inches"
+      },
+      "textLength": 4443,
+      "techniques": [
+        "pressing",
+        "piecing",
+        "trimming"
+      ],
+      "sections": [
+        "Cutting Instructions",
+        "Assemble The Quilt",
+        "Quilt Assembly"
+      ]
     },
     {
       "file": "FreedomFlight_FreedomFlight.pdf",
@@ -38,7 +86,23 @@
       "materialsCount": 12,
       "cuttingCount": 8,
       "totalPieces": 25,
-      "name": "FREEDOM FLIGHT"
+      "name": "FREEDOM FLIGHT",
+      "size": {
+        "width": 48,
+        "height": 60,
+        "unit": "inches"
+      },
+      "textLength": 6269,
+      "techniques": [
+        "Flying Geese",
+        "pressing",
+        "piecing"
+      ],
+      "sections": [
+        "Cutting Instructions",
+        "Borders",
+        "Assemble The Quilt"
+      ]
     },
     {
       "file": "ImperialCollectionGracefulCranes_Aurora.pdf",
@@ -48,7 +112,15 @@
       "materialsCount": 0,
       "cuttingCount": 0,
       "totalPieces": 0,
-      "name": "Aurora"
+      "name": "Aurora",
+      "size": {
+        "width": 47,
+        "height": 69,
+        "unit": "inches"
+      },
+      "textLength": 160,
+      "techniques": [],
+      "sections": []
     },
     {
       "file": "PainterlyPetalsValley_CobblestoneStreet.pdf",
@@ -58,7 +130,15 @@
       "materialsCount": 0,
       "cuttingCount": 0,
       "totalPieces": 0,
-      "name": "Cobblestone Street"
+      "name": "Cobblestone Street",
+      "size": {
+        "width": 54,
+        "height": 69,
+        "unit": "inches"
+      },
+      "textLength": 259,
+      "techniques": [],
+      "sections": []
     },
     {
       "file": "RubyRose-CornerStones.pdf",
@@ -68,7 +148,22 @@
       "materialsCount": 10,
       "cuttingCount": 8,
       "totalPieces": 24,
-      "name": "CORNER STONES"
+      "name": "CORNER STONES",
+      "size": {
+        "width": 44,
+        "height": 62,
+        "unit": "inches"
+      },
+      "textLength": 5727,
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "sections": [
+        "Cutting Instructions",
+        "Assemble The Quilt",
+        "Borders"
+      ]
     },
     {
       "file": "Sample Quilt Pattern SKINNY.pdf",
@@ -78,7 +173,20 @@
       "materialsCount": 2,
       "cuttingCount": 0,
       "totalPieces": 0,
-      "name": "Kite Flight Quilt"
+      "name": "Kite Flight Quilt",
+      "size": {
+        "width": 38,
+        "height": 50,
+        "unit": "inches"
+      },
+      "textLength": 2645,
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting",
+        "strip piecing"
+      ],
+      "sections": []
     },
     {
       "file": "downloaded-BlossomsAndHearts.pdf",
@@ -88,7 +196,15 @@
       "materialsCount": 0,
       "cuttingCount": 0,
       "totalPieces": 0,
-      "name": "Blossoms and Hearts"
+      "name": "Blossoms and Hearts",
+      "size": {
+        "width": 67,
+        "height": 83,
+        "unit": "inches"
+      },
+      "textLength": 167,
+      "techniques": [],
+      "sections": []
     },
     {
       "file": "downloaded-Boardwalk.pdf",
@@ -98,7 +214,21 @@
       "materialsCount": 16,
       "cuttingCount": 2,
       "totalPieces": 2,
-      "name": "BOARDWALK"
+      "name": "BOARDWALK",
+      "size": {
+        "width": 64,
+        "height": 78,
+        "unit": "inches"
+      },
+      "textLength": 2697,
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting"
+      ],
+      "sections": [
+        "Binding"
+      ]
     },
     {
       "file": "downloaded-BurstOfColor.pdf",
@@ -108,7 +238,25 @@
       "materialsCount": 6,
       "cuttingCount": 3,
       "totalPieces": 5,
-      "name": "BURST OF COLOR"
+      "name": "BURST OF COLOR",
+      "size": {
+        "width": 42,
+        "height": 50,
+        "unit": "inches"
+      },
+      "textLength": 3913,
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing",
+        "cutting",
+        "trimming"
+      ],
+      "sections": [
+        "Binding",
+        "Assemble The Quilt",
+        "Borders"
+      ]
     },
     {
       "file": "downloaded-Supernova.pdf",
@@ -118,7 +266,25 @@
       "materialsCount": 16,
       "cuttingCount": 2,
       "totalPieces": 7,
-      "name": "SUPERNOVA"
+      "name": "SUPERNOVA",
+      "size": {
+        "width": 60,
+        "height": 72,
+        "unit": "inches"
+      },
+      "textLength": 4815,
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing",
+        "cutting",
+        "trimming"
+      ],
+      "sections": [
+        "Binding",
+        "Cutting Instructions",
+        "Assemble The Quilt"
+      ]
     }
   ]
 }

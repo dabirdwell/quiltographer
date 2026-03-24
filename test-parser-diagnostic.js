@@ -348,14 +348,14 @@ function extractCuttingInstructions(text) {
     const rawLabel = fmMatch[1].trim();
     const fabrics = [];
     if (/and/i.test(rawLabel)) {
-      const letterMatches = rawLabel.match(/\b([A-H])\b/g);
+      const letterMatches = rawLabel.match(/\b([A-I])\b/g);
       if (letterMatches) {
         letterMatches.forEach(l => fabrics.push(`Fabric ${l.toUpperCase()}`));
       }
     } else if (/binding/i.test(rawLabel)) {
       fabrics.push('Binding Fabric');
     } else {
-      const letter = rawLabel.match(/\b([A-H])\b/i);
+      const letter = rawLabel.match(/\b([A-I])\b/i);
       if (letter) {
         fabrics.push(`Fabric ${letter[1].toUpperCase()}`);
       } else {
@@ -510,6 +510,10 @@ async function runDiagnostic() {
         cuttingCount: cutting.length,
         totalPieces: cutting.reduce((sum, c) => sum + c.pieces.length, 0),
         name: metadata.name,
+        size: metadata.finishedSize,
+        textLength: textLen,
+        techniques: [...new Set(steps.flatMap(s => s.techniques))],
+        sections: [...new Set(steps.map(s => s.section).filter(s => s !== 'General'))],
       });
 
     } catch (err) {
@@ -545,6 +549,31 @@ async function runDiagnostic() {
   const withCutting = patterns.filter(r => r.cuttingCount > 0);
   console.log(`\nCutting extraction: ${withCutting.length}/${patterns.length} patterns have cutting instructions`);
 
+  // Write both summary files
+  const summaryData = {
+    results: results.map(r => {
+      if (!r.success) return r;
+      return {
+        file: r.file, success: r.success, isPattern: r.isPattern,
+        stepsCount: r.stepsCount, materialsCount: r.materialsCount,
+        cuttingCount: r.cuttingCount, totalPieces: r.totalPieces,
+        name: r.name, size: r.size, textLength: r.textLength,
+        techniques: r.techniques, sections: r.sections,
+      };
+    }),
+    summary: {
+      total: results.length,
+      extracted: succeeded.length,
+      patterns: patterns.length,
+      nonPatterns: nonPatterns.length,
+      errors: failed.length,
+      zeroSteps: patterns.filter(r => r.stepsCount === 0).length,
+      zeroCutting: patterns.filter(r => r.cuttingCount === 0).length,
+      zeroMaterials: patterns.filter(r => r.materialsCount === 0).length,
+      noSize: patterns.filter(r => !r.size || r.size.width === 0).length,
+    },
+  };
+  fs.writeFileSync(path.join(__dirname, 'diagnostic-output', 'summary.json'), JSON.stringify(summaryData, null, 2));
   fs.writeFileSync(path.join(__dirname, 'diagnostic-output', 'summary-v2.json'), JSON.stringify({ results }, null, 2));
 }
 

@@ -6,7 +6,8 @@
       "isPattern": true,
       "stepsCount": 4,
       "materialsCount": 9,
-      "cuttingCount": 0,
+      "cuttingCount": 6,
+      "totalPieces": 14,
       "name": "BAROQUE BLOOM",
       "size": {
         "width": 46,
@@ -30,7 +31,8 @@
       "isPattern": true,
       "stepsCount": 10,
       "materialsCount": 17,
-      "cuttingCount": 0,
+      "cuttingCount": 2,
+      "totalPieces": 8,
       "name": "COLLAGE",
       "size": {
         "width": 54,
@@ -56,7 +58,8 @@
       "isPattern": true,
       "stepsCount": 8,
       "materialsCount": 10,
-      "cuttingCount": 0,
+      "cuttingCount": 10,
+      "totalPieces": 25,
       "name": "COLOR CASCADE",
       "size": {
         "width": 55,
@@ -81,7 +84,8 @@
       "isPattern": true,
       "stepsCount": 11,
       "materialsCount": 12,
-      "cuttingCount": 0,
+      "cuttingCount": 8,
+      "totalPieces": 25,
       "name": "FREEDOM FLIGHT",
       "size": {
         "width": 48,
@@ -107,6 +111,7 @@
       "stepsCount": 0,
       "materialsCount": 0,
       "cuttingCount": 0,
+      "totalPieces": 0,
       "name": "Aurora",
       "size": {
         "width": 47,
@@ -124,6 +129,7 @@
       "stepsCount": 0,
       "materialsCount": 0,
       "cuttingCount": 0,
+      "totalPieces": 0,
       "name": "Cobblestone Street",
       "size": {
         "width": 54,
@@ -140,7 +146,8 @@
       "isPattern": true,
       "stepsCount": 19,
       "materialsCount": 10,
-      "cuttingCount": 0,
+      "cuttingCount": 8,
+      "totalPieces": 24,
       "name": "CORNER STONES",
       "size": {
         "width": 44,
@@ -165,6 +172,7 @@
       "stepsCount": 5,
       "materialsCount": 2,
       "cuttingCount": 0,
+      "totalPieces": 0,
       "name": "Kite Flight Quilt",
       "size": {
         "width": 38,
@@ -178,9 +186,7 @@
         "cutting",
         "strip piecing"
       ],
-      "sections": [
-        "General"
-      ]
+      "sections": []
     },
     {
       "file": "downloaded-BlossomsAndHearts.pdf",
@@ -189,6 +195,7 @@
       "stepsCount": 0,
       "materialsCount": 0,
       "cuttingCount": 0,
+      "totalPieces": 0,
       "name": "Blossoms and Hearts",
       "size": {
         "width": 67,
@@ -205,7 +212,8 @@
       "isPattern": true,
       "stepsCount": 4,
       "materialsCount": 16,
-      "cuttingCount": 0,
+      "cuttingCount": 2,
+      "totalPieces": 2,
       "name": "BOARDWALK",
       "size": {
         "width": 64,
@@ -228,7 +236,8 @@
       "isPattern": true,
       "stepsCount": 10,
       "materialsCount": 6,
-      "cuttingCount": 0,
+      "cuttingCount": 3,
+      "totalPieces": 5,
       "name": "BURST OF COLOR",
       "size": {
         "width": 42,
@@ -255,7 +264,8 @@
       "isPattern": true,
       "stepsCount": 9,
       "materialsCount": 16,
-      "cuttingCount": 0,
+      "cuttingCount": 2,
+      "totalPieces": 7,
       "name": "SUPERNOVA",
       "size": {
         "width": 60,
@@ -284,7 +294,7 @@
     "nonPatterns": 3,
     "errors": 0,
     "zeroSteps": 0,
-    "zeroCutting": 9,
+    "zeroCutting": 1,
     "zeroMaterials": 0,
     "noSize": 0
   }
