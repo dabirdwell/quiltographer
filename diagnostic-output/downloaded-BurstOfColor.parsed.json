@@ -1,0 +1,239 @@
+{
+  "metadata": {
+    "name": "BURST OF COLOR",
+    "difficulty": 1,
+    "finishedSize": {
+      "width": 42,
+      "height": 50,
+      "unit": "inches"
+    },
+    "designer": "Robert Kaufman Fabrics"
+  },
+  "materials": [
+    {
+      "id": "mat-1",
+      "name": "Fabric 1",
+      "amount": "2/3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-2",
+      "name": "Fabric 2",
+      "amount": "1/3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-3",
+      "name": "Fabric 3",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-4",
+      "name": "You will also need",
+      "amount": "3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-5",
+      "name": "Backing Fabric",
+      "amount": "3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-6",
+      "name": "Binding",
+      "amount": "1/3 yards",
+      "type": "fabric"
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "number": 1,
+      "title": "Step 1",
+      "section": "Binding",
+      "instruction": "Pair one Charm Pack Square with a Charm Pack Square from another fabric, RST. Mark a diagonal line on the wrong side of one square. Sew 1/4” away from both sides of the marked line. Cut on the marked line, creating two half-square triangles (HSTs). Press toward the darker fabric. Trim to 4-1/2” square. Repeat to make eighty 4-1/2” HSTs, using a random assortment of fabric pairings from the Charm Pack.",
+      "clarifiedInstruction": "Pair one Charm Pack Square with a Charm Pack Square from another fabric, Right Sides Together (RST). Mark a diagonal line on the wrong side of one square. Sew 1/4” away from both sides of the marked line. Cut on the marked line, creating two half-square triangles (HSTs). Press toward the darker fabric. Trim to 4-1/2” square. Repeat to make eighty 4-1/2” Half Square Triangles (HSTs), using a random assortment of fabric pairings from the Charm Pack.",
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing",
+        "cutting",
+        "trimming"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-2",
+      "number": 2,
+      "title": "Step 2",
+      "section": "Binding",
+      "instruction": "Place a 1-1/2” Fabric A square in the upper right corner of an HST, right sides together. Note the orientation of the marked diagonal line and how the 1-1/2” square is not placed at a corner with a seam. Sew on the marked line, then trim away the excess fabric, leaving a 1/4” seam allowance. Press. Repeat with all eighty HST units. Assemble the Half-Square Triangles (HSTs) Assemble the Blocks",
+      "clarifiedInstruction": "Place a 1-1/2” Fabric A square in the upper right corner of an Half Square Triangle (HST), right sides together. Note the orientation of the marked diagonal line and how the 1-1/2” square is not placed at a corner with a seam. Sew on the marked line, then trim away the excess fabric, leaving a 1/4” seam allowance. Press. Repeat with all eighty Half Square Triangle (HST) units. Assemble the Half-Square Triangles (HSTs) Assemble the Blocks",
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing",
+        "trimming"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-3",
+      "number": 3,
+      "title": "Step 3",
+      "section": "Binding",
+      "instruction": "Gather: four completed Step 2 units Arrange the units into two rows of two. Note the fabric placement and block orientation in the Block Assembly Diagram.",
+      "clarifiedInstruction": "Gather: four completed Step 2 units Arrange the units into two rows of two. Note the fabric placement and block orientation in the Block Assembly Diagram.",
+      "techniques": [],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-4",
+      "number": 4,
+      "title": "Step 4",
+      "section": "Binding",
+      "instruction": "Sew the squares together to form the rows. Press the seams in opposite directions.",
+      "clarifiedInstruction": "Sew the squares together to form the rows. Press the seams in opposite directions.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-5",
+      "number": 5,
+      "title": "Step 5",
+      "section": "Binding",
+      "instruction": "Sew the rows together, nesting the seams and pressing the seams to one side to form the block. The Block should measure 8-1/2” square. Repeat Steps 3-5 to make twenty Blocks.  This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2023. All rights reserved. Assemble the Quilt",
+      "clarifiedInstruction": "Sew the rows together, nesting the seams and pressing the seams to one side to form the block. The Block should measure 8-1/2” square. Repeat Steps 3-5 to make twenty Blocks.  This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2023. All rights reserved. Assemble the Quilt",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-6",
+      "number": 6,
+      "title": "Step 6",
+      "section": "Assemble The Quilt",
+      "instruction": "Arrange the blocks into five rows of four blocks. Note the fabric placement and block orientation in the Quilt Assembly Diagram.",
+      "clarifiedInstruction": "Arrange the blocks into five rows of four blocks. Note the fabric placement and block orientation in the Quilt Assembly Diagram.",
+      "techniques": [],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-7",
+      "number": 7,
+      "title": "Step 7",
+      "section": "Assemble The Quilt",
+      "instruction": "Sew the blocks together to form rows. Press the rows to the left in the odd numbered rows and to the right in the even numbered rows.",
+      "clarifiedInstruction": "Sew the blocks together to form rows. Press the rows to the left in the odd numbered rows and to the right in the even numbered rows.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-8",
+      "number": 8,
+      "title": "Step 8",
+      "section": "Assemble The Quilt",
+      "instruction": "Sew the rows together to form the quilt center. Press the row seams open.",
+      "clarifiedInstruction": "Sew the rows together to form the quilt center. Press the row seams open.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-9",
+      "number": 9,
+      "title": "Step 9",
+      "section": "Assemble The Quilt",
+      "instruction": "Sew the side inner borders to the sides of the quilt center. Press toward the borders. Sew the top and bottom inner borders to the quilt center. Press toward the borders.",
+      "clarifiedInstruction": "Sew the side inner borders to the sides of the quilt center. Press toward the borders. Sew the top and bottom inner borders to the quilt center. Press toward the borders.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-10",
+      "number": 10,
+      "title": "Step 10",
+      "section": "Borders",
+      "instruction": "Sew the side outer borders to the sides of the quilt center. Press toward the borders. Sew the top and bottom outer borders to the quilt center. Press toward the borders. Your quilt top is complete! Baste, quilt, bind and enjoy!",
+      "clarifiedInstruction": "Sew the side outer borders to the sides of the quilt center. Press toward the borders. Sew the top and bottom outer borders to the quilt center. Press toward the borders. Your quilt top is complete! Baste, quilt, bind and enjoy!",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    }
+  ],
+  "cutting": [
+    {
+      "id": "cut-1",
+      "fabric": "Fabric A",
+      "pieces": [
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "1-1/2\" x 40-1/2\""
+        },
+        {
+          "shape": "square",
+          "quantity": 80,
+          "dimensions": "1-1/2\" x 1-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-2",
+      "fabric": "Fabric B",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 5,
+          "dimensions": "4-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "4-1/2\" x 42-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-3",
+      "fabric": "Binding Fabric",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 5,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    }
+  ],
+  "isPattern": true,
+  "textLength": 3913,
+  "pages": 4
+}

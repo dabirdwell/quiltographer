@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "name": "BOARDWALK",
+    "difficulty": 1,
+    "finishedSize": {
+      "width": 64,
+      "height": 78,
+      "unit": "inches"
+    },
+    "designer": "Robert Kaufman Fabrics"
+  },
+  "materials": [
+    {
+      "id": "mat-1",
+      "name": "Fabric 1",
+      "amount": "5 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-2",
+      "name": "Fabric 2",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-3",
+      "name": "Fabric 3",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-4",
+      "name": "Fabric 4",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-5",
+      "name": "Fabric 5",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-6",
+      "name": "Fabric 6",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-7",
+      "name": "Fabric 7",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-8",
+      "name": "Fabric 8",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-9",
+      "name": "Fabric 9",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-10",
+      "name": "Fabric 10",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-11",
+      "name": "Fabric 11",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-12",
+      "name": "Fabric 12",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-13",
+      "name": "Fabric 13",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-14",
+      "name": "Fabric 14",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-15",
+      "name": "Fabric 15",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-16",
+      "name": "Backing Fabric",
+      "amount": "5 yards",
+      "type": "fabric"
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "number": 1,
+      "title": "Step 1",
+      "section": "Binding",
+      "instruction": "Sew a Fabric A square to the end of each print rectangle. Press toward the rectangle. Repeat to make ninety-six units like this, each measuring 4-1/2” x 13-1/2”.",
+      "clarifiedInstruction": "Sew a Fabric A square to the end of each print rectangle. Press toward the rectangle. Repeat to make ninety-six units like this, each measuring 4-1/2” x 13-1/2”.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-2",
+      "number": 2,
+      "title": "Step 2",
+      "section": "Binding",
+      "instruction": "Arrange the blocks into six rows of sixteen units. Note the block orientation in the Quilt Assembly Diagram. Arrange the fabrics as shown in the Diagram, or in a random placement of your choosing.",
+      "clarifiedInstruction": "Arrange the blocks into six rows of sixteen units. Note the block orientation in the Quilt Assembly Diagram. Arrange the fabrics as shown in the Diagram, or in a random placement of your choosing.",
+      "techniques": [],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-3",
+      "number": 3,
+      "title": "Step 3",
+      "section": "Binding",
+      "instruction": "Sew the units together to form rows. Press the rows to the left in the odd numbered rows and to the right in the even numbered rows.",
+      "clarifiedInstruction": "Sew the units together to form rows. Press the rows to the left in the odd numbered rows and to the right in the even numbered rows.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-4",
+      "number": 4,
+      "title": "Step 4",
+      "section": "Binding",
+      "instruction": "Sew the rows together to form the quilt center. Press the row seams open. Your quilt top is complete! Baste, quilt, bind and enjoy! Assemble the Units Assemble the Quilt This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2026. All rights reserved. From Fabrics B - O, cut: six or seven 4-1/2” x 9-1/2” rectangles, for a total of ninety-six rectangles From Fabric A, cut: eleven 4-1/2” x WOF strips. Subcut: ninety-six 4-1/2” squares From the Binding Fabric, cut: eight 2-1/2” x WOF strips Cutting Instructions",
+      "clarifiedInstruction": "Sew the rows together to form the quilt center. Press the row seams open. Your quilt top is complete! Baste, quilt, bind and enjoy! Assemble the Units Assemble the Quilt This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2026. All rights reserved. From Fabrics B - O, cut: six or seven 4-1/2” x 9-1/2” rectangles, for a total of ninety-six rectangles From Fabric A, cut: eleven 4-1/2” x Width of Fabric (WOF) strips. Subcut: ninety-six 4-1/2” squares From the Binding Fabric, cut: eight 2-1/2” x Width of Fabric (WOF) strips Cutting Instructions",
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting"
+      ],
+      "warnings": [],
+      "tips": []
+    }
+  ],
+  "cutting": [
+    {
+      "id": "cut-1",
+      "fabric": "Fabric A",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 11,
+          "dimensions": "4-1/2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-2",
+      "fabric": "Binding Fabric",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 8,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    }
+  ],
+  "isPattern": true,
+  "textLength": 2697,
+  "pages": 3
+}

@@ -1,0 +1,291 @@
+{
+  "results": [
+    {
+      "file": "BAROQUEBLOOM_BaroqueBloom.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 4,
+      "materialsCount": 9,
+      "cuttingCount": 0,
+      "name": "BAROQUE BLOOM",
+      "size": {
+        "width": 46,
+        "height": 54,
+        "unit": "inches"
+      },
+      "textLength": 3160,
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting"
+      ],
+      "sections": [
+        "Binding",
+        "Borders"
+      ]
+    },
+    {
+      "file": "CoastalShells_Collage.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 10,
+      "materialsCount": 17,
+      "cuttingCount": 0,
+      "name": "COLLAGE",
+      "size": {
+        "width": 54,
+        "height": 65,
+        "unit": "inches"
+      },
+      "textLength": 4254,
+      "techniques": [
+        "cutting",
+        "pressing",
+        "piecing",
+        "trimming"
+      ],
+      "sections": [
+        "Binding",
+        "Cutting Instructions",
+        "Assembly"
+      ]
+    },
+    {
+      "file": "Color-Cascade.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 8,
+      "materialsCount": 10,
+      "cuttingCount": 0,
+      "name": "COLOR CASCADE",
+      "size": {
+        "width": 55,
+        "height": 73,
+        "unit": "inches"
+      },
+      "textLength": 4443,
+      "techniques": [
+        "pressing",
+        "piecing",
+        "trimming"
+      ],
+      "sections": [
+        "Cutting Instructions",
+        "Assemble The Quilt",
+        "Quilt Assembly"
+      ]
+    },
+    {
+      "file": "FreedomFlight_FreedomFlight.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 11,
+      "materialsCount": 12,
+      "cuttingCount": 0,
+      "name": "FREEDOM FLIGHT",
+      "size": {
+        "width": 48,
+        "height": 60,
+        "unit": "inches"
+      },
+      "textLength": 6269,
+      "techniques": [
+        "Flying Geese",
+        "pressing",
+        "piecing"
+      ],
+      "sections": [
+        "Cutting Instructions",
+        "Borders",
+        "Assemble The Quilt"
+      ]
+    },
+    {
+      "file": "ImperialCollectionGracefulCranes_Aurora.pdf",
+      "success": true,
+      "isPattern": false,
+      "stepsCount": 0,
+      "materialsCount": 0,
+      "cuttingCount": 0,
+      "name": "Aurora",
+      "size": {
+        "width": 47,
+        "height": 69,
+        "unit": "inches"
+      },
+      "textLength": 160,
+      "techniques": [],
+      "sections": []
+    },
+    {
+      "file": "PainterlyPetalsValley_CobblestoneStreet.pdf",
+      "success": true,
+      "isPattern": false,
+      "stepsCount": 0,
+      "materialsCount": 0,
+      "cuttingCount": 0,
+      "name": "Cobblestone Street",
+      "size": {
+        "width": 54,
+        "height": 69,
+        "unit": "inches"
+      },
+      "textLength": 259,
+      "techniques": [],
+      "sections": []
+    },
+    {
+      "file": "RubyRose-CornerStones.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 19,
+      "materialsCount": 10,
+      "cuttingCount": 0,
+      "name": "CORNER STONES",
+      "size": {
+        "width": 44,
+        "height": 62,
+        "unit": "inches"
+      },
+      "textLength": 5727,
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "sections": [
+        "Cutting Instructions",
+        "Assemble The Quilt",
+        "Borders"
+      ]
+    },
+    {
+      "file": "Sample Quilt Pattern SKINNY.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 5,
+      "materialsCount": 2,
+      "cuttingCount": 0,
+      "name": "Kite Flight Quilt",
+      "size": {
+        "width": 38,
+        "height": 50,
+        "unit": "inches"
+      },
+      "textLength": 2645,
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting",
+        "strip piecing"
+      ],
+      "sections": [
+        "General"
+      ]
+    },
+    {
+      "file": "downloaded-BlossomsAndHearts.pdf",
+      "success": true,
+      "isPattern": false,
+      "stepsCount": 0,
+      "materialsCount": 0,
+      "cuttingCount": 0,
+      "name": "Blossoms and Hearts",
+      "size": {
+        "width": 67,
+        "height": 83,
+        "unit": "inches"
+      },
+      "textLength": 167,
+      "techniques": [],
+      "sections": []
+    },
+    {
+      "file": "downloaded-Boardwalk.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 4,
+      "materialsCount": 16,
+      "cuttingCount": 0,
+      "name": "BOARDWALK",
+      "size": {
+        "width": 64,
+        "height": 78,
+        "unit": "inches"
+      },
+      "textLength": 2697,
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting"
+      ],
+      "sections": [
+        "Binding"
+      ]
+    },
+    {
+      "file": "downloaded-BurstOfColor.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 10,
+      "materialsCount": 6,
+      "cuttingCount": 0,
+      "name": "BURST OF COLOR",
+      "size": {
+        "width": 42,
+        "height": 50,
+        "unit": "inches"
+      },
+      "textLength": 3913,
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing",
+        "cutting",
+        "trimming"
+      ],
+      "sections": [
+        "Binding",
+        "Assemble The Quilt",
+        "Borders"
+      ]
+    },
+    {
+      "file": "downloaded-Supernova.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 9,
+      "materialsCount": 16,
+      "cuttingCount": 0,
+      "name": "SUPERNOVA",
+      "size": {
+        "width": 60,
+        "height": 72,
+        "unit": "inches"
+      },
+      "textLength": 4815,
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing",
+        "cutting",
+        "trimming"
+      ],
+      "sections": [
+        "Binding",
+        "Cutting Instructions",
+        "Assemble The Quilt"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "extracted": 12,
+    "patterns": 9,
+    "nonPatterns": 3,
+    "errors": 0,
+    "zeroSteps": 0,
+    "zeroCutting": 9,
+    "zeroMaterials": 0,
+    "noSize": 0
+  }
+}

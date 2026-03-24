@@ -1,0 +1,373 @@
+{
+  "metadata": {
+    "name": "COLOR CASCADE",
+    "difficulty": 1,
+    "finishedSize": {
+      "width": 55,
+      "height": 73,
+      "unit": "inches"
+    },
+    "designer": "Ariga Mahmoudlou"
+  },
+  "materials": [
+    {
+      "id": "mat-1",
+      "name": "Fabric 1",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-2",
+      "name": "Fabric 2",
+      "amount": "1/3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-3",
+      "name": "Fabric 3",
+      "amount": "1/3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-4",
+      "name": "Fabric 4",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-5",
+      "name": "Fabric 5",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-6",
+      "name": "Fabric 6",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-7",
+      "name": "Fabric 7",
+      "amount": "7/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-8",
+      "name": "Fabric 8",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-9",
+      "name": "Fabric 9",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-10",
+      "name": "Backing Fabric",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "number": 1,
+      "title": "Step 1",
+      "section": "Cutting Instructions",
+      "instruction": "Place a 2” Fabric I square in the upper right corner of a 3-1/2” Fabric A square, right sides together. Note the orientation of the marked diagonal line. Sew on the marked line, then trim away the excess fabric, leaving a 1/4” seam allowance. Press.",
+      "clarifiedInstruction": "Place a 2” Fabric I square in the upper right corner of a 3-1/2” Fabric A square, right sides together. Note the orientation of the marked diagonal line. Sew on the marked line, then trim away the excess fabric, leaving a 1/4” seam allowance. Press.",
+      "techniques": [
+        "pressing",
+        "piecing",
+        "trimming"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-2",
+      "number": 2,
+      "title": "Step 3",
+      "section": "Cutting Instructions",
+      "instruction": "Place a 2” Fabric I square in the upper right corner of a 3-1/2” x 9-1/2” Fabric A rectangle, right sides together. Note the orientation of the marked diagonal line. Sew on the marked line, then trim away the excess fabric, leaving a 1/4” seam allowance. Press. Repeat on the upper left corner with another 2” Fabric I square.",
+      "clarifiedInstruction": "Place a 2” Fabric I square in the upper right corner of a 3-1/2” x 9-1/2” Fabric A rectangle, right sides together. Note the orientation of the marked diagonal line. Sew on the marked line, then trim away the excess fabric, leaving a 1/4” seam allowance. Press. Repeat on the upper left corner with another 2” Fabric I square.",
+      "techniques": [
+        "pressing",
+        "piecing",
+        "trimming"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-3",
+      "number": 3,
+      "title": "Step 2",
+      "section": "Cutting Instructions",
+      "instruction": "Repeat Step 1 for all remaining 3-1/2” squares from Fabrics A-H.  This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2020. All rights reserved. Repeat on the remaining three corners with 2” Fabric I squares.",
+      "clarifiedInstruction": "Repeat Step 1 for all remaining 3-1/2” squares from Fabrics A-H.  This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2020. All rights reserved. Repeat on the remaining three corners with 2” Fabric I squares.",
+      "techniques": [
+        "pressing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-4",
+      "number": 4,
+      "title": "Step 4",
+      "section": "Cutting Instructions",
+      "instruction": "Repeat Step 3 for all remaining 3-1/2” x 9-1/2” rectangles from Fabrics A-H. Assemble the Quilt",
+      "clarifiedInstruction": "Repeat Step 3 for all remaining 3-1/2” x 9-1/2” rectangles from Fabrics A-H. Assemble the Quilt",
+      "techniques": [],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-5",
+      "number": 5,
+      "title": "Step 5",
+      "section": "Assemble The Quilt",
+      "instruction": "Arrange the blocks into rows, as shown. Note the fabric placement and block orientation in the Quilt Assembly Diagram.",
+      "clarifiedInstruction": "Arrange the blocks into rows, as shown. Note the fabric placement and block orientation in the Quilt Assembly Diagram.",
+      "techniques": [],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-6",
+      "number": 6,
+      "title": "Step 6",
+      "section": "Quilt Assembly",
+      "instruction": "Sew the blocks together to form rows. Press the seams toward the Fabric I squares and rectangles.",
+      "clarifiedInstruction": "Sew the blocks together to form rows. Press the seams toward the Fabric I squares and rectangles.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-7",
+      "number": 7,
+      "title": "Step 7",
+      "section": "Quilt Assembly",
+      "instruction": "Sew the rows together to form the quilt center. Press the row seams open.",
+      "clarifiedInstruction": "Sew the rows together to form the quilt center. Press the row seams open.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-8",
+      "number": 8,
+      "title": "Step 8",
+      "section": "Quilt Assembly",
+      "instruction": "Sew the side outer borders to the sides of the quilt center. Press toward the borders. Sew the top and bottom outer borders to the quilt center. Press toward the borders. Your quilt top is complete! Baste, quilt, bind and enjoy!",
+      "clarifiedInstruction": "Sew the side outer borders to the sides of the quilt center. Press toward the borders. Sew the top and bottom outer borders to the quilt center. Press toward the borders. Your quilt top is complete! Baste, quilt, bind and enjoy!",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    }
+  ],
+  "cutting": [
+    {
+      "id": "cut-1",
+      "fabric": "Fabric A",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 1,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-2",
+      "fabric": "Fabric B",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 2,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 4,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-3",
+      "fabric": "Fabric H",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 2,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 4,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-4",
+      "fabric": "Fabric C",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 3,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 6,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-5",
+      "fabric": "Fabric D",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 4,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 8,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-6",
+      "fabric": "Fabric E",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 4,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 8,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-7",
+      "fabric": "Fabric F",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 4,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 7,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-8",
+      "fabric": "Fabric G",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 3,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 5,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-9",
+      "fabric": "I",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 15,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 8,
+          "dimensions": "3-1/2\" x 9-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 11,
+          "dimensions": "3-1/2\" x 6-1/2\""
+        },
+        {
+          "shape": "square",
+          "quantity": 125,
+          "dimensions": "3-1/2\" x 3-1/2\""
+        },
+        {
+          "shape": "strip",
+          "quantity": 6,
+          "dimensions": "2-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "2-1/2\" x 69-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "2-1/2\" x 55-1/2\""
+        },
+        {
+          "shape": "strip",
+          "quantity": 17,
+          "dimensions": "2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-10",
+      "fabric": "Binding Fabric",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 7,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    }
+  ],
+  "isPattern": true,
+  "textLength": 4443,
+  "pages": 5
+}

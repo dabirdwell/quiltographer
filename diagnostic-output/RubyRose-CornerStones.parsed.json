@@ -1,0 +1,507 @@
+{
+  "metadata": {
+    "name": "CORNER STONES",
+    "difficulty": 1,
+    "finishedSize": {
+      "width": 44,
+      "height": 62,
+      "unit": "inches"
+    },
+    "designer": "Ariga Wilson"
+  },
+  "materials": [
+    {
+      "id": "mat-1",
+      "name": "Fabric 1",
+      "amount": "2/3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-2",
+      "name": "Fabric 2",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-3",
+      "name": "Fabric 3",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-4",
+      "name": "Fabric 4",
+      "amount": "1/3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-5",
+      "name": "Fabric 5",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-6",
+      "name": "Fabric 6",
+      "amount": "1/3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-7",
+      "name": "Fabric 7",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-8",
+      "name": "Fabric 8",
+      "amount": "1 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-9",
+      "name": "Fabric 9",
+      "amount": "3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-10",
+      "name": "Backing Fabric",
+      "amount": "3 yards",
+      "type": "fabric"
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "number": 1,
+      "title": "Step 1",
+      "section": "Cutting Instructions",
+      "instruction": "Gather: one 2-1/2” Fabric B square three 2-1/2” Fabric C squares five 2-1/2” Fabric D squares nine 2-1/2” Fabric E squares thirteen 2-1/2” Fabric F squares sixteen 2-1/2” Fabric G squares two 2-1/2” x 10-1/2” Fabric H rectangles eight 2-1/2” x 12-1/2” Fabric H rectangles",
+      "clarifiedInstruction": "Gather: one 2-1/2” Fabric B square three 2-1/2” Fabric C squares five 2-1/2” Fabric D squares nine 2-1/2” Fabric E squares thirteen 2-1/2” Fabric F squares sixteen 2-1/2” Fabric G squares two 2-1/2” x 10-1/2” Fabric H rectangles eight 2-1/2” x 12-1/2” Fabric H rectangles",
+      "techniques": [],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-2",
+      "number": 2,
+      "title": "Step 2",
+      "section": "Cutting Instructions",
+      "instruction": "Arrange the squares and rectangles in five rows as shown. Sew the pieces together to form rows, then press. Nest the seams and sew the rows together. Make two side outer borders.",
+      "clarifiedInstruction": "Arrange the squares and rectangles in five rows as shown. Sew the pieces together to form rows, then press. Nest the seams and sew the rows together. Make two side outer borders.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-3",
+      "number": 3,
+      "title": "Step 3",
+      "section": "Cutting Instructions",
+      "instruction": "Gather: two 4-1/2” Fabric B squares four 2-1/2” Fabric B squares eight 2-1/2” Fabric C squares ten 2-1/2” Fabric D squares ten 2-1/2” Fabric E squares eleven 2-1/2” Fabric F squares thirteen 2-1/2” Fabric G squares two 2-1/2” Fabric H squares two 2-1/2” x 4-1/2” Fabric H rectangles four 2-1/2” x 11-1/2” Fabric H rectangles one 2-1/2” x 12-1/2” Fabric H rectangle Assemble the Outer Borders",
+      "clarifiedInstruction": "Gather: two 4-1/2” Fabric B squares four 2-1/2” Fabric B squares eight 2-1/2” Fabric C squares ten 2-1/2” Fabric D squares ten 2-1/2” Fabric E squares eleven 2-1/2” Fabric F squares thirteen 2-1/2” Fabric G squares two 2-1/2” Fabric H squares two 2-1/2” x 4-1/2” Fabric H rectangles four 2-1/2” x 11-1/2” Fabric H rectangles one 2-1/2” x 12-1/2” Fabric H rectangle Assemble the Outer Borders",
+      "techniques": [],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-4",
+      "number": 4,
+      "title": "Step 4",
+      "section": "Cutting Instructions",
+      "instruction": "Sew a 2-1/2” Fabric B square, 2-1/2” Fabric C square, 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, and 2-1/2” Fabric G square together in a row, then press.",
+      "clarifiedInstruction": "Sew a 2-1/2” Fabric B square, 2-1/2” Fabric C square, 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, and 2-1/2” Fabric G square together in a row, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-5",
+      "number": 5,
+      "title": "Step 5",
+      "section": "Cutting Instructions",
+      "instruction": "Sew a 2-1/2” Fabric C square, 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, 2-1/2” Fabric G square, and 2-1/2” Fabric H square together in a row, then press.",
+      "clarifiedInstruction": "Sew a 2-1/2” Fabric C square, 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, 2-1/2” Fabric G square, and 2-1/2” Fabric H square together in a row, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-6",
+      "number": 6,
+      "title": "Step 6",
+      "section": "Cutting Instructions",
+      "instruction": "Sew the Step 4 row to the top of the Step 5 row, then press. Sew a 4-1/2” Fabric B square to the left side as shown. Press.",
+      "clarifiedInstruction": "Sew the Step 4 row to the top of the Step 5 row, then press. Sew a 4-1/2” Fabric B square to the left side as shown. Press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-7",
+      "number": 7,
+      "title": "Step 8",
+      "section": "Cutting Instructions",
+      "instruction": "Sew the Step 7 row to the bottom of the Step 6 row, then press.",
+      "clarifiedInstruction": "Sew the Step 7 row to the bottom of the Step 6 row, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-8",
+      "number": 8,
+      "title": "Step 9",
+      "section": "Cutting Instructions",
+      "instruction": "Repeat Step 4-8 to create a second unit, but this time reverse the order of the fabrics sewn to create a mirrored unit.",
+      "clarifiedInstruction": "Repeat Step 4-8 to create a second unit, but this time reverse the order of the fabrics sewn to create a mirrored unit.",
+      "techniques": [
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-9",
+      "number": 9,
+      "title": "Step 10",
+      "section": "Cutting Instructions",
+      "instruction": "Sew the Step 8 and Step 9 units to either end of the 6-1/2” x 12-1/2” Fabric H rectangle, then press.",
+      "clarifiedInstruction": "Sew the Step 8 and Step 9 units to either end of the 6-1/2” x 12-1/2” Fabric H rectangle, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-10",
+      "number": 10,
+      "title": "Step 11",
+      "section": "Cutting Instructions",
+      "instruction": "Sew a 2-1/2” Fabric C square, 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, 2-1/2” Fabric G square, and 2-1/2” x 11-1/2” Fabric H rectangle together in a row, then press.",
+      "clarifiedInstruction": "Sew a 2-1/2” Fabric C square, 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, 2-1/2” Fabric G square, and 2-1/2” x 11-1/2” Fabric H rectangle together in a row, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-11",
+      "number": 11,
+      "title": "Step 12",
+      "section": "Cutting Instructions",
+      "instruction": "Sew a 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, 2-1/2” Fabric G square, 2-1/2” x 11-1/2” Fabric H rectangle, and 2-1/2” Fabric G square together in a row, then press.",
+      "clarifiedInstruction": "Sew a 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, 2-1/2” Fabric G square, 2-1/2” x 11-1/2” Fabric H rectangle, and 2-1/2” Fabric G square together in a row, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-12",
+      "number": 12,
+      "title": "Step 13",
+      "section": "Cutting Instructions",
+      "instruction": "Sew the Step 11 row to the top of the Step 12 row, then press.",
+      "clarifiedInstruction": "Sew the Step 11 row to the top of the Step 12 row, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-13",
+      "number": 13,
+      "title": "Step 14",
+      "section": "Cutting Instructions",
+      "instruction": "Repeat Steps 11-13 to create a second unit, but this time reverse the order of the fabrics sewn to create a mirrored unit.",
+      "clarifiedInstruction": "Repeat Steps 11-13 to create a second unit, but this time reverse the order of the fabrics sewn to create a mirrored unit.",
+      "techniques": [
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-14",
+      "number": 14,
+      "title": "Step 15",
+      "section": "Cutting Instructions",
+      "instruction": "Sew a 2-1/2” Fabric G square to the top of a 2-1/2” Fabric F square, then press.",
+      "clarifiedInstruction": "Sew a 2-1/2” Fabric G square to the top of a 2-1/2” Fabric F square, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-15",
+      "number": 15,
+      "title": "Step 16",
+      "section": "Cutting Instructions",
+      "instruction": "Sew the Step 13 and 14 units to either side of the Step 15 unit. Press.",
+      "clarifiedInstruction": "Sew the Step 13 and 14 units to either side of the Step 15 unit. Press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-16",
+      "number": 16,
+      "title": "Step 7",
+      "section": "Cutting Instructions",
+      "instruction": "Sew a 2-1/2” Fabric B square, 2-1/2” Fabric C square, 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, 2-1/2” Fabric G square, and 2-1/2” x 4-1/2” Fabric H rectangle together in a row, then press.",
+      "clarifiedInstruction": "Sew a 2-1/2” Fabric B square, 2-1/2” Fabric C square, 2-1/2” Fabric D square, 2-1/2” Fabric E square, 2-1/2” Fabric F square, 2-1/2” Fabric G square, and 2-1/2” x 4-1/2” Fabric H rectangle together in a row, then press.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-17",
+      "number": 17,
+      "title": "Step 17",
+      "section": "Cutting Instructions",
+      "instruction": "Sew the Step 10 unit to the top of the Step 16 unit. Press to complete the top border. Repeat Steps 3-17 to make the bottom border. Assemble the Quilt",
+      "clarifiedInstruction": "Sew the Step 10 unit to the top of the Step 16 unit. Press to complete the top border. Repeat Steps 3-17 to make the bottom border. Assemble the Quilt",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-18",
+      "number": 18,
+      "title": "Step 18",
+      "section": "Assemble The Quilt",
+      "instruction": "Sew the side panel borders to the sides of the Fabric A rectangle. Press toward the borders. Sew the top and bottom side panel borders to the quilt center. Press toward the borders.",
+      "clarifiedInstruction": "Sew the side panel borders to the sides of the Fabric A rectangle. Press toward the borders. Sew the top and bottom side panel borders to the quilt center. Press toward the borders.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-19",
+      "number": 19,
+      "title": "Step 19",
+      "section": "Borders",
+      "instruction": "Sew the side outer borders to the sides of the quilt center. Press toward the borders. Sew the top and bottom outer borders to the quilt center. Press toward the borders. Your quilt top is complete! Baste, quilt, bind, and enjoy!",
+      "clarifiedInstruction": "Sew the side outer borders to the sides of the quilt center. Press toward the borders. Sew the top and bottom outer borders to the quilt center. Press toward the borders. Your quilt top is complete! Baste, quilt, bind, and enjoy!",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    }
+  ],
+  "cutting": [
+    {
+      "id": "cut-1",
+      "fabric": "Fabric B",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 1,
+          "dimensions": "4-1/2\" x WOF"
+        },
+        {
+          "shape": "square",
+          "quantity": 4,
+          "dimensions": "4-1/2\" x 4-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "1-1/2\" x 24-1/2\""
+        },
+        {
+          "shape": "strip",
+          "quantity": 1,
+          "dimensions": "2-1/2\" x WOF"
+        },
+        {
+          "shape": "square",
+          "quantity": 10,
+          "dimensions": "2-1/2\" x 2-1/2\""
+        },
+        {
+          "shape": "strip",
+          "quantity": 2,
+          "dimensions": "1-1/2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-2",
+      "fabric": "Fabric C",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 2,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-3",
+      "fabric": "Fabric D",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 2,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-4",
+      "fabric": "Fabric E",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 3,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-5",
+      "fabric": "Fabric F",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 3,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-6",
+      "fabric": "Fabric G",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 4,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-7",
+      "fabric": "Fabric H",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 1,
+          "dimensions": "6-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "6-1/2\" x 12-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 4,
+          "dimensions": "2-1/2\" x 4-1/2\""
+        },
+        {
+          "shape": "square",
+          "quantity": 4,
+          "dimensions": "2-1/2\" x 2-1/2\""
+        },
+        {
+          "shape": "strip",
+          "quantity": 10,
+          "dimensions": "2-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 16,
+          "dimensions": "2-1/2\" x 12-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 8,
+          "dimensions": "2-1/2\" x 11-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-8",
+      "fabric": "Binding Fabric",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 6,
+          "dimensions": "2-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "2-1/2\" x 10-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 8,
+          "dimensions": "2-1/2\" x 12-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "2-1/2\" x 4-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 4,
+          "dimensions": "2-1/2\" x 11-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 1,
+          "dimensions": "2-1/2\" x 12-1/2\""
+        }
+      ]
+    }
+  ],
+  "isPattern": true,
+  "textLength": 5727,
+  "pages": 6
+}

@@ -1,0 +1,107 @@
+{
+  "metadata": {
+    "name": "Kite Flight Quilt",
+    "difficulty": 3,
+    "finishedSize": {
+      "width": 38,
+      "height": 50,
+      "unit": "inches"
+    },
+    "designer": ""
+  },
+  "materials": [
+    {
+      "id": "mat-1",
+      "name": "Batting",
+      "amount": "As needed",
+      "type": "notion"
+    },
+    {
+      "id": "mat-2",
+      "name": "Thread",
+      "amount": "Coordinating",
+      "type": "notion"
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "number": 1,
+      "title": "Step 1",
+      "section": "General",
+      "instruction": "Sew Strip Sets - Arrange your strips as shown: 2 background strips, 1 light, 1 medium and 1 dark strip. - Sew together. - Repeat to create 13 five-strip sets.  Pattern Level: Confident Beginner “I have basic block construction down and would like to learn a new trick!” Some notes about this pattern before you start: In this quilt pattern, you will learn how to piece blocks on the bias. It can be a little tricky at first, but is a neat way to do something new. Just remember to pin, pin, pin! This pattern utilizes all of the skinny strips, which means it has little waste. It also means you have to be extra-careful when cutting your blocks. We recommend that you read over all of the instructions before making your first cut! All seam allowances are ¼” and all seams are pressed open. Before you begin: print templates on last page and trace onto template plastic, or mark your triangle ruler as pictured in photo 2. For individual use only - Not for resale",
+      "clarifiedInstruction": "Sew Strip Sets - Arrange your strips as shown: 2 background strips, 1 light, 1 medium and 1 dark strip. - Sew together. - Repeat to create 13 five-strip sets.  Pattern Level: Confident Beginner “I have basic block construction down and would like to learn a new trick!” Some notes about this pattern before you start: In this quilt pattern, you will learn how to piece blocks on the bias. It can be a little tricky at first, but is a neat way to do something new. Just remember to pin, pin, pin! This pattern utilizes all of the skinny strips, which means it has little waste. It also means you have to be extra-careful when cutting your blocks. We recommend that you read over all of the instructions before making your first cut! All seam allowances are ¼” and all seams are pressed open. Before you begin: print templates on last page and trace onto template plastic, or mark your triangle ruler as pictured in photo 2. For individual use only - Not for resale",
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting",
+        "strip piecing"
+      ],
+      "warnings": [
+        {
+          "type": "important",
+          "message": "Use accurate ¼\" seam allowance"
+        }
+      ],
+      "tips": []
+    },
+    {
+      "id": "step-2",
+      "number": 2,
+      "title": "Step 2",
+      "section": "General",
+      "instruction": "Cut Strip Sets",
+      "clarifiedInstruction": "Cut Strip Sets",
+      "techniques": [
+        "cutting",
+        "strip piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-3",
+      "number": 3,
+      "title": "Step 3",
+      "section": "General",
+      "instruction": "Assemble the Blocks - Sew triangles into A) 18 complete blocks made up of 8 triangles, B) 10 half blocks made up of 4 triangles and C) 4 quarter blocks made up of 2 triangles. -Vary the colors on your blocks, but make sure the colors transition from dark to light or light to dark throughout each block.  B C A Trace your paper template onto heavy duty template plastic. Be sure to mark the red line and line it up with the top seam before each cut. Be very conservative with your fabric and start close to the selvedge. Cut triangles using templates provided on the last page. 8 triangles will be cut from template A and 8 triangles from template B Another option is to use a 45º triangle ruler. Place a piece of tape 1 1/8” down from the top point. Be sure to cut 8 triangles with the tape up and then flip your ruler to the wrong side for the second set of 8 triangles.",
+      "clarifiedInstruction": "Assemble the Blocks - Sew triangles into A) 18 complete blocks made up of 8 triangles, B) 10 half blocks made up of 4 triangles and C) 4 quarter blocks made up of 2 triangles. -Vary the colors on your blocks, but make sure the colors transition from dark to light or light to dark throughout each block.  B C A Trace your paper template onto heavy duty template plastic. Be sure to mark the red line and line it up with the top seam before each cut. Be very conservative with your fabric and start close to the selvedge. Cut triangles using templates provided on the last page. 8 triangles will be cut from template A and 8 triangles from template B Another option is to use a 45º triangle ruler. Place a piece of tape 1 1/8” down from the top point. Be sure to cut 8 triangles with the tape up and then flip your ruler to the wrong side for the second set of 8 triangles.",
+      "techniques": [
+        "piecing",
+        "cutting"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-4",
+      "number": 4,
+      "title": "Step 4",
+      "section": "General",
+      "instruction": "Assemble the Quilt Top Arrange blocks on point. Sew blocks together into 8 diagonal rows, then sew rows together to complete quilt top.",
+      "clarifiedInstruction": "Assemble the Quilt Top Arrange blocks on point. Sew blocks together into 8 diagonal rows, then sew rows together to complete quilt top.",
+      "techniques": [
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-5",
+      "number": 5,
+      "title": "Step 4",
+      "section": "General",
+      "instruction": "Finish the Quilt Top - Sandwich and baste your quilt top, batting and backing. Quilt as desired. - Cut 5 strips 2 ½” x WOF from binding fabric to make double fold binding and bind. - Enjoy your quilt!",
+      "clarifiedInstruction": "Finish the Quilt Top - Sandwich and baste your quilt top, batting and backing. Quilt as desired. - Cut 5 strips 2 ½” x Width of Fabric (WOF) from binding fabric to make double fold binding and bind. - Enjoy your quilt!",
+      "techniques": [
+        "cutting"
+      ],
+      "warnings": [],
+      "tips": []
+    }
+  ],
+  "cutting": [],
+  "isPattern": true,
+  "textLength": 2645,
+  "pages": 4
+}

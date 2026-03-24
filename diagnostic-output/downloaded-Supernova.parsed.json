@@ -1,0 +1,292 @@
+{
+  "metadata": {
+    "name": "SUPERNOVA",
+    "difficulty": 3,
+    "finishedSize": {
+      "width": 60,
+      "height": 72,
+      "unit": "inches"
+    },
+    "designer": "Ariga Wilson"
+  },
+  "materials": [
+    {
+      "id": "mat-1",
+      "name": "Fabric 1",
+      "amount": "7/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-2",
+      "name": "Fabric 2",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-3",
+      "name": "Fabric 3",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-4",
+      "name": "Fabric 4",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-5",
+      "name": "Fabric 5",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-6",
+      "name": "Fabric 6",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-7",
+      "name": "Fabric 7",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-8",
+      "name": "Fabric 8",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-9",
+      "name": "Fabric 9",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-10",
+      "name": "Fabric 10",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-11",
+      "name": "Fabric 11",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-12",
+      "name": "Fabric 12",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-13",
+      "name": "Fabric 13",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-14",
+      "name": "Fabric 14",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-15",
+      "name": "Fabric 15",
+      "amount": "1/8 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-16",
+      "name": "Backing Fabric",
+      "amount": "7/8 yards",
+      "type": "fabric"
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "number": 1,
+      "title": "Step 1",
+      "section": "Binding",
+      "instruction": "Pair a 4” Fabric A square with a 4” Fabric B square, RST. Mark a diagonal line on the wrong side of one square. Sew 1/4” away from both sides of the marked line. Cut on the marked line creating two half-square triangles (HSTs). Press toward the darker fabric. Trim to 3-1/2” square.",
+      "clarifiedInstruction": "Pair a 4” Fabric A square with a 4” Fabric B square, Right Sides Together (RST). Mark a diagonal line on the wrong side of one square. Sew 1/4” away from both sides of the marked line. Cut on the marked line creating two half-square triangles (HSTs). Press toward the darker fabric. Trim to 3-1/2” square.",
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing",
+        "cutting",
+        "trimming"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-2",
+      "number": 2,
+      "title": "Step 2",
+      "section": "Binding",
+      "instruction": "Repeat Step 1 to make: From Fabric A, cut: fifteen 4” x WOF strips. Subcut: one-hundred and fifty 4” squares ten 3-1/2” x WOF strips. Subcut: one-hundred and twenty 3-1/2” squares From each of Fabrics B-EE, cut: one 4” x WOF strip. Subcut: five 4” squares of each fabric Trim the remainder of the strip to 3-1/2”, then subcut: two 3-1/2” squares of each fabric From the Binding Fabric, cut: seven 2-1/2” x WOF strips Notes Before You Begin Assemble the Half-Square Triangles (HSTs) Cutting Instructions ten A/B HSTs ten A/G HSTs ten A/C HSTs ten A/H HSTs ten A/D HSTs ten A/I HSTs ten A/E HSTs ten A/J HSTs ten A/F HSTs ten A/K HSTs",
+      "clarifiedInstruction": "Repeat Step 1 to make: From Fabric A, cut: fifteen 4” x Width of Fabric (WOF) strips. Subcut: one-hundred and fifty 4” squares ten 3-1/2” x Width of Fabric (WOF) strips. Subcut: one-hundred and twenty 3-1/2” squares From each of Fabrics B-EE, cut: one 4” x Width of Fabric (WOF) strip. Subcut: five 4” squares of each fabric Trim the remainder of the strip to 3-1/2”, then subcut: two 3-1/2” squares of each fabric From the Binding Fabric, cut: seven 2-1/2” x Width of Fabric (WOF) strips Notes Before You Begin Assemble the Half-Square Triangles (HSTs) Cutting Instructions ten A/B Half Square Triangles (HSTs) ten A/G Half Square Triangles (HSTs) ten A/C Half Square Triangles (HSTs) ten A/H Half Square Triangles (HSTs) ten A/D Half Square Triangles (HSTs) ten A/I Half Square Triangles (HSTs) ten A/E Half Square Triangles (HSTs) ten A/J Half Square Triangles (HSTs) ten A/F Half Square Triangles (HSTs) ten A/K Half Square Triangles (HSTs)",
+      "techniques": [
+        "HST",
+        "cutting",
+        "trimming"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-3",
+      "number": 3,
+      "title": "Step 5",
+      "section": "Cutting Instructions",
+      "instruction": "Arrange the four units created in Steps 3-4 in two rows of two as shown. Sew the units together in pairs to form rows. Press the seams open. Sew the rows together, then press the seam open.",
+      "clarifiedInstruction": "Arrange the four units created in Steps 3-4 in two rows of two as shown. Sew the units together in pairs to form rows. Press the seams open. Sew the rows together, then press the seam open.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-4",
+      "number": 4,
+      "title": "Step 4",
+      "section": "Cutting Instructions",
+      "instruction": "Arrange thwo A/B HSTs and two 3-1/2” Fabric A squares in two rows of two as shown. Sew the units together in pairs to form rows. Press the seams open. Sew the rows together, then press the seam open. Make two units. ten A/V HSTs ten A/AA HSTs ten A/W HSTs ten A/BB HSTs ten A/X HSTs ten A/CC HSTs ten A/Y HSTs ten A/DD HSTs ten A/Z HSTs ten A/EE HSTs",
+      "clarifiedInstruction": "Arrange thwo A/B Half Square Triangles (HSTs) and two 3-1/2” Fabric A squares in two rows of two as shown. Sew the units together in pairs to form rows. Press the seams open. Sew the rows together, then press the seam open. Make two units. ten A/V Half Square Triangles (HSTs) ten A/AA Half Square Triangles (HSTs) ten A/W Half Square Triangles (HSTs) ten A/BB Half Square Triangles (HSTs) ten A/X Half Square Triangles (HSTs) ten A/CC Half Square Triangles (HSTs) ten A/Y Half Square Triangles (HSTs) ten A/DD Half Square Triangles (HSTs) ten A/Z Half Square Triangles (HSTs) ten A/EE Half Square Triangles (HSTs)",
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-5",
+      "number": 5,
+      "title": "Step 3",
+      "section": "Cutting Instructions",
+      "instruction": "Arrange three A/B HSTs and one 3-1/2” Fabric B square in two rows of two as shown. Sew the units together in pairs to form rows. Press the seams open. Sew the rows together, then press the seam open. Make two units. Assemble the Blocks ten A/Q HSTsten A/R HSTsten A/S HSTsten A/T HSTsten A/U HSTs ten A/L HSTsten A/M HSTsten A/N HSTsten A/O HSTsten A/P HSTs  V Block AA Block W Block BB Block X Block CC Block Y Block DD Block Z Block EE Block L Block Q Block M Block R Block N Block S Block O Block T Block P Block U Block",
+      "clarifiedInstruction": "Arrange three A/B Half Square Triangles (HSTs) and one 3-1/2” Fabric B square in two rows of two as shown. Sew the units together in pairs to form rows. Press the seams open. Sew the rows together, then press the seam open. Make two units. Assemble the Blocks ten A/Q HSTsten A/R HSTsten A/S HSTsten A/T HSTsten A/U Half Square Triangles (HSTs) ten A/L HSTsten A/M HSTsten A/N HSTsten A/O HSTsten A/P Half Square Triangles (HSTs)  V Block AA Block W Block BB Block X Block CC Block Y Block DD Block Z Block EE Block L Block Q Block M Block R Block N Block S Block O Block T Block P Block U Block",
+      "techniques": [
+        "HST",
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-6",
+      "number": 6,
+      "title": "Step 6",
+      "section": "Cutting Instructions",
+      "instruction": "Repeat Steps 3-5 to create a total of thirty blocks as shown below. B Block G Block C Block H Block D Block I Block E Block J Block F Block K Block  This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2024. All rights reserved. Assemble the Quilt",
+      "clarifiedInstruction": "Repeat Steps 3-5 to create a total of thirty blocks as shown below. B Block G Block C Block H Block D Block I Block E Block J Block F Block K Block  This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2024. All rights reserved. Assemble the Quilt",
+      "techniques": [
+        "pressing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-7",
+      "number": 7,
+      "title": "Step 7",
+      "section": "Assemble The Quilt",
+      "instruction": "Arrange the blocks into six rows of five blocks. Note the fabric placement and block orientation in the Quilt Assembly Diagram.",
+      "clarifiedInstruction": "Arrange the blocks into six rows of five blocks. Note the fabric placement and block orientation in the Quilt Assembly Diagram.",
+      "techniques": [],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-8",
+      "number": 8,
+      "title": "Step 8",
+      "section": "Assemble The Quilt",
+      "instruction": "Sew the blocks together to form rows. Press the seams to the left in the odd-numbered rows and to the right in the even-numbered rows.",
+      "clarifiedInstruction": "Sew the blocks together to form rows. Press the seams to the left in the odd-numbered rows and to the right in the even-numbered rows.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-9",
+      "number": 9,
+      "title": "Step 9",
+      "section": "Assemble The Quilt",
+      "instruction": "Sew the rows together to form the quilt center. Press the row seams open. Your quilt top is complete! Baste, quilt, bind, and enjoy!",
+      "clarifiedInstruction": "Sew the rows together to form the quilt center. Press the row seams open. Your quilt top is complete! Baste, quilt, bind, and enjoy!",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    }
+  ],
+  "cutting": [
+    {
+      "id": "cut-1",
+      "fabric": "Fabric A",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 15,
+          "dimensions": "4\" x WOF"
+        },
+        {
+          "shape": "square",
+          "quantity": 50,
+          "dimensions": "4\" x 4\""
+        },
+        {
+          "shape": "strip",
+          "quantity": 10,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "square",
+          "quantity": 20,
+          "dimensions": "3-1/2\" x 3-1/2\""
+        },
+        {
+          "shape": "strip",
+          "quantity": 1,
+          "dimensions": "4\" x WOF"
+        },
+        {
+          "shape": "square",
+          "quantity": 5,
+          "dimensions": "4\" x 4\""
+        }
+      ]
+    },
+    {
+      "id": "cut-2",
+      "fabric": "Binding Fabric",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 7,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    }
+  ],
+  "isPattern": true,
+  "textLength": 4815,
+  "pages": 7
+}

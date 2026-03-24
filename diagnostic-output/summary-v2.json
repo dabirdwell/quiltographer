@@ -1,0 +1,124 @@
+{
+  "results": [
+    {
+      "file": "BAROQUEBLOOM_BaroqueBloom.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 4,
+      "materialsCount": 9,
+      "cuttingCount": 6,
+      "totalPieces": 14,
+      "name": "BAROQUE BLOOM"
+    },
+    {
+      "file": "CoastalShells_Collage.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 10,
+      "materialsCount": 17,
+      "cuttingCount": 2,
+      "totalPieces": 8,
+      "name": "COLLAGE"
+    },
+    {
+      "file": "Color-Cascade.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 8,
+      "materialsCount": 10,
+      "cuttingCount": 10,
+      "totalPieces": 25,
+      "name": "COLOR CASCADE"
+    },
+    {
+      "file": "FreedomFlight_FreedomFlight.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 11,
+      "materialsCount": 12,
+      "cuttingCount": 8,
+      "totalPieces": 25,
+      "name": "FREEDOM FLIGHT"
+    },
+    {
+      "file": "ImperialCollectionGracefulCranes_Aurora.pdf",
+      "success": true,
+      "isPattern": false,
+      "stepsCount": 0,
+      "materialsCount": 0,
+      "cuttingCount": 0,
+      "totalPieces": 0,
+      "name": "Aurora"
+    },
+    {
+      "file": "PainterlyPetalsValley_CobblestoneStreet.pdf",
+      "success": true,
+      "isPattern": false,
+      "stepsCount": 0,
+      "materialsCount": 0,
+      "cuttingCount": 0,
+      "totalPieces": 0,
+      "name": "Cobblestone Street"
+    },
+    {
+      "file": "RubyRose-CornerStones.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 19,
+      "materialsCount": 10,
+      "cuttingCount": 8,
+      "totalPieces": 24,
+      "name": "CORNER STONES"
+    },
+    {
+      "file": "Sample Quilt Pattern SKINNY.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 5,
+      "materialsCount": 2,
+      "cuttingCount": 0,
+      "totalPieces": 0,
+      "name": "Kite Flight Quilt"
+    },
+    {
+      "file": "downloaded-BlossomsAndHearts.pdf",
+      "success": true,
+      "isPattern": false,
+      "stepsCount": 0,
+      "materialsCount": 0,
+      "cuttingCount": 0,
+      "totalPieces": 0,
+      "name": "Blossoms and Hearts"
+    },
+    {
+      "file": "downloaded-Boardwalk.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 4,
+      "materialsCount": 16,
+      "cuttingCount": 2,
+      "totalPieces": 2,
+      "name": "BOARDWALK"
+    },
+    {
+      "file": "downloaded-BurstOfColor.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 10,
+      "materialsCount": 6,
+      "cuttingCount": 3,
+      "totalPieces": 5,
+      "name": "BURST OF COLOR"
+    },
+    {
+      "file": "downloaded-Supernova.pdf",
+      "success": true,
+      "isPattern": true,
+      "stepsCount": 9,
+      "materialsCount": 16,
+      "cuttingCount": 2,
+      "totalPieces": 7,
+      "name": "SUPERNOVA"
+    }
+  ]
+}

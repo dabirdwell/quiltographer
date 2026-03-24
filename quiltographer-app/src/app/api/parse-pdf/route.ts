@@ -26,10 +26,51 @@ const ABBREVIATIONS: Record<string, string> = {
 function expandAbbreviations(text: string): string {
   let expanded = text;
   for (const [abbr, full] of Object.entries(ABBREVIATIONS)) {
-    const regex = new RegExp(`\\b${abbr}\\b(?!\\s*\\()`, 'g');
+    // Don't expand if already inside parentheses or preceded by its expansion
+    const regex = new RegExp(`(?<!\\()\\b${abbr}\\b(?!\\s*\\()(?![^(]*\\))`, 'g');
     expanded = expanded.replace(regex, full);
   }
   return expanded;
+}
+
+// Convert written-out numbers to digits for cutting instruction parsing
+const WORD_NUMBERS: Record<string, number> = {
+  'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
+  'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10,
+  'eleven': 11, 'twelve': 12, 'thirteen': 13, 'fourteen': 14, 'fifteen': 15,
+  'sixteen': 16, 'seventeen': 17, 'eighteen': 18, 'nineteen': 19, 'twenty': 20,
+  'thirty': 30, 'forty': 40, 'fifty': 50, 'sixty': 60, 'seventy': 70,
+  'eighty': 80, 'ninety': 90, 'hundred': 100,
+};
+
+function wordToNumber(text: string): number | null {
+  const cleaned = text.toLowerCase().trim().replace(/[-\s]+/g, ' ');
+  // Direct digit
+  if (/^\d+$/.test(cleaned)) return parseInt(cleaned);
+  // Simple word: "four"
+  if (WORD_NUMBERS[cleaned] !== undefined) return WORD_NUMBERS[cleaned];
+  // Compound: "twenty-five", "one hundred twenty-five"
+  const parts = cleaned.split(/[\s-]+/);
+  let total = 0;
+  let current = 0;
+  for (const part of parts) {
+    const val = WORD_NUMBERS[part];
+    if (val === undefined) return null;
+    if (val === 100) {
+      current = (current || 1) * 100;
+    } else {
+      current += val;
+    }
+  }
+  total += current;
+  return total > 0 ? total : null;
+}
+
+// Normalize a quantity string (digit or written word) to a number
+function parseQuantity(s: string): number | null {
+  const trimmed = s.trim();
+  if (/^\d+$/.test(trimmed)) return parseInt(trimmed);
+  return wordToNumber(trimmed);
 }
 
 // Lines to skip when extracting pattern name
@@ -686,38 +727,126 @@ function extractCuttingInstructions(text: string): Array<{
     }>;
   }> = [];
 
-  // Look for cutting section
-  const cuttingSection = findSection(text, ['cutting instructions', 'cutting directions', 'cutting', 'from fabric']);
-  if (!cuttingSection) return cuttingInstructions;
+  // Quantity pattern: digits OR written-out numbers
+  const qtyWord = `(?:\\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|(?:(?:one|two|three|four|five|six|seven|eight|nine)\\s+hundred(?:\\s+(?:and\\s+)?(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)(?:[\\s-]+(?:one|two|three|four|five|six|seven|eight|nine))?)?))`;
+  // Dimension pattern: digits with fractions like 3-1/2 or 2½
+  const dimNum = `\\d+(?:[\\s-]*\\d+\\/\\d+|[½¼¾]|\\.\\d+)?`;
 
-  // Match "From Fabric X, cut:" patterns
-  const fabricCutRegex = /(?:From|Fabric)\s+([A-Z])[,:\s]+cut[:\s]*([\s\S]*?)(?=(?:From|Fabric)\s+[A-Z]|$)/gi;
-  let match;
-  while ((match = fabricCutRegex.exec(cuttingSection)) !== null) {
-    const fabric = `Fabric ${match[1]}`;
-    const cutText = match[2];
+  // Find "From Fabric X" blocks — handles single letter, multi-letter, "each of Fabrics X and Y",
+  // "the Binding Fabric", etc.
+  const fromFabricRegex = /From\s+(?:each\s+of\s+)?(?:the\s+)?(?:Fabric(?:s)?\s+)?([A-Za-z][A-Za-z\s,]*?)(?:,\s*)?(?:fussy\s+)?(?:cut|trim)[:\s]/gi;
+
+  // Split the entire text at "From..." boundaries to get per-fabric blocks
+  const fromMatches: Array<{ fabrics: string[]; startIdx: number }> = [];
+  let fmMatch;
+  while ((fmMatch = fromFabricRegex.exec(text)) !== null) {
+    const rawLabel = fmMatch[1].trim();
+    // Parse "each of Fabrics B and H" or "Fabric A" or "the Binding Fabric"
+    const fabrics: string[] = [];
+    if (/and/i.test(rawLabel)) {
+      const letterMatches = rawLabel.match(/\b([A-I])\b/g);
+      if (letterMatches) {
+        letterMatches.forEach(l => fabrics.push(`Fabric ${l.toUpperCase()}`));
+      }
+    } else if (/binding/i.test(rawLabel)) {
+      fabrics.push('Binding Fabric');
+    } else {
+      const letter = rawLabel.match(/\b([A-I])\b/i);
+      if (letter) {
+        fabrics.push(`Fabric ${letter[1].toUpperCase()}`);
+      } else {
+        fabrics.push(rawLabel);
+      }
+    }
+    fromMatches.push({ fabrics, startIdx: fmMatch.index + fmMatch[0].length });
+  }
+
+  // For each "From Fabric..." block, extract pieces until the next block or end
+  for (let i = 0; i < fromMatches.length; i++) {
+    const startIdx = fromMatches[i].startIdx;
+    const endIdx = i + 1 < fromMatches.length ? fromMatches[i + 1].startIdx - 50 : text.length;
+    const block = text.slice(startIdx, Math.min(endIdx, startIdx + 2000));
+
     const pieces: Array<{ shape: string; quantity: number; dimensions: string; notes?: string }> = [];
 
-    // Match "N squares X"" or "N rectangles X" x Y""
-    const squareRegex = /(\d+)\s*(?:squares?)\s*(\d+(?:[½¼¾]|[-\/]\d+)?)["\u201d]?/gi;
-    let pieceMatch;
-    while ((pieceMatch = squareRegex.exec(cutText)) !== null) {
-      pieces.push({ shape: 'square', quantity: parseInt(pieceMatch[1]), dimensions: `${pieceMatch[2]}" x ${pieceMatch[2]}"` });
+    // Parse lines within this block for cutting pieces
+    const lines = block.split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.length < 3) continue;
+
+      // Match: "N squares X""  or "N X" squares"
+      const sqMatch = trimmed.match(new RegExp(`(${qtyWord})\\s+(?:${dimNum})["\u201d]?\\s+squares?|(${qtyWord})\\s+squares?\\s+(${dimNum})["\u201d]?`, 'i'));
+      if (sqMatch) {
+        const qtyStr = sqMatch[1] || sqMatch[2];
+        const qty = parseQuantity(qtyStr);
+        const dimMatch = trimmed.match(new RegExp(`(${dimNum})["\u201d]?\\s*(?:x\\s*(${dimNum})["\u201d]?)?\\s*squares?|squares?\\s+(${dimNum})["\u201d]?`, 'i'));
+        if (qty && dimMatch) {
+          const dim = dimMatch[1] || dimMatch[3] || '';
+          pieces.push({ shape: 'square', quantity: qty, dimensions: `${dim}" x ${dim}"` });
+          continue;
+        }
+      }
+
+      // Match: "N rectangles X" x Y"" or "N X" x Y" rectangles"
+      const rectMatch = trimmed.match(new RegExp(`(${qtyWord})\\s+(?:(${dimNum})["\u201d]?\\s*x\\s*(${dimNum})["\u201d]?\\s+rectangles?|rectangles?\\s+(${dimNum})["\u201d]?\\s*x\\s*(${dimNum})["\u201d]?)`, 'i'));
+      if (rectMatch) {
+        const qty = parseQuantity(rectMatch[1]);
+        const w = rectMatch[2] || rectMatch[4] || '';
+        const h = rectMatch[3] || rectMatch[5] || '';
+        if (qty && w && h) {
+          pieces.push({ shape: 'rectangle', quantity: qty, dimensions: `${w}" x ${h}"` });
+          continue;
+        }
+      }
+
+      // Match: "N X" x Y" (unlabeled piece — infer shape from dimensions)"
+      const unlabeledMatch = trimmed.match(new RegExp(`(${qtyWord})\\s+(${dimNum})["\u201d]?\\s*x\\s*(${dimNum})["\u201d]?(?:\\s+(?:rectangles?|pieces?))?`, 'i'));
+      if (unlabeledMatch) {
+        const qty = parseQuantity(unlabeledMatch[1]);
+        const w = unlabeledMatch[2];
+        const h = unlabeledMatch[3];
+        if (qty && w && h) {
+          const shape = w === h ? 'square' : 'rectangle';
+          pieces.push({ shape, quantity: qty, dimensions: `${w}" x ${h}"` });
+          continue;
+        }
+      }
+
+      // Match: "N strips X" x WOF"
+      const stripMatch = trimmed.match(new RegExp(`(${qtyWord})\\s+(${dimNum})["\u201d]?\\s*x\\s*(?:WOF|LOF)\\s*strips?|(${qtyWord})\\s+strips?\\s+(${dimNum})["\u201d]?\\s*x\\s*(?:WOF|LOF)`, 'i'));
+      if (stripMatch) {
+        const qtyStr = stripMatch[1] || stripMatch[3];
+        const dim = stripMatch[2] || stripMatch[4];
+        const qty = parseQuantity(qtyStr);
+        if (qty && dim) {
+          // Check for subcut instructions on following lines
+          pieces.push({ shape: 'strip', quantity: qty, dimensions: `${dim}" x WOF` });
+          continue;
+        }
+      }
+
+      // Match standalone WOF strips: "N X" x WOF strips"
+      const wofMatch = trimmed.match(new RegExp(`(${qtyWord})\\s+(${dimNum})["\u201d]?\\s*x\\s*WOF\\s+strips?`, 'i'));
+      if (wofMatch) {
+        const qty = parseQuantity(wofMatch[1]);
+        const dim = wofMatch[2];
+        if (qty && dim) {
+          pieces.push({ shape: 'strip', quantity: qty, dimensions: `${dim}" x WOF` });
+          continue;
+        }
+      }
     }
 
-    const rectRegex = /(\d+)\s*(?:rectangles?|pieces?)\s*(\d+(?:[½¼¾]|[-\/]\d+)?)["\u201d]?\s*x\s*(\d+(?:[½¼¾]|[-\/]\d+)?)["\u201d]?/gi;
-    while ((pieceMatch = rectRegex.exec(cutText)) !== null) {
-      pieces.push({ shape: 'rectangle', quantity: parseInt(pieceMatch[1]), dimensions: `${pieceMatch[2]}" x ${pieceMatch[3]}"` });
-    }
-
-    const stripRegex = /(\d+)\s*(?:strips?)\s*(\d+(?:[½¼¾]|[-\/]\d+)?)["\u201d]?\s*x\s*(?:WOF|LOF|\d+(?:[½¼¾]|[-\/]\d+)?["\u201d]?)/gi;
-    while ((pieceMatch = stripRegex.exec(cutText)) !== null) {
-      const dims = pieceMatch[0].replace(/^\d+\s*strips?\s*/, '');
-      pieces.push({ shape: 'strip', quantity: parseInt(pieceMatch[1]), dimensions: dims });
-    }
-
+    // Add to results for each fabric in this block
     if (pieces.length > 0) {
-      cuttingInstructions.push({ id: `cut-${cuttingInstructions.length + 1}`, fabric, pieces });
+      for (const fabric of fromMatches[i].fabrics) {
+        cuttingInstructions.push({
+          id: `cut-${cuttingInstructions.length + 1}`,
+          fabric,
+          pieces: [...pieces],
+        });
+      }
     }
   }
 

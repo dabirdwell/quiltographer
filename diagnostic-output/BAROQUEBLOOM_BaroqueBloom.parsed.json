@@ -1,0 +1,238 @@
+{
+  "metadata": {
+    "name": "BAROQUE BLOOM",
+    "difficulty": 1,
+    "finishedSize": {
+      "width": 46,
+      "height": 54,
+      "unit": "inches"
+    },
+    "designer": "Robert Kaufman Fabrics"
+  },
+  "materials": [
+    {
+      "id": "mat-1",
+      "name": "Fabric 1",
+      "amount": "1 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-2",
+      "name": "Fabric 2",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-3",
+      "name": "Fabric 3",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-4",
+      "name": "Fabric 4",
+      "amount": "1/2 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-5",
+      "name": "Fabric 5",
+      "amount": "1/3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-6",
+      "name": "Fabric 6",
+      "amount": "3/4 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-7",
+      "name": "You will also need",
+      "amount": "3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-8",
+      "name": "Backing Fabric",
+      "amount": "3 yards",
+      "type": "fabric"
+    },
+    {
+      "id": "mat-9",
+      "name": "Binding",
+      "amount": "1/4 yards",
+      "type": "fabric"
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "number": 1,
+      "title": "Step 1",
+      "section": "Binding",
+      "instruction": "Sew the side Border A strips to the sides of the quilt center. Press toward the borders. Sew the top and bottom Border A strips to the quilt top. Press toward the borders.",
+      "clarifiedInstruction": "Sew the side Border A strips to the sides of the quilt center. Press toward the borders. Sew the top and bottom Border A strips to the quilt top. Press toward the borders.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-2",
+      "number": 2,
+      "title": "Step 2",
+      "section": "Borders",
+      "instruction": "Sew the side Border B strips to the sides of the quilt top Press toward the borders. Sew the top and bottom Border B strips to the quilt top. Press toward the borders.",
+      "clarifiedInstruction": "Sew the side Border B strips to the sides of the quilt top Press toward the borders. Sew the top and bottom Border B strips to the quilt top. Press toward the borders.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-3",
+      "number": 3,
+      "title": "Step 3",
+      "section": "Borders",
+      "instruction": "Sew the side Border C strips to the sides of the quilt top Press toward the borders. Sew the top and bottom Border C strips to the quilt top. Press toward the borders.",
+      "clarifiedInstruction": "Sew the side Border C strips to the sides of the quilt top Press toward the borders. Sew the top and bottom Border C strips to the quilt top. Press toward the borders.",
+      "techniques": [
+        "pressing",
+        "piecing"
+      ],
+      "warnings": [],
+      "tips": []
+    },
+    {
+      "id": "step-4",
+      "number": 4,
+      "title": "Step 4",
+      "section": "Borders",
+      "instruction": "Sew the side Border D strips to the sides of the quilt top Press toward the borders. Sew the top and bottom Border D strips to the quilt top. Press toward the borders. Your quilt top is complete! Baste, quilt, bind, and enjoy! Assemble the Quilt From Fabric D, cut: five 1-1/2” x WOF strips. Sew the strips together, then subcut: two 1-1/2” x 46-1/2” side Border C strips two 1-1/2” x 40-1/2” top/bottom Border C strips From Fabric E, cut: five 3-1/2” x WOF strips. Sew the strips together, then subcut: two 3-1/2” x 48-1/2” side Border D strips two 3-1/2” x 46-1/2” top/bottom Border D strips This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2023. All rights reserved.",
+      "clarifiedInstruction": "Sew the side Border D strips to the sides of the quilt top Press toward the borders. Sew the top and bottom Border D strips to the quilt top. Press toward the borders. Your quilt top is complete! Baste, quilt, bind, and enjoy! Assemble the Quilt From Fabric D, cut: five 1-1/2” x Width of Fabric (WOF) strips. Sew the strips together, then subcut: two 1-1/2” x 46-1/2” side Border C strips two 1-1/2” x 40-1/2” top/bottom Border C strips From Fabric E, cut: five 3-1/2” x Width of Fabric (WOF) strips. Sew the strips together, then subcut: two 3-1/2” x 48-1/2” side Border D strips two 3-1/2” x 46-1/2” top/bottom Border D strips This pattern may be used for personal purposes only and may not be reproduced in any form without the express permission from Robert Kaufman Fabrics. This pattern is not for resale. All patterns, unless otherwise attributed, are © Robert Kaufman Co., Inc. 2005-2023. All rights reserved.",
+      "techniques": [
+        "pressing",
+        "piecing",
+        "cutting"
+      ],
+      "warnings": [],
+      "tips": []
+    }
+  ],
+  "cutting": [
+    {
+      "id": "cut-1",
+      "fabric": "Fabric A",
+      "pieces": [
+        {
+          "shape": "rectangle",
+          "quantity": 1,
+          "dimensions": "32-1/2\" x 40-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-2",
+      "fabric": "Fabric B",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 4,
+          "dimensions": "1-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "1-1/2\" x 40-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "1-1/2\" x 34\""
+        }
+      ]
+    },
+    {
+      "id": "cut-3",
+      "fabric": "Fabric C",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 4,
+          "dimensions": "2-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "2-1/2\" x 42-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "2-1/2\" x 38-1/2\""
+        }
+      ]
+    },
+    {
+      "id": "cut-4",
+      "fabric": "Binding Fabric",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 5,
+          "dimensions": "2-1/2\" x WOF"
+        }
+      ]
+    },
+    {
+      "id": "cut-5",
+      "fabric": "Fabric D",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 5,
+          "dimensions": "1-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "1-1/2\" x 46-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "1-1/2\" x 40\""
+        }
+      ]
+    },
+    {
+      "id": "cut-6",
+      "fabric": "Fabric E",
+      "pieces": [
+        {
+          "shape": "strip",
+          "quantity": 5,
+          "dimensions": "3-1/2\" x WOF"
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "3-1/2\" x 48-1/2\""
+        },
+        {
+          "shape": "rectangle",
+          "quantity": 2,
+          "dimensions": "3-1/2\" x 46-1/2\""
+        }
+      ]
+    }
+  ],
+  "isPattern": true,
+  "textLength": 3160,
+  "pages": 3
+}
