@@ -149,6 +149,12 @@ export default function LandingPage() {
           >
             Upload a Pattern — Free
           </Link>
+          <Link
+            href="/reader?demo=demo-log-cabin"
+            className="w-full sm:w-auto px-8 py-4 border-2 border-persimmon text-persimmon rounded-xl font-semibold text-lg hover:bg-persimmon hover:text-white transition-colors min-w-[220px] min-h-[56px] text-center flex items-center justify-center"
+          >
+            Try a Demo Pattern
+          </Link>
           <a
             href="#how-it-works"
             className="w-full sm:w-auto px-8 py-4 border-2 border-indigo text-indigo rounded-xl font-semibold text-lg hover:bg-indigo hover:text-white transition-colors min-w-[220px] min-h-[56px] text-center flex items-center justify-center"

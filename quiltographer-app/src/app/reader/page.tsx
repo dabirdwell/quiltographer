@@ -7,6 +7,7 @@ import { StepContent } from '@/components/reader/StepContent';
 import { MaterialsList } from '@/components/reader/MaterialsList';
 import { DifficultyEstimator } from '@/components/reader/DifficultyEstimator';
 import { FabricCalculator } from '@/components/reader/FabricCalculator';
+import { PatternResults } from '@/components/reader/PatternResults';
 import { quiltographerTheme } from '@/components/japanese/theme';
 import { Text, Stack, Surface, Button, Callout, Container, ProgressBar } from '@/components/ui';
 import { useClarification } from '@/hooks/useClarification';
@@ -18,7 +19,7 @@ const FONT_SCALE_OPTIONS = [1, 1.5, 2, 3] as const;
 type FontScale = (typeof FONT_SCALE_OPTIONS)[number];
 const FREE_PATTERNS_PER_MONTH = 3;
 
-type ViewState = 'upload' | 'processing' | 'reading';
+type ViewState = 'upload' | 'processing' | 'results' | 'reading';
 
 // Track pattern usage for free tier
 function getPatternUsage(): { count: number; month: string } {
@@ -68,6 +69,7 @@ export default function PatternReaderPage() {
   const [fontScale, setFontScale] = useState<FontScale>(1);
   const [isDemoMode, setIsDemoMode] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Session persistence
   const [pendingSession, setPendingSession] = useState<PatternSession | null>(null);
@@ -106,7 +108,7 @@ export default function PatternReaderPage() {
             setCheckedMaterials([]);
             setClarifications({});
             setProcessingProgress(100);
-            setViewState('reading');
+            setViewState('results');
             setPendingSession(null);
             setIsDemoMode(true);
           })
@@ -175,7 +177,7 @@ export default function PatternReaderPage() {
     setCompletedSteps(session.completedSteps);
     setCheckedMaterials(session.checkedMaterials);
     setClarifications({});
-    setViewState('reading');
+    setViewState('results');
     setPendingSession(null);
   }, []);
 
@@ -224,24 +226,34 @@ export default function PatternReaderPage() {
         throw new Error(data.error || data.details || 'Failed to process pattern');
       }
 
-      setProcessingMessage('Processing complete! Loading pattern...');
-      setProcessingProgress(95);
+      setProcessingMessage('Processing complete!');
+      setProcessingProgress(100);
 
       const readerPattern: ReaderPattern = data;
 
       // Record usage for free tier tracking
       recordPatternUsage();
 
+      // Show success animation briefly
+      setShowSuccess(true);
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      setShowSuccess(false);
+
       setPattern(readerPattern);
-      setViewState('reading');
+      setViewState('results');
       setCurrentStepIndex(0);
       setCompletedSteps([]);
       setCheckedMaterials([]);
       setClarifications({});
-      setProcessingProgress(100);
     } catch (err) {
       console.error('Pattern processing error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to process pattern');
+      const errorMsg = err instanceof Error ? err.message : 'Failed to process pattern';
+      // Detect image-heavy/empty parse failures
+      if (errorMsg.toLowerCase().includes('no text') || errorMsg.toLowerCase().includes('image') || errorMsg.toLowerCase().includes('empty') || errorMsg.toLowerCase().includes('0 steps')) {
+        setError('This pattern appears to be primarily visual. Try a pattern with text-based instructions.');
+      } else {
+        setError(errorMsg);
+      }
       setViewState('upload');
     } finally {
       setIsProcessing(false);
@@ -302,8 +314,9 @@ export default function PatternReaderPage() {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
       if (viewState !== 'reading') {
-        if (e.key === 'Escape' && viewState === 'processing') {
-          handleBackToUpload();
+        if (e.key === 'Escape') {
+          if (viewState === 'processing') handleBackToUpload();
+          if (viewState === 'results') handleBackToUpload();
         }
         return;
       }
@@ -376,7 +389,7 @@ export default function PatternReaderPage() {
           <Text variant="heading" size="xl" color={highContrast ? 'default' : 'indigo'} className="hidden sm:block">
             Pattern Reader
           </Text>
-          {viewState === 'reading' && pattern && (
+          {(viewState === 'reading' || viewState === 'results') && pattern && (
             <Text size="sm" color="muted" className="truncate hidden md:block">
               — {pattern.name}
             </Text>
@@ -436,7 +449,7 @@ export default function PatternReaderPage() {
             </button>
           )}
 
-          {(viewState === 'reading' || viewState === 'processing') && (
+          {(viewState === 'reading' || viewState === 'processing' || viewState === 'results') && (
             <button
               onClick={handleBackToUpload}
               className={`min-w-[48px] min-h-[48px] flex items-center justify-center rounded-lg text-sm border transition-colors ${
@@ -511,25 +524,55 @@ export default function PatternReaderPage() {
           <div className="max-w-[600px] mx-auto mt-16 text-center">
             <Surface variant="rice" elevated padding="xl">
               <Stack gap="breathe" align="center">
-                <span className="text-5xl animate-pulse">🪡</span>
-                <Text variant="heading" size="xl" color="indigo">
-                  {processingMessage}
-                </Text>
-                <ProgressBar value={processingProgress} color="indigo" />
-                <Text size="sm" color="muted">
-                  This usually takes just a few seconds
-                </Text>
+                {showSuccess ? (
+                  <>
+                    <span className="text-6xl animate-bounce">✅</span>
+                    <Text variant="heading" size="xl" color="indigo">
+                      Pattern parsed successfully!
+                    </Text>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-5xl animate-pulse">🪡</span>
+                    <Text variant="heading" size="xl" color="indigo">
+                      {processingMessage}
+                    </Text>
+                    <ProgressBar value={processingProgress} color="indigo" />
+                    <Text size="sm" color="muted">
+                      This usually takes just a few seconds
+                    </Text>
+                  </>
+                )}
               </Stack>
             </Surface>
           </div>
         )}
 
+        {/* Results overview */}
+        {viewState === 'results' && pattern && (
+          <PatternResults
+            pattern={pattern}
+            onStartReading={() => setViewState('reading')}
+            highContrast={highContrast}
+          />
+        )}
+
         {/* Reading view */}
         {viewState === 'reading' && pattern && currentStep && (
           <Stack gap="breathe">
-            {/* Toggle buttons — Materials & Analysis */}
+            {/* Toggle buttons — Materials, Analysis & Overview */}
             {pattern.materials && pattern.materials.length > 0 && (
               <div className="flex justify-end gap-2 flex-wrap">
+                <button
+                  onClick={() => setViewState('results')}
+                  className={`min-h-[48px] px-4 py-2 rounded-lg text-sm font-semibold border transition-colors ${
+                    highContrast
+                      ? 'border-gray-500 bg-gray-800 text-white hover:bg-gray-700'
+                      : 'border-ink-faint/30 bg-washi hover:bg-washi-dark text-ink-black'
+                  }`}
+                >
+                  ← Overview
+                </button>
                 <button
                   onClick={() => setShowAnalysis(prev => !prev)}
                   className={`min-h-[48px] px-4 py-2 rounded-lg text-sm font-semibold border transition-colors ${
