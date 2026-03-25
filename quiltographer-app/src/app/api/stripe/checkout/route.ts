@@ -1,23 +1,46 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
 import { getStripe } from "@/lib/stripe/client";
 import { STRIPE_CONFIG } from "@/lib/stripe/config";
 
 export async function POST(request: NextRequest) {
   try {
-    if (!process.env.STRIPE_SECRET_KEY || !STRIPE_CONFIG.proPriceId) {
+    // 1. Auth check
+    const supabase = await createClient();
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
+
+    if (authError || !user) {
       return NextResponse.json(
-        { error: "Stripe is not configured yet. Coming soon!" },
-        { status: 503 }
+        { error: "Unauthorized" },
+        { status: 401 }
       );
     }
 
-    // For MVP without auth: create a checkout session with client-provided email
-    const body = await request.json().catch(() => ({}));
-    const email = body.email || undefined;
+    // 2. Get or create Stripe customer
+    const { data: subscription } = await supabase
+      .from("subscriptions")
+      .select("stripe_customer_id")
+      .eq("id", user.id)
+      .maybeSingle();
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    let stripeCustomerId = subscription?.stripe_customer_id;
 
+    if (!stripeCustomerId) {
+      const customer = await getStripe().customers.create({
+        email: user.email,
+        metadata: {
+          supabase_user_id: user.id,
+        },
+      });
+      stripeCustomerId = customer.id;
+    }
+
+    // 3. Create checkout session
     const checkoutSession = await getStripe().checkout.sessions.create({
+      customer: stripeCustomerId,
       mode: "subscription",
       line_items: [
         {
@@ -25,11 +48,11 @@ export async function POST(request: NextRequest) {
           quantity: 1,
         },
       ],
-      ...(email ? { customer_email: email } : {}),
-      success_url: `${appUrl}/reader?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${appUrl}/#pricing`,
+      success_url: "https://quiltographer.humanityandai.com/reader?checkout=success",
+      cancel_url: "https://quiltographer.humanityandai.com/#pricing",
+      client_reference_id: user.id,
       metadata: {
-        source: "quiltographer",
+        supabase_user_id: user.id,
       },
     });
 

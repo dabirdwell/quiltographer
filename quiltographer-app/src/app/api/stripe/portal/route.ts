@@ -1,37 +1,56 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getStripe } from '@/lib/stripe/client';
+import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
+import { getStripe } from "@/lib/stripe/client";
 
 export async function POST(request: NextRequest) {
   try {
-    if (!process.env.STRIPE_SECRET_KEY) {
+    // 1. Auth check
+    const supabase = await createClient();
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
+
+    if (authError || !user) {
       return NextResponse.json(
-        { error: 'Stripe is not configured yet. Coming soon!' },
-        { status: 503 }
+        { error: "Unauthorized" },
+        { status: 401 }
       );
     }
 
-    const { customerId } = await request.json();
+    // 2. Get stripe_customer_id from subscriptions table
+    const { data: subscription, error: subError } = await supabase
+      .from("subscriptions")
+      .select("stripe_customer_id")
+      .eq("id", user.id)
+      .maybeSingle();
 
-    if (!customerId) {
+    if (subError) {
+      console.error("Subscription fetch error:", subError);
       return NextResponse.json(
-        { error: 'Customer ID is required' },
-        { status: 400 }
+        { error: "Failed to retrieve subscription" },
+        { status: 500 }
       );
     }
 
-    const stripe = getStripe();
-    const origin = request.headers.get('origin') || 'http://localhost:3000';
+    if (!subscription?.stripe_customer_id) {
+      return NextResponse.json(
+        { error: "No active subscription found" },
+        { status: 404 }
+      );
+    }
 
-    const portalSession = await stripe.billingPortal.sessions.create({
-      customer: customerId,
-      return_url: `${origin}/reader`,
+    // 3. Create billing portal session
+    const portalSession = await getStripe().billingPortal.sessions.create({
+      customer: subscription.stripe_customer_id,
+      return_url: "https://quiltographer.humanityandai.com/reader",
     });
 
     return NextResponse.json({ url: portalSession.url });
   } catch (error) {
-    console.error('Stripe portal error:', error);
+    console.error("Stripe portal error:", error);
     return NextResponse.json(
-      { error: 'Failed to create portal session' },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }
