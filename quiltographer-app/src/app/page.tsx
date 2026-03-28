@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { quiltographerTheme } from '@/components/japanese/theme';
+
+const theme = quiltographerTheme;
 
 const SAMPLE_PATTERNS = [
   {
@@ -95,15 +98,27 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fdf4e3' }}>
+    <div
+      className="min-h-screen"
+      style={{
+        backgroundColor: theme.colors.washi,
+        backgroundImage: theme.textures.washiFiber,
+      }}
+    >
       {/* Preview banner */}
-      <div className="bg-indigo text-white text-center py-2 text-sm font-medium tracking-wide">
+      <div
+        className="text-center py-2 text-sm font-medium tracking-wide"
+        style={{ backgroundColor: theme.colors.indigo, color: theme.colors.rice }}
+      >
         Beta — Free during preview. Pro features coming soon.
       </div>
 
       {/* Beta pass banner */}
       {isBeta && (
-        <div className="bg-sage text-white text-center py-2 text-sm font-medium">
+        <div
+          className="text-center py-2 text-sm font-medium"
+          style={{ backgroundColor: theme.colors.sage, color: theme.colors.rice }}
+        >
           Beta Pass Active — Full access unlocked
         </div>
       )}
@@ -112,7 +127,10 @@ export default function LandingPage() {
       <nav className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
         <div className="flex items-center gap-3">
           <span className="text-3xl">🧵</span>
-          <span className="text-2xl font-semibold text-indigo tracking-tight" style={{ fontFamily: '"Noto Serif JP", Georgia, serif' }}>
+          <span
+            className="text-2xl font-semibold tracking-tight"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
             Quiltographer
           </span>
         </div>
@@ -128,67 +146,174 @@ export default function LandingPage() {
           </a>
           <Link
             href="/reader"
-            className="px-5 py-2.5 bg-persimmon text-white rounded-lg font-medium hover:opacity-90 transition-opacity text-sm min-h-[44px] flex items-center"
+            className="px-5 py-2.5 text-white rounded-lg font-medium hover:opacity-90 transition-opacity text-sm min-h-[44px] flex items-center"
+            style={{ backgroundColor: theme.colors.persimmon }}
           >
-            Open Reader
+            Try It Free
           </Link>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="max-w-4xl mx-auto px-6 pt-12 sm:pt-20 pb-16 sm:pb-24 text-center">
+      <section className="max-w-4xl mx-auto px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-indigo leading-tight mb-6"
-          style={{ fontFamily: '"Noto Serif JP", Georgia, serif' }}
+          className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6"
+          style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
         >
-          Upload a pattern.<br />Understand every step.
+          Read Any Quilt Pattern
         </h1>
-        <p className="text-lg sm:text-xl text-ink-gray max-w-2xl mx-auto mb-10 leading-relaxed">
-          Drop any PDF quilt pattern. Get one clear instruction at a time,
-          readable from your sewing machine. When the jargon gets thick,
-          ask AI — it speaks quilter.
+        <p
+          className="text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          style={{ color: theme.colors.inkGray, fontFamily: theme.typography.fontFamily.body }}
+        >
+          AI-powered pattern parsing for quilters of all levels
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             href="/reader"
-            className="w-full sm:w-auto px-8 py-4 bg-persimmon text-white rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity shadow-lg min-w-[220px] min-h-[56px] text-center flex items-center justify-center"
+            className="w-full sm:w-auto px-10 py-4 text-white rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity min-w-[220px] min-h-[56px] text-center flex items-center justify-center"
+            style={{ backgroundColor: theme.colors.persimmon, boxShadow: theme.shadows.lifted }}
           >
-            Upload a Pattern — Free
+            Try It Free
           </Link>
           <Link
             href="/reader?demo=demo-log-cabin"
-            className="w-full sm:w-auto px-8 py-4 border-2 border-persimmon text-persimmon rounded-xl font-semibold text-lg hover:bg-persimmon hover:text-white transition-colors min-w-[220px] min-h-[56px] text-center flex items-center justify-center"
+            className="w-full sm:w-auto px-10 py-4 rounded-xl font-semibold text-lg transition-colors min-w-[220px] min-h-[56px] text-center flex items-center justify-center border-2"
+            style={{ borderColor: theme.colors.indigo, color: theme.colors.indigo }}
           >
-            Try a Demo Pattern
+            See a Demo
           </Link>
-          <a
-            href="#how-it-works"
-            className="w-full sm:w-auto px-8 py-4 border-2 border-indigo text-indigo rounded-xl font-semibold text-lg hover:bg-indigo hover:text-white transition-colors min-w-[220px] min-h-[56px] text-center flex items-center justify-center"
+        </div>
+      </section>
+
+      {/* Problem statement */}
+      <section className="max-w-3xl mx-auto px-6 pb-16 sm:pb-20">
+        <div
+          className="rounded-2xl p-8 sm:p-10 text-center"
+          style={{
+            backgroundColor: theme.colors.rice,
+            boxShadow: theme.shadows.soft,
+            border: theme.borders.hairline,
+          }}
+        >
+          <p
+            className="text-xs uppercase tracking-widest font-semibold mb-4"
+            style={{ color: theme.colors.persimmon }}
           >
-            See How It Works
-          </a>
+            The problem
+          </p>
+          <p
+            className="text-xl sm:text-2xl font-medium leading-relaxed"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
+            Pattern confusion is the #1 barrier for quilters. Instructions split across pages, inconsistent notation, complex math.
+          </p>
+          <p
+            className="mt-4 text-base leading-relaxed"
+            style={{ color: theme.colors.inkGray }}
+          >
+            Quiltographer reads your pattern so you can focus on your fabric.
+          </p>
+        </div>
+      </section>
+
+      {/* Feature grid — 3 cards */}
+      <section className="max-w-5xl mx-auto px-6 pb-20">
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: '📖',
+              title: 'Pattern Reader',
+              desc: 'Upload any pattern, get clear step-by-step instructions. One step at a time, readable from your sewing machine.',
+              color: theme.colors.persimmon,
+              bg: `${theme.colors.persimmon}12`,
+              link: '/reader',
+            },
+            {
+              icon: '🧮',
+              title: 'Fabric Calculator',
+              desc: 'Know exactly how much fabric you need, with waste margin built in. No more emergency trips to the quilt shop.',
+              color: theme.colors.sage,
+              bg: `${theme.colors.sage}18`,
+              link: '/calculator',
+            },
+            {
+              icon: '🎯',
+              title: 'Difficulty Rating',
+              desc: 'See at a glance if a pattern matches your skill level. Scored 1–10 with clear breakdowns of what makes it tricky.',
+              color: theme.colors.indigo,
+              bg: `${theme.colors.indigo}12`,
+              link: '/gallery',
+            },
+          ].map((feature, i) => (
+            <Link
+              key={i}
+              href={feature.link}
+              className="group block rounded-2xl p-8 transition-all hover:-translate-y-1"
+              style={{
+                backgroundColor: theme.colors.rice,
+                boxShadow: theme.shadows.soft,
+                border: theme.borders.hairline,
+              }}
+            >
+              <div
+                className="w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-2xl"
+                style={{ backgroundColor: feature.bg }}
+              >
+                {feature.icon}
+              </div>
+              <h3
+                className="text-xl font-semibold mb-3 group-hover:opacity-80 transition-opacity"
+                style={{ color: feature.color, fontFamily: theme.typography.fontFamily.display }}
+              >
+                {feature.title}
+              </h3>
+              <p className="leading-relaxed text-sm" style={{ color: theme.colors.inkGray }}>
+                {feature.desc}
+              </p>
+            </Link>
+          ))}
         </div>
       </section>
 
       {/* Demo preview */}
       <section className="max-w-3xl mx-auto px-6 pb-20">
-        <div className="rounded-2xl overflow-hidden shadow-lifted bg-white border border-ink-gray/10">
-          <div className="bg-indigo/5 px-6 py-4 border-b border-ink-gray/10 flex items-center gap-3">
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ backgroundColor: theme.colors.rice, boxShadow: theme.shadows.lifted, border: theme.borders.hairline }}
+        >
+          <div
+            className="px-6 py-4 flex items-center gap-3"
+            style={{ backgroundColor: `${theme.colors.indigo}08`, borderBottom: theme.borders.hairline }}
+          >
             <span className="text-xl">🧵</span>
-            <span className="font-semibold text-indigo text-sm">Pattern Reader</span>
-            <span className="text-ink-gray text-sm ml-auto">Step 3 of 12</span>
+            <span className="font-semibold text-sm" style={{ color: theme.colors.indigo }}>Pattern Reader</span>
+            <span className="text-sm ml-auto" style={{ color: theme.colors.inkGray }}>Step 3 of 12</span>
           </div>
           <div className="p-6 sm:p-8">
-            <p className="text-sm text-ink-gray uppercase tracking-wider mb-1">Step 3 of 12</p>
-            <h3 className="text-xl font-bold text-indigo mb-4">Sew Strip Sets</h3>
-            <p className="text-ink-gray leading-relaxed mb-4">
+            <p className="text-sm uppercase tracking-wider mb-1" style={{ color: theme.colors.inkGray }}>Step 3 of 12</p>
+            <h3 className="text-xl font-bold mb-4" style={{ color: theme.colors.indigo }}>Sew Strip Sets</h3>
+            <p className="leading-relaxed mb-4" style={{ color: theme.colors.inkGray }}>
               Sew (2) 2&frac12;&quot; x Width of Fabric (WOF) Fabric A strips and (1) 2&frac12;&quot; x WOF Fabric B strip together along the long edges, with Right Sides Together (RST). Press seams toward the darker fabric.
             </p>
             <div className="flex gap-2 flex-wrap">
-              <span className="px-3 py-1 bg-indigo/10 text-indigo rounded-full text-xs font-medium">strip piecing</span>
-              <span className="px-3 py-1 bg-indigo/10 text-indigo rounded-full text-xs font-medium">pressing</span>
+              <span
+                className="px-3 py-1 rounded-full text-xs font-medium"
+                style={{ backgroundColor: `${theme.colors.indigo}15`, color: theme.colors.indigo }}
+              >
+                strip piecing
+              </span>
+              <span
+                className="px-3 py-1 rounded-full text-xs font-medium"
+                style={{ backgroundColor: `${theme.colors.indigo}15`, color: theme.colors.indigo }}
+              >
+                pressing
+              </span>
             </div>
-            <div className="mt-4 p-3 bg-sage/10 rounded-lg text-sm text-sage flex gap-2">
+            <div
+              className="mt-4 p-3 rounded-lg text-sm flex gap-2"
+              style={{ backgroundColor: `${theme.colors.sage}15`, color: theme.colors.sage }}
+            >
               <span>🤖</span>
               <span className="italic">&quot;Place your strips with the pretty sides kissing, sew along the long edge with a &frac14;&quot; seam, then press flat...&quot;</span>
             </div>
@@ -197,53 +322,74 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="bg-white py-20">
+      <section
+        id="how-it-works"
+        className="py-20"
+        style={{ backgroundColor: theme.colors.rice }}
+      >
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-indigo text-center mb-4" style={{ fontFamily: '"Noto Serif JP", Georgia, serif' }}>
+          <h2
+            className="text-3xl font-bold text-center mb-4"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
             How It Works
           </h2>
-          <p className="text-ink-gray text-center mb-14 text-lg max-w-2xl mx-auto">
+          <p className="text-center mb-14 text-lg max-w-2xl mx-auto" style={{ color: theme.colors.inkGray }}>
             Three steps between you and finally understanding that pattern.
           </p>
           <div className="grid md:grid-cols-3 gap-10">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-persimmon/10 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                <span className="text-3xl">📄</span>
+            {[
+              {
+                icon: '📄',
+                bg: `${theme.colors.persimmon}15`,
+                title: '1. Upload Your Pattern',
+                desc: 'Drop any PDF quilt pattern. We extract steps, materials, and measurements automatically.',
+              },
+              {
+                icon: '📖',
+                bg: `${theme.colors.sage}15`,
+                title: '2. Follow Step by Step',
+                desc: 'One clear instruction at a time. Large text, progress tracking. Pick up where you left off.',
+              },
+              {
+                icon: '🤖',
+                bg: `${theme.colors.indigo}15`,
+                title: '3. Ask When Confused',
+                desc: 'Hit "Explain this step" and get a plain-English rewrite from AI that knows quilting.',
+              },
+            ].map((step, i) => (
+              <div key={i} className="text-center">
+                <div
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
+                  style={{ backgroundColor: step.bg }}
+                >
+                  <span className="text-3xl">{step.icon}</span>
+                </div>
+                <h3
+                  className="text-xl font-semibold mb-3"
+                  style={{ color: theme.colors.indigo }}
+                >
+                  {step.title}
+                </h3>
+                <p className="leading-relaxed" style={{ color: theme.colors.inkGray }}>
+                  {step.desc}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-indigo mb-3">1. Upload Your Pattern</h3>
-              <p className="text-ink-gray leading-relaxed">
-                Drop any PDF quilt pattern. We extract steps, materials, and measurements automatically.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-sage/10 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                <span className="text-3xl">📖</span>
-              </div>
-              <h3 className="text-xl font-semibold text-indigo mb-3">2. Follow Step by Step</h3>
-              <p className="text-ink-gray leading-relaxed">
-                One clear instruction at a time. Large text, progress tracking. Pick up where you left off.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-indigo/10 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                <span className="text-3xl">🤖</span>
-              </div>
-              <h3 className="text-xl font-semibold text-indigo mb-3">3. Ask When Confused</h3>
-              <p className="text-ink-gray leading-relaxed">
-                Hit &quot;Explain this step&quot; and get a plain-English rewrite from AI that knows quilting.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Features */}
+      {/* Built for Quilters */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-indigo text-center mb-4" style={{ fontFamily: '"Noto Serif JP", Georgia, serif' }}>
+          <h2
+            className="text-3xl font-bold text-center mb-4"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
             Built for Quilters
           </h2>
-          <p className="text-ink-gray text-center mb-14 text-lg">
+          <p className="text-center mb-14 text-lg" style={{ color: theme.colors.inkGray }}>
             Not a general-purpose PDF reader. Every feature exists because a quilter needed it.
           </p>
           <div className="grid md:grid-cols-2 gap-8">
@@ -257,11 +403,6 @@ export default function LandingPage() {
                 icon: '📋',
                 title: 'Materials Checklist',
                 desc: 'Check off materials as you gather them. Your progress saves automatically.',
-              },
-              {
-                icon: '🎯',
-                title: 'One Step at a Time',
-                desc: 'No more scrolling through 12 pages. One instruction, front and center.',
               },
               {
                 icon: '💡',
@@ -278,15 +419,25 @@ export default function LandingPage() {
                 title: 'Resume Anytime',
                 desc: 'Close the browser, come back tomorrow. Your pattern, step, and checklist are saved.',
               },
+              {
+                icon: '🤖',
+                title: 'AI That Speaks Quilter',
+                desc: 'Confused by a step? Ask the AI and get a plain-English explanation with quilting context.',
+              },
             ].map((feature, i) => (
               <div
                 key={i}
-                className="flex gap-4 p-5 rounded-xl bg-white shadow-subtle"
+                className="flex gap-4 p-5 rounded-xl"
+                style={{
+                  backgroundColor: theme.colors.rice,
+                  boxShadow: theme.shadows.subtle,
+                  border: theme.borders.hairline,
+                }}
               >
                 <span className="text-2xl flex-shrink-0 mt-1">{feature.icon}</span>
                 <div>
-                  <h3 className="font-semibold text-indigo text-lg mb-1">{feature.title}</h3>
-                  <p className="text-ink-gray text-sm leading-relaxed">{feature.desc}</p>
+                  <h3 className="font-semibold text-lg mb-1" style={{ color: theme.colors.indigo }}>{feature.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: theme.colors.inkGray }}>{feature.desc}</p>
                 </div>
               </div>
             ))}
@@ -295,12 +446,15 @@ export default function LandingPage() {
       </section>
 
       {/* Sample patterns */}
-      <section className="bg-white py-20">
+      <section className="py-20" style={{ backgroundColor: theme.colors.rice }}>
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-indigo text-center mb-4" style={{ fontFamily: '"Noto Serif JP", Georgia, serif' }}>
+          <h2
+            className="text-3xl font-bold text-center mb-4"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
             Try These Examples
           </h2>
-          <p className="text-ink-gray text-center mb-12 text-lg">
+          <p className="text-center mb-12 text-lg" style={{ color: theme.colors.inkGray }}>
             Try the reader with a real pattern — no upload needed. Pick one and start reading.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -308,128 +462,48 @@ export default function LandingPage() {
               <Link
                 key={pattern.id}
                 href={`/reader?demo=${pattern.id}`}
-                className="group block p-5 rounded-xl border-2 border-ink-gray/10 hover:border-persimmon/50 transition-colors bg-washi"
+                className="group block p-5 rounded-xl border-2 transition-colors"
+                style={{
+                  backgroundColor: theme.colors.washi,
+                  borderColor: `${theme.colors.inkGray}18`,
+                  backgroundImage: theme.textures.washiFiber,
+                }}
               >
                 <div className="text-4xl mb-3">{pattern.thumbnail}</div>
-                <h3 className="font-semibold text-indigo group-hover:text-persimmon transition-colors mb-1">
+                <h3
+                  className="font-semibold group-hover:opacity-80 transition-opacity mb-1"
+                  style={{ color: theme.colors.indigo }}
+                >
                   {pattern.name}
                 </h3>
                 <div className="flex gap-2 mb-2">
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-indigo/10 text-indigo">{pattern.difficulty}</span>
-                  <span className="text-xs text-ink-gray">{pattern.steps} steps</span>
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-full"
+                    style={{ backgroundColor: `${theme.colors.indigo}15`, color: theme.colors.indigo }}
+                  >
+                    {pattern.difficulty}
+                  </span>
+                  <span className="text-xs" style={{ color: theme.colors.inkGray }}>{pattern.steps} steps</span>
                 </div>
-                <p className="text-ink-gray text-sm leading-relaxed">{pattern.desc}</p>
+                <p className="text-sm leading-relaxed" style={{ color: theme.colors.inkGray }}>{pattern.desc}</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-indigo text-center mb-4" style={{ fontFamily: '"Noto Serif JP", Georgia, serif' }}>
-            Simple Pricing
+      {/* Social proof */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2
+            className="text-3xl font-bold text-center mb-4"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
+            Trusted by Quilters Worldwide
           </h2>
-          <p className="text-ink-gray text-center mb-12 text-lg">
-            Start free. Upgrade when you need more.
+          <p className="text-center mb-12 text-sm" style={{ color: theme.colors.inkLight }}>
+            Beta feedback from early testers
           </p>
-
-          {/* Comparison table — desktop */}
-          <div className="hidden md:block max-w-3xl mx-auto mb-12">
-            <div className="rounded-2xl overflow-hidden border-2 border-ink-gray/10">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-indigo text-white">
-                    <th className="text-left px-6 py-4 font-semibold">Feature</th>
-                    <th className="text-center px-6 py-4 font-semibold">Free</th>
-                    <th className="text-center px-6 py-4 font-semibold bg-persimmon">Pro — $4.99/mo</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-ink-gray/10">
-                  {[
-                    ['Pattern uploads', '3 per month', 'Unlimited'],
-                    ['Step-by-step reader', '✓', '✓'],
-                    ['Materials checklist', '✓', '✓'],
-                    ['Progress saving', '✓', '✓'],
-                    ['Font scaling (up to 3x)', '✓', '✓'],
-                    ['AI clarifications', '10 per session', 'Unlimited'],
-                    ['Priority parsing', '—', '✓'],
-                    ['Advanced diagrams', '—', '✓'],
-                  ].map(([feature, free, pro], i) => (
-                    <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-washi/50'}>
-                      <td className="px-6 py-3 text-ink-black font-medium">{feature}</td>
-                      <td className="px-6 py-3 text-center text-ink-gray">{free}</td>
-                      <td className="px-6 py-3 text-center text-indigo font-medium">{pro}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Pricing cards — all screens */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {/* Free tier */}
-            <div className="border-2 border-ink-gray/20 rounded-2xl p-8 bg-white">
-              <h3 className="text-2xl font-bold text-indigo mb-2">Free</h3>
-              <p className="text-ink-gray mb-6">Perfect for trying it out</p>
-              <div className="text-4xl font-bold text-indigo mb-6">
-                $0<span className="text-lg font-normal text-ink-gray">/mo</span>
-              </div>
-              <ul className="space-y-3 mb-8 text-ink-gray">
-                <li className="flex gap-2"><span className="text-sage">✓</span> 3 patterns per month</li>
-                <li className="flex gap-2"><span className="text-sage">✓</span> Step-by-step reader</li>
-                <li className="flex gap-2"><span className="text-sage">✓</span> Materials checklist</li>
-                <li className="flex gap-2"><span className="text-sage">✓</span> Progress saving</li>
-                <li className="flex gap-2"><span className="text-sage">✓</span> 10 AI clarifications per session</li>
-                <li className="flex gap-2"><span className="text-ink-light">—</span> <span className="text-ink-light">No priority parsing</span></li>
-              </ul>
-              <Link
-                href="/reader"
-                className="block w-full py-3 min-h-[48px] text-center border-2 border-indigo text-indigo rounded-xl font-semibold hover:bg-indigo hover:text-white transition-colors flex items-center justify-center"
-              >
-                Get Started Free
-              </Link>
-            </div>
-
-            {/* Pro tier */}
-            <div className="border-2 border-persimmon rounded-2xl p-8 bg-white relative overflow-hidden shadow-lg">
-              <div className="absolute top-0 right-0 bg-persimmon text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                BEST VALUE
-              </div>
-              <h3 className="text-2xl font-bold text-indigo mb-2">Pro</h3>
-              <p className="text-ink-gray mb-6">Unlimited everything</p>
-              <div className="text-4xl font-bold text-indigo mb-1">
-                $4.99<span className="text-lg font-normal text-ink-gray">/mo</span>
-              </div>
-              <p className="text-sm text-ink-light mb-6">Cancel anytime</p>
-              <ul className="space-y-3 mb-8 text-ink-gray">
-                <li className="flex gap-2"><span className="text-persimmon">✓</span> <strong>Unlimited patterns</strong></li>
-                <li className="flex gap-2"><span className="text-persimmon">✓</span> <strong>Unlimited AI clarifications</strong></li>
-                <li className="flex gap-2"><span className="text-persimmon">✓</span> <strong>Priority parsing</strong></li>
-                <li className="flex gap-2"><span className="text-sage">✓</span> Step-by-step reader</li>
-                <li className="flex gap-2"><span className="text-sage">✓</span> Materials checklist</li>
-                <li className="flex gap-2"><span className="text-sage">✓</span> Advanced diagrams</li>
-              </ul>
-              <button
-                onClick={handleUpgrade}
-                disabled={isUpgrading}
-                className="block w-full py-3 min-h-[48px] text-center bg-persimmon text-white rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
-              >
-                {isUpgrading ? 'Loading...' : 'Upgrade to Pro'}
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials placeholder */}
-      <section className="bg-white py-20">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-indigo text-center mb-12" style={{ fontFamily: '"Noto Serif JP", Georgia, serif' }}>
-            What Quilters Are Saying
-          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -448,32 +522,187 @@ export default function LandingPage() {
                 detail: 'Beginner quilter',
               },
             ].map((t, i) => (
-              <div key={i} className="p-6 rounded-xl bg-washi border border-ink-gray/10">
-                <p className="text-ink-gray leading-relaxed mb-4 italic">&quot;{t.quote}&quot;</p>
+              <div
+                key={i}
+                className="p-6 rounded-xl"
+                style={{
+                  backgroundColor: theme.colors.washi,
+                  border: theme.borders.hairline,
+                  backgroundImage: theme.textures.washiFiber,
+                }}
+              >
+                <p className="leading-relaxed mb-4 italic" style={{ color: theme.colors.inkGray }}>&quot;{t.quote}&quot;</p>
                 <div>
-                  <p className="font-semibold text-indigo text-sm">{t.name}</p>
-                  <p className="text-ink-gray text-xs">{t.detail}</p>
+                  <p className="font-semibold text-sm" style={{ color: theme.colors.indigo }}>{t.name}</p>
+                  <p className="text-xs" style={{ color: theme.colors.inkGray }}>{t.detail}</p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-center text-ink-light text-sm mt-8">
-            Beta feedback from early testers. Join them — it&apos;s free to start.
+        </div>
+      </section>
+
+      {/* CTA band */}
+      <section
+        className="py-16 px-6"
+        style={{ backgroundColor: theme.colors.indigo }}
+      >
+        <div className="max-w-2xl mx-auto text-center">
+          <h2
+            className="text-3xl font-bold mb-4"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.rice }}
+          >
+            Ready to read your next pattern?
+          </h2>
+          <p className="mb-8 text-lg" style={{ color: `${theme.colors.rice}bb` }}>
+            Upload any PDF quilt pattern and start sewing with confidence.
           </p>
+          <Link
+            href="/reader"
+            className="inline-flex items-center justify-center px-10 py-4 rounded-xl font-semibold text-lg transition-opacity hover:opacity-90 min-h-[56px]"
+            style={{ backgroundColor: theme.colors.persimmon, color: theme.colors.rice, boxShadow: theme.shadows.lifted }}
+          >
+            Try It Free
+          </Link>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="py-20 px-6" style={{ backgroundColor: theme.colors.rice }}>
+        <div className="max-w-5xl mx-auto">
+          <h2
+            className="text-3xl font-bold text-center mb-4"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
+            Simple Pricing
+          </h2>
+          <p className="text-center mb-12 text-lg" style={{ color: theme.colors.inkGray }}>
+            Start free. Upgrade when you need more.
+          </p>
+
+          {/* Comparison table — desktop */}
+          <div className="hidden md:block max-w-3xl mx-auto mb-12">
+            <div className="rounded-2xl overflow-hidden" style={{ border: `2px solid ${theme.colors.inkGray}20` }}>
+              <table className="w-full">
+                <thead>
+                  <tr style={{ backgroundColor: theme.colors.indigo }}>
+                    <th className="text-left px-6 py-4 font-semibold" style={{ color: theme.colors.rice }}>Feature</th>
+                    <th className="text-center px-6 py-4 font-semibold" style={{ color: theme.colors.rice }}>Free</th>
+                    <th className="text-center px-6 py-4 font-semibold" style={{ backgroundColor: theme.colors.persimmon, color: theme.colors.rice }}>Pro — $4.99/mo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['Pattern uploads', '3 per month', 'Unlimited'],
+                    ['Step-by-step reader', '✓', '✓'],
+                    ['Materials checklist', '✓', '✓'],
+                    ['Progress saving', '✓', '✓'],
+                    ['Font scaling (up to 3x)', '✓', '✓'],
+                    ['AI clarifications', '10 per session', 'Unlimited'],
+                    ['Priority parsing', '—', '✓'],
+                    ['Advanced diagrams', '—', '✓'],
+                  ].map(([feature, free, pro], i) => (
+                    <tr
+                      key={i}
+                      style={{
+                        backgroundColor: i % 2 === 0 ? theme.colors.rice : `${theme.colors.washi}80`,
+                        borderTop: theme.borders.hairline,
+                      }}
+                    >
+                      <td className="px-6 py-3 font-medium" style={{ color: theme.colors.inkBlack }}>{feature}</td>
+                      <td className="px-6 py-3 text-center" style={{ color: theme.colors.inkGray }}>{free}</td>
+                      <td className="px-6 py-3 text-center font-medium" style={{ color: theme.colors.indigo }}>{pro}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Pricing cards */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {/* Free tier */}
+            <div
+              className="rounded-2xl p-8"
+              style={{ backgroundColor: theme.colors.rice, border: `2px solid ${theme.colors.inkGray}30`, boxShadow: theme.shadows.subtle }}
+            >
+              <h3 className="text-2xl font-bold mb-2" style={{ color: theme.colors.indigo }}>Free</h3>
+              <p className="mb-6" style={{ color: theme.colors.inkGray }}>Perfect for trying it out</p>
+              <div className="text-4xl font-bold mb-6" style={{ color: theme.colors.indigo }}>
+                $0<span className="text-lg font-normal" style={{ color: theme.colors.inkGray }}>/mo</span>
+              </div>
+              <ul className="space-y-3 mb-8" style={{ color: theme.colors.inkGray }}>
+                <li className="flex gap-2"><span style={{ color: theme.colors.sage }}>✓</span> 3 patterns per month</li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.sage }}>✓</span> Step-by-step reader</li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.sage }}>✓</span> Materials checklist</li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.sage }}>✓</span> Progress saving</li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.sage }}>✓</span> 10 AI clarifications per session</li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.inkLight }}>—</span> <span style={{ color: theme.colors.inkLight }}>No priority parsing</span></li>
+              </ul>
+              <Link
+                href="/reader"
+                className="block w-full py-3 min-h-[48px] text-center rounded-xl font-semibold transition-colors border-2 flex items-center justify-center"
+                style={{ borderColor: theme.colors.indigo, color: theme.colors.indigo }}
+              >
+                Get Started Free
+              </Link>
+            </div>
+
+            {/* Pro tier */}
+            <div
+              className="rounded-2xl p-8 relative overflow-hidden"
+              style={{ backgroundColor: theme.colors.rice, border: `2px solid ${theme.colors.persimmon}`, boxShadow: theme.shadows.lifted }}
+            >
+              <div
+                className="absolute top-0 right-0 text-xs font-bold px-3 py-1 rounded-bl-lg"
+                style={{ backgroundColor: theme.colors.persimmon, color: theme.colors.rice }}
+              >
+                BEST VALUE
+              </div>
+              <h3 className="text-2xl font-bold mb-2" style={{ color: theme.colors.indigo }}>Pro</h3>
+              <p className="mb-6" style={{ color: theme.colors.inkGray }}>Unlimited everything</p>
+              <div className="text-4xl font-bold mb-1" style={{ color: theme.colors.indigo }}>
+                $4.99<span className="text-lg font-normal" style={{ color: theme.colors.inkGray }}>/mo</span>
+              </div>
+              <p className="text-sm mb-6" style={{ color: theme.colors.inkLight }}>Cancel anytime</p>
+              <ul className="space-y-3 mb-8" style={{ color: theme.colors.inkGray }}>
+                <li className="flex gap-2"><span style={{ color: theme.colors.persimmon }}>✓</span> <strong>Unlimited patterns</strong></li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.persimmon }}>✓</span> <strong>Unlimited AI clarifications</strong></li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.persimmon }}>✓</span> <strong>Priority parsing</strong></li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.sage }}>✓</span> Step-by-step reader</li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.sage }}>✓</span> Materials checklist</li>
+                <li className="flex gap-2"><span style={{ color: theme.colors.sage }}>✓</span> Advanced diagrams</li>
+              </ul>
+              <button
+                onClick={handleUpgrade}
+                disabled={isUpgrading}
+                className="block w-full py-3 min-h-[48px] text-center rounded-xl font-semibold transition-opacity hover:opacity-90 disabled:opacity-50"
+                style={{ backgroundColor: theme.colors.persimmon, color: theme.colors.rice }}
+              >
+                {isUpgrading ? 'Loading...' : 'Upgrade to Pro'}
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Email capture */}
       <section className="py-20 px-6">
         <div className="max-w-xl mx-auto text-center">
-          <h2 className="text-2xl font-bold text-indigo mb-4" style={{ fontFamily: '"Noto Serif JP", Georgia, serif' }}>
+          <h2
+            className="text-2xl font-bold mb-4"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
             Stay in the Loop
           </h2>
-          <p className="text-ink-gray mb-8">
+          <p className="mb-8" style={{ color: theme.colors.inkGray }}>
             New features, pattern tips, and quilting resources. No spam — we promise.
           </p>
           {submitted ? (
-            <div className="p-4 bg-sage/10 rounded-xl text-sage font-medium">
+            <div
+              className="p-4 rounded-xl font-medium"
+              style={{ backgroundColor: `${theme.colors.sage}15`, color: theme.colors.sage }}
+            >
               You&apos;re on the list. We&apos;ll be in touch.
             </div>
           ) : (
@@ -484,11 +713,13 @@ export default function LandingPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
                 required
-                className="flex-1 px-4 py-3 min-h-[48px] rounded-xl border-2 border-ink-gray/20 focus:border-persimmon focus:outline-none text-ink-black"
+                className="flex-1 px-4 py-3 min-h-[48px] rounded-xl focus:outline-none"
+                style={{ border: `2px solid ${theme.colors.inkGray}30`, color: theme.colors.inkBlack }}
               />
               <button
                 type="submit"
-                className="px-6 py-3 min-h-[48px] bg-indigo text-white rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                className="px-6 py-3 min-h-[48px] rounded-xl font-semibold transition-opacity hover:opacity-90"
+                style={{ backgroundColor: theme.colors.indigo, color: theme.colors.rice }}
               >
                 Notify Me
               </button>
@@ -498,23 +729,32 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-ink-gray/20 py-10 px-6" style={{ backgroundColor: '#264653' }}>
+      <footer
+        className="py-10 px-6"
+        style={{ backgroundColor: theme.colors.indigo, borderTop: `1px solid ${theme.colors.inkGray}30` }}
+      >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
             <span className="text-xl">🧵</span>
-            <span className="text-white font-medium">Quiltographer</span>
+            <span className="font-medium" style={{ color: theme.colors.rice }}>Quiltographer</span>
           </div>
-          <p className="text-white/70 text-sm text-center">
+          <p className="text-sm text-center" style={{ color: `${theme.colors.rice}b3` }}>
             &copy; {new Date().getFullYear()} Humanity &amp; AI LLC —{' '}
-            <a href="https://humanityandai.com" className="underline hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://humanityandai.com"
+              className="underline transition-opacity hover:opacity-80"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: `${theme.colors.rice}cc` }}
+            >
               humanityandai.com
             </a>
           </p>
-          <div className="flex gap-6 text-sm text-white/70">
-            <Link href="/reader" className="hover:text-white transition-colors">Pattern Reader</Link>
-            <Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link>
-            <Link href="/calculator" className="hover:text-white transition-colors">Calculator</Link>
-            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+          <div className="flex gap-6 text-sm" style={{ color: `${theme.colors.rice}b3` }}>
+            <Link href="/reader" className="hover:opacity-80 transition-opacity">Pattern Reader</Link>
+            <Link href="/gallery" className="hover:opacity-80 transition-opacity">Gallery</Link>
+            <Link href="/calculator" className="hover:opacity-80 transition-opacity">Calculator</Link>
+            <a href="#pricing" className="hover:opacity-80 transition-opacity">Pricing</a>
           </div>
         </div>
       </footer>
