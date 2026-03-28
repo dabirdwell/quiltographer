@@ -117,6 +117,12 @@ export default function LandingPage() {
           </span>
         </div>
         <div className="flex items-center gap-4">
+          <Link href="/gallery" className="hidden sm:inline text-ink-gray hover:text-indigo transition-colors text-sm font-medium">
+            Gallery
+          </Link>
+          <Link href="/calculator" className="hidden sm:inline text-ink-gray hover:text-indigo transition-colors text-sm font-medium">
+            Calculator
+          </Link>
           <a href="#pricing" className="hidden sm:inline text-ink-gray hover:text-indigo transition-colors text-sm font-medium">
             Pricing
           </a>
@@ -506,6 +512,8 @@ export default function LandingPage() {
           </p>
           <div className="flex gap-6 text-sm text-white/70">
             <Link href="/reader" className="hover:text-white transition-colors">Pattern Reader</Link>
+            <Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link>
+            <Link href="/calculator" className="hover:text-white transition-colors">Calculator</Link>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
           </div>
         </div>
