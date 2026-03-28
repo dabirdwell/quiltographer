@@ -6,46 +6,113 @@ import { quiltographerTheme } from '@/components/japanese/theme';
 
 const theme = quiltographerTheme;
 
+const DIFFICULTY_TIERS: Record<string, { color: string; bg: string }> = {
+  Beginner: { color: '#84a98c', bg: 'rgba(132,169,140,0.15)' },
+  Intermediate: { color: '#c89b3c', bg: 'rgba(200,155,60,0.13)' },
+  Advanced: { color: '#e76f51', bg: 'rgba(231,111,81,0.13)' },
+  Expert: { color: '#c1121f', bg: 'rgba(193,18,31,0.12)' },
+};
+
 const SAMPLE_PATTERNS = [
   {
     id: 'demo-log-cabin',
     name: 'Log Cabin Classic',
-    difficulty: 'Beginner',
+    difficulty: 3,
+    tier: 'Beginner',
     steps: 10,
-    thumbnail: '🏠',
-    desc: 'The timeless log cabin — strips around a center square. A perfect first quilt.',
+    emoji: '🏠',
+    swatch: `repeating-conic-gradient(#c94c4c25 0% 25%, #e8a87c20 0% 50%) 50% / 24px 24px`,
+    hasDemo: true,
   },
   {
     id: 'demo-flying-geese',
-    name: 'Flying Geese Table Runner',
-    difficulty: 'Intermediate',
+    name: 'Flying Geese Runner',
+    difficulty: 5,
+    tier: 'Intermediate',
     steps: 10,
-    thumbnail: '🪿',
-    desc: 'A flock of flying geese marching across your table. No-waste method makes it fast.',
+    emoji: '🪿',
+    swatch: `repeating-linear-gradient(135deg, #457b9d28 0 12px, #a8dadc20 12px 24px)`,
+    hasDemo: true,
   },
   {
     id: 'demo-nine-patch',
     name: 'Nine-Patch Baby Quilt',
-    difficulty: 'Beginner',
+    difficulty: 2,
+    tier: 'Beginner',
     steps: 6,
-    thumbnail: '👶',
-    desc: 'Nine squares, endless charm. Quick enough to finish before the baby arrives.',
+    emoji: '👶',
+    swatch: `repeating-conic-gradient(#f4a26128 0% 25%, #fce8d520 0% 50%) 50% / 32px 32px`,
+    hasDemo: true,
   },
   {
     id: 'demo-lone-star',
     name: 'Lone Star Wall Hanging',
-    difficulty: 'Advanced',
+    difficulty: 8,
+    tier: 'Advanced',
     steps: 12,
-    thumbnail: '⭐',
-    desc: 'Eight diamond points radiate from the center. Precision cutting pays off here.',
+    emoji: '⭐',
+    swatch: `conic-gradient(from 0deg, #e76f5128, #f4a26120, #e76f5128, #f4a26120, #e76f5128, #f4a26120, #e76f5128, #f4a26120)`,
+    hasDemo: true,
   },
   {
     id: 'demo-irish-chain',
-    name: 'Double Irish Chain Throw',
-    difficulty: 'Intermediate',
+    name: 'Double Irish Chain',
+    difficulty: 5,
+    tier: 'Intermediate',
     steps: 9,
-    thumbnail: '🍀',
-    desc: 'Interlocking chains of color weave across this classic design. Two simple blocks, one stunning result.',
+    emoji: '🍀',
+    swatch: `repeating-conic-gradient(#2a9d8f22 0% 25%, #a7c95718 0% 50%) 50% / 20px 20px`,
+    hasDemo: true,
+  },
+  {
+    id: 'pinwheel',
+    name: 'Pinwheel Lap Quilt',
+    difficulty: 3,
+    tier: 'Beginner',
+    steps: 8,
+    emoji: '🌀',
+    swatch: `conic-gradient(#7209b720 0deg, #c77dff18 90deg, #7209b720 180deg, #c77dff18 270deg)`,
+    hasDemo: false,
+  },
+  {
+    id: 'bears-paw',
+    name: "Bear\u2019s Paw Throw",
+    difficulty: 6,
+    tier: 'Intermediate',
+    steps: 14,
+    emoji: '🐻',
+    swatch: `repeating-conic-gradient(#8b451320 0% 25%, #d4a57418 0% 50%) 50% / 28px 28px`,
+    hasDemo: false,
+  },
+  {
+    id: 'storm-at-sea',
+    name: 'Storm at Sea',
+    difficulty: 7,
+    tier: 'Advanced',
+    steps: 16,
+    emoji: '🌊',
+    swatch: `repeating-linear-gradient(45deg, transparent 0 10px, #26465318 10px 11px), repeating-linear-gradient(-45deg, transparent 0 10px, #457b9d18 10px 11px)`,
+    hasDemo: false,
+  },
+  {
+    id: 'cathedral-windows',
+    name: 'Cathedral Windows',
+    difficulty: 9,
+    tier: 'Expert',
+    steps: 20,
+    emoji: '🏛️',
+    swatch: `radial-gradient(circle, #6a057218 30%, transparent 30%), radial-gradient(circle at 0 0, #ab83a115 25%, transparent 25%), radial-gradient(circle at 100% 0, #ab83a115 25%, transparent 25%), radial-gradient(circle at 0 100%, #ab83a115 25%, transparent 25%), radial-gradient(circle at 100% 100%, #ab83a115 25%, transparent 25%)`,
+    hasDemo: false,
+  },
+  {
+    id: 'rail-fence',
+    name: 'Rail Fence Baby Blanket',
+    difficulty: 2,
+    tier: 'Beginner',
+    steps: 6,
+    emoji: '🚂',
+    swatch: `repeating-linear-gradient(45deg, #84a98c22 0 8px, #cad2c518 8px 16px)`,
+    hasDemo: false,
   },
 ];
 
@@ -154,8 +221,8 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="max-w-4xl mx-auto px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
+      {/* ═══════════════ Hero ═══════════════ */}
+      <section className="max-w-4xl mx-auto px-6 pt-20 sm:pt-28 pb-16 sm:pb-20 text-center">
         <h1
           className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6"
           style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
@@ -163,10 +230,10 @@ export default function LandingPage() {
           Read Any Quilt Pattern
         </h1>
         <p
-          className="text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-12 leading-relaxed"
           style={{ color: theme.colors.inkGray, fontFamily: theme.typography.fontFamily.body }}
         >
-          AI-powered pattern parsing for quilters of all levels
+          Upload a pattern. Get clear steps. Know exactly how much fabric you need.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
@@ -174,7 +241,7 @@ export default function LandingPage() {
             className="w-full sm:w-auto px-10 py-4 text-white rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity min-w-[220px] min-h-[56px] text-center flex items-center justify-center"
             style={{ backgroundColor: theme.colors.persimmon, boxShadow: theme.shadows.lifted }}
           >
-            Try It Free
+            Try It Now
           </Link>
           <Link
             href="/reader?demo=demo-log-cabin"
@@ -186,45 +253,21 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Problem statement */}
-      <section className="max-w-3xl mx-auto px-6 pb-16 sm:pb-20">
-        <div
-          className="rounded-2xl p-8 sm:p-10 text-center"
-          style={{
-            backgroundColor: theme.colors.rice,
-            boxShadow: theme.shadows.soft,
-            border: theme.borders.hairline,
-          }}
-        >
-          <p
-            className="text-xs uppercase tracking-widest font-semibold mb-4"
-            style={{ color: theme.colors.persimmon }}
-          >
-            The problem
-          </p>
-          <p
-            className="text-xl sm:text-2xl font-medium leading-relaxed"
-            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
-          >
-            Pattern confusion is the #1 barrier for quilters. Instructions split across pages, inconsistent notation, complex math.
-          </p>
-          <p
-            className="mt-4 text-base leading-relaxed"
-            style={{ color: theme.colors.inkGray }}
-          >
-            Quiltographer reads your pattern so you can focus on your fabric.
-          </p>
-        </div>
-      </section>
+      {/* Thin decorative divider */}
+      <div className="max-w-xs mx-auto flex items-center gap-4 mb-16">
+        <div className="flex-1 h-px" style={{ backgroundColor: `${theme.colors.indigo}15` }} />
+        <span className="text-xs tracking-[0.3em] uppercase" style={{ color: theme.colors.inkLight }}>tools</span>
+        <div className="flex-1 h-px" style={{ backgroundColor: `${theme.colors.indigo}15` }} />
+      </div>
 
-      {/* Feature grid — 3 cards */}
-      <section className="max-w-5xl mx-auto px-6 pb-20">
+      {/* ═══════════════ Feature Cards — 3 Core Tools ═══════════════ */}
+      <section className="max-w-5xl mx-auto px-6 pb-24">
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
               icon: '📖',
               title: 'Pattern Reader',
-              desc: 'Upload any pattern, get clear step-by-step instructions. One step at a time, readable from your sewing machine.',
+              desc: 'Upload any pattern PDF. Get clear, step-by-step instructions you can read from your sewing machine.',
               color: theme.colors.persimmon,
               bg: `${theme.colors.persimmon}12`,
               link: '/reader',
@@ -232,7 +275,7 @@ export default function LandingPage() {
             {
               icon: '🧮',
               title: 'Fabric Calculator',
-              desc: 'Know exactly how much fabric you need, with waste margin built in. No more emergency trips to the quilt shop.',
+              desc: 'Know exactly how much fabric you need, with waste margin built in. No more emergency quilt shop runs.',
               color: theme.colors.sage,
               bg: `${theme.colors.sage}18`,
               link: '/calculator',
@@ -240,7 +283,7 @@ export default function LandingPage() {
             {
               icon: '🎯',
               title: 'Difficulty Rating',
-              desc: 'See at a glance if a pattern matches your skill level. Scored 1–10 with clear breakdowns of what makes it tricky.',
+              desc: 'See at a glance if a pattern matches your skill level. Scored 1\u201310 with clear technique breakdowns.',
               color: theme.colors.indigo,
               bg: `${theme.colors.indigo}12`,
               link: '/gallery',
@@ -276,54 +319,132 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Demo preview */}
-      <section className="max-w-3xl mx-auto px-6 pb-20">
-        <div
-          className="rounded-2xl overflow-hidden"
-          style={{ backgroundColor: theme.colors.rice, boxShadow: theme.shadows.lifted, border: theme.borders.hairline }}
-        >
-          <div
-            className="px-6 py-4 flex items-center gap-3"
-            style={{ backgroundColor: `${theme.colors.indigo}08`, borderBottom: theme.borders.hairline }}
+      {/* ═══════════════ Pattern Gallery — 10 Patterns ═══════════════ */}
+      <section className="py-20" style={{ backgroundColor: theme.colors.rice }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <h2
+            className="text-3xl sm:text-4xl font-bold text-center mb-3"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
           >
-            <span className="text-xl">🧵</span>
-            <span className="font-semibold text-sm" style={{ color: theme.colors.indigo }}>Pattern Reader</span>
-            <span className="text-sm ml-auto" style={{ color: theme.colors.inkGray }}>Step 3 of 12</span>
+            Explore Sample Patterns
+          </h2>
+          <p className="text-center mb-14 text-lg max-w-xl mx-auto" style={{ color: theme.colors.inkGray }}>
+            Try the reader instantly — no upload needed. Pick a pattern and start reading.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+            {SAMPLE_PATTERNS.map((pattern) => {
+              const tierStyle = DIFFICULTY_TIERS[pattern.tier];
+              return (
+                <Link
+                  key={pattern.id}
+                  href={pattern.hasDemo ? `/reader?demo=${pattern.id}` : '/gallery'}
+                  className="group block rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg"
+                  style={{
+                    backgroundColor: theme.colors.washi,
+                    boxShadow: theme.shadows.subtle,
+                    border: theme.borders.hairline,
+                  }}
+                >
+                  {/* Quilt swatch thumbnail */}
+                  <div
+                    className="relative flex items-center justify-center"
+                    style={{
+                      aspectRatio: '1',
+                      background: pattern.swatch,
+                      backgroundColor: `${theme.colors.washiDark}`,
+                      backgroundImage: `${pattern.swatch}, ${theme.textures.washiFiber}`,
+                    }}
+                  >
+                    <span className="text-4xl sm:text-5xl drop-shadow-sm relative z-10">
+                      {pattern.emoji}
+                    </span>
+                    {/* Difficulty badge */}
+                    <span
+                      className="absolute top-2 right-2 text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 rounded-full z-10"
+                      style={{ color: tierStyle.color, backgroundColor: tierStyle.bg, backdropFilter: 'blur(4px)' }}
+                    >
+                      {pattern.difficulty}/10
+                    </span>
+                  </div>
+                  {/* Pattern info */}
+                  <div className="p-3 sm:p-4">
+                    <h3
+                      className="font-semibold text-sm sm:text-base leading-tight mb-1.5 group-hover:opacity-80 transition-opacity"
+                      style={{ color: theme.colors.indigo, fontFamily: theme.typography.fontFamily.display }}
+                    >
+                      {pattern.name}
+                    </h3>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span
+                        className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full"
+                        style={{ color: tierStyle.color, backgroundColor: tierStyle.bg }}
+                      >
+                        {pattern.tier}
+                      </span>
+                      <span className="text-[10px] sm:text-xs" style={{ color: theme.colors.inkLight }}>
+                        {pattern.steps} steps
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
-          <div className="p-6 sm:p-8">
-            <p className="text-sm uppercase tracking-wider mb-1" style={{ color: theme.colors.inkGray }}>Step 3 of 12</p>
-            <h3 className="text-xl font-bold mb-4" style={{ color: theme.colors.indigo }}>Sew Strip Sets</h3>
-            <p className="leading-relaxed mb-4" style={{ color: theme.colors.inkGray }}>
-              Sew (2) 2&frac12;&quot; x Width of Fabric (WOF) Fabric A strips and (1) 2&frac12;&quot; x WOF Fabric B strip together along the long edges, with Right Sides Together (RST). Press seams toward the darker fabric.
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              <span
-                className="px-3 py-1 rounded-full text-xs font-medium"
-                style={{ backgroundColor: `${theme.colors.indigo}15`, color: theme.colors.indigo }}
-              >
-                strip piecing
-              </span>
-              <span
-                className="px-3 py-1 rounded-full text-xs font-medium"
-                style={{ backgroundColor: `${theme.colors.indigo}15`, color: theme.colors.indigo }}
-              >
-                pressing
-              </span>
-            </div>
-            <div
-              className="mt-4 p-3 rounded-lg text-sm flex gap-2"
-              style={{ backgroundColor: `${theme.colors.sage}15`, color: theme.colors.sage }}
+
+          <div className="text-center mt-8">
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 text-sm font-medium transition-opacity hover:opacity-70"
+              style={{ color: theme.colors.indigo }}
             >
-              <span>🤖</span>
-              <span className="italic">&quot;Place your strips with the pretty sides kissing, sew along the long edge with a &frac14;&quot; seam, then press flat...&quot;</span>
-            </div>
+              View full gallery
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* How it works */}
+      {/* ═══════════════ Try It Now CTA ═══════════════ */}
+      <section className="py-20 px-6">
+        <div
+          className="max-w-3xl mx-auto text-center rounded-2xl p-10 sm:p-14"
+          style={{
+            backgroundColor: theme.colors.rice,
+            boxShadow: theme.shadows.lifted,
+            border: theme.borders.hairline,
+            backgroundImage: theme.textures.washiFiber,
+          }}
+        >
+          <p
+            className="text-xs uppercase tracking-[0.2em] font-semibold mb-4"
+            style={{ color: theme.colors.persimmon }}
+          >
+            Ready to sew?
+          </p>
+          <h2
+            className="text-2xl sm:text-3xl font-bold mb-4"
+            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
+          >
+            Upload your pattern and start reading
+          </h2>
+          <p className="text-base sm:text-lg mb-8 max-w-lg mx-auto leading-relaxed" style={{ color: theme.colors.inkGray }}>
+            Drop any PDF quilt pattern. Quiltographer extracts the steps, materials, and measurements — so you can focus on fabric, not frustration.
+          </p>
+          <Link
+            href="/reader"
+            className="inline-flex items-center justify-center px-10 py-4 text-white rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity min-w-[220px] min-h-[56px]"
+            style={{ backgroundColor: theme.colors.persimmon, boxShadow: theme.shadows.lifted }}
+          >
+            Try It Now
+          </Link>
+        </div>
+      </section>
+
+      {/* ═══════════════ How It Works ═══════════════ */}
       <section
-        id="how-it-works"
         className="py-20"
         style={{ backgroundColor: theme.colors.rice }}
       >
@@ -380,8 +501,53 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Built for Quilters */}
-      <section className="py-20 px-6">
+      {/* ═══════════════ Demo Preview ═══════════════ */}
+      <section className="max-w-3xl mx-auto px-6 py-20">
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ backgroundColor: theme.colors.rice, boxShadow: theme.shadows.lifted, border: theme.borders.hairline }}
+        >
+          <div
+            className="px-6 py-4 flex items-center gap-3"
+            style={{ backgroundColor: `${theme.colors.indigo}08`, borderBottom: theme.borders.hairline }}
+          >
+            <span className="text-xl">🧵</span>
+            <span className="font-semibold text-sm" style={{ color: theme.colors.indigo }}>Pattern Reader</span>
+            <span className="text-sm ml-auto" style={{ color: theme.colors.inkGray }}>Step 3 of 12</span>
+          </div>
+          <div className="p-6 sm:p-8">
+            <p className="text-sm uppercase tracking-wider mb-1" style={{ color: theme.colors.inkGray }}>Step 3 of 12</p>
+            <h3 className="text-xl font-bold mb-4" style={{ color: theme.colors.indigo }}>Sew Strip Sets</h3>
+            <p className="leading-relaxed mb-4" style={{ color: theme.colors.inkGray }}>
+              Sew (2) 2&frac12;&quot; x Width of Fabric (WOF) Fabric A strips and (1) 2&frac12;&quot; x WOF Fabric B strip together along the long edges, with Right Sides Together (RST). Press seams toward the darker fabric.
+            </p>
+            <div className="flex gap-2 flex-wrap">
+              <span
+                className="px-3 py-1 rounded-full text-xs font-medium"
+                style={{ backgroundColor: `${theme.colors.indigo}15`, color: theme.colors.indigo }}
+              >
+                strip piecing
+              </span>
+              <span
+                className="px-3 py-1 rounded-full text-xs font-medium"
+                style={{ backgroundColor: `${theme.colors.indigo}15`, color: theme.colors.indigo }}
+              >
+                pressing
+              </span>
+            </div>
+            <div
+              className="mt-4 p-3 rounded-lg text-sm flex gap-2"
+              style={{ backgroundColor: `${theme.colors.sage}15`, color: theme.colors.sage }}
+            >
+              <span>🤖</span>
+              <span className="italic">&quot;Place your strips with the pretty sides kissing, sew along the long edge with a &frac14;&quot; seam, then press flat...&quot;</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ Built for Quilters ═══════════════ */}
+      <section className="py-20 px-6" style={{ backgroundColor: theme.colors.rice }}>
         <div className="max-w-5xl mx-auto">
           <h2
             className="text-3xl font-bold text-center mb-4"
@@ -445,61 +611,14 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Sample patterns */}
-      <section className="py-20" style={{ backgroundColor: theme.colors.rice }}>
-        <div className="max-w-5xl mx-auto px-6">
-          <h2
-            className="text-3xl font-bold text-center mb-4"
-            style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
-          >
-            Try These Examples
-          </h2>
-          <p className="text-center mb-12 text-lg" style={{ color: theme.colors.inkGray }}>
-            Try the reader with a real pattern — no upload needed. Pick one and start reading.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SAMPLE_PATTERNS.map((pattern) => (
-              <Link
-                key={pattern.id}
-                href={`/reader?demo=${pattern.id}`}
-                className="group block p-5 rounded-xl border-2 transition-colors"
-                style={{
-                  backgroundColor: theme.colors.washi,
-                  borderColor: `${theme.colors.inkGray}18`,
-                  backgroundImage: theme.textures.washiFiber,
-                }}
-              >
-                <div className="text-4xl mb-3">{pattern.thumbnail}</div>
-                <h3
-                  className="font-semibold group-hover:opacity-80 transition-opacity mb-1"
-                  style={{ color: theme.colors.indigo }}
-                >
-                  {pattern.name}
-                </h3>
-                <div className="flex gap-2 mb-2">
-                  <span
-                    className="text-xs px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: `${theme.colors.indigo}15`, color: theme.colors.indigo }}
-                  >
-                    {pattern.difficulty}
-                  </span>
-                  <span className="text-xs" style={{ color: theme.colors.inkGray }}>{pattern.steps} steps</span>
-                </div>
-                <p className="text-sm leading-relaxed" style={{ color: theme.colors.inkGray }}>{pattern.desc}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Social proof */}
+      {/* ═══════════════ Social Proof ═══════════════ */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <h2
             className="text-3xl font-bold text-center mb-4"
             style={{ fontFamily: theme.typography.fontFamily.display, color: theme.colors.indigo }}
           >
-            Trusted by Quilters Worldwide
+            What Quilters Are Saying
           </h2>
           <p className="text-center mb-12 text-sm" style={{ color: theme.colors.inkLight }}>
             Beta feedback from early testers
@@ -542,7 +661,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA band */}
+      {/* ═══════════════ CTA Band ═══════════════ */}
       <section
         className="py-16 px-6"
         style={{ backgroundColor: theme.colors.indigo }}
@@ -562,12 +681,12 @@ export default function LandingPage() {
             className="inline-flex items-center justify-center px-10 py-4 rounded-xl font-semibold text-lg transition-opacity hover:opacity-90 min-h-[56px]"
             style={{ backgroundColor: theme.colors.persimmon, color: theme.colors.rice, boxShadow: theme.shadows.lifted }}
           >
-            Try It Free
+            Try It Now
           </Link>
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* ═══════════════ Pricing ═══════════════ */}
       <section id="pricing" className="py-20 px-6" style={{ backgroundColor: theme.colors.rice }}>
         <div className="max-w-5xl mx-auto">
           <h2
@@ -686,7 +805,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Email capture */}
+      {/* ═══════════════ Email Capture ═══════════════ */}
       <section className="py-20 px-6">
         <div className="max-w-xl mx-auto text-center">
           <h2
@@ -728,7 +847,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ═══════════════ Footer ═══════════════ */}
       <footer
         className="py-10 px-6"
         style={{ backgroundColor: theme.colors.indigo, borderTop: `1px solid ${theme.colors.inkGray}30` }}
