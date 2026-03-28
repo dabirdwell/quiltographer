@@ -1,4 +1,10 @@
 {
+  "name": "quiltographer-monorepo",
+  "scripts": {
+    "build": "cd quiltographer-app && npm run build",
+    "dev": "cd quiltographer-app && npm run dev",
+    "lint": "cd quiltographer-app && npm run lint"
+  },
   "dependencies": {
     "@anthropic-ai/claude-code": "^1.0.61"
   }
