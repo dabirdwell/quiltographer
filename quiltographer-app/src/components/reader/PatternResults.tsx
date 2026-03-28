@@ -13,9 +13,14 @@ interface PatternResultsProps {
 const DIFFICULTY_LABELS: Record<number, string> = {
   1: 'Beginner',
   2: 'Beginner',
-  3: 'Intermediate',
-  4: 'Advanced',
-  5: 'Expert',
+  3: 'Beginner',
+  4: 'Intermediate',
+  5: 'Intermediate',
+  6: 'Intermediate',
+  7: 'Advanced',
+  8: 'Advanced',
+  9: 'Expert',
+  10: 'Expert',
 };
 
 function AccordionSection({
