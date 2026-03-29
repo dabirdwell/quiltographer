@@ -1,6 +1,15 @@
 import React from 'react';
 import { PatternInstance } from '@/store/canvas-store';
 import { LogCabinBlock } from '@/components/patterns/LogCabinBlock';
+import { FlyingGeeseBlock } from '@/components/patterns/FlyingGeeseBlock';
+import { NinePatchBlock } from '@/components/patterns/NinePatchBlock';
+import { SashikoCrossBlock } from '@/components/patterns/SashikoCrossBlock';
+import { StarBlock } from '@/components/patterns/StarBlock';
+import { PinwheelBlock } from '@/components/patterns/PinwheelBlock';
+import { BowTieBlock } from '@/components/patterns/BowTieBlock';
+import { ChurnDashBlock } from '@/components/patterns/ChurnDashBlock';
+import { BearPawBlock } from '@/components/patterns/BearPawBlock';
+import { DrunkardPathBlock } from '@/components/patterns/DrunkardPathBlock';
 import { useCanvasStore } from '@/store/canvas-store';
 
 interface CanvasPatternProps {
@@ -45,20 +54,23 @@ export const CanvasPattern: React.FC<CanvasPatternProps> = ({
           />
         );
       case 'flying-geese':
-        // Placeholder for Flying Geese pattern
-        return (
-          <rect width="100" height="100" fill="#264653" />
-        );
+        return <FlyingGeeseBlock size={100} colors={pattern.colors as any} />;
       case 'nine-patch':
-        // Placeholder for Nine Patch pattern
-        return (
-          <rect width="100" height="100" fill="#84a98c" />
-        );
+        return <NinePatchBlock size={100} colors={pattern.colors as any} />;
       case 'sashiko-cross':
-        // Placeholder for Sashiko Cross pattern
-        return (
-          <rect width="100" height="100" fill="#e76f51" />
-        );
+        return <SashikoCrossBlock size={100} colors={pattern.colors as any} />;
+      case 'star':
+        return <StarBlock size={100} colors={pattern.colors as any} />;
+      case 'pinwheel':
+        return <PinwheelBlock size={100} colors={pattern.colors as any} />;
+      case 'bow-tie':
+        return <BowTieBlock size={100} colors={pattern.colors as any} />;
+      case 'churn-dash':
+        return <ChurnDashBlock size={100} colors={pattern.colors as any} />;
+      case 'bear-paw':
+        return <BearPawBlock size={100} colors={pattern.colors as any} />;
+      case 'drunkard-path':
+        return <DrunkardPathBlock size={100} colors={pattern.colors as any} />;
       default:
         return null;
     }

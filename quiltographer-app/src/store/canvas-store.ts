@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 export interface PatternInstance {
   id: string;
-  type: 'log-cabin' | 'flying-geese' | 'nine-patch' | 'sashiko-cross';
+  type: 'log-cabin' | 'flying-geese' | 'nine-patch' | 'sashiko-cross' | 'star' | 'pinwheel' | 'bow-tie' | 'churn-dash' | 'bear-paw' | 'drunkard-path';
   x: number;
   y: number;
   rotation: number;
@@ -35,7 +35,7 @@ const defaultColors = {
     dark: ['#264653', '#2a9d8f', '#457b9d']
   },
   'flying-geese': {
-    triangle: '#264653',
+    goose: '#264653',
     background: '#faf8f3'
   },
   'nine-patch': {
@@ -45,6 +45,34 @@ const defaultColors = {
   },
   'sashiko-cross': {
     thread: '#264653',
+    background: '#faf8f3'
+  },
+  'star': {
+    star: '#e76f51',
+    corner: '#faf8f3',
+    background: '#e9c46a'
+  },
+  'pinwheel': {
+    blade: '#264653',
+    background: '#faf8f3'
+  },
+  'bow-tie': {
+    bowtie: '#2a9d8f',
+    center: '#e76f51',
+    background: '#faf8f3'
+  },
+  'churn-dash': {
+    dash: '#264653',
+    center: '#e76f51',
+    background: '#faf8f3'
+  },
+  'bear-paw': {
+    paw: '#264653',
+    center: '#e9c46a',
+    background: '#faf8f3'
+  },
+  'drunkard-path': {
+    curve: '#2a9d8f',
     background: '#faf8f3'
   }
 };

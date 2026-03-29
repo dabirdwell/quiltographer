@@ -14,6 +14,12 @@ const PATTERN_TYPES = [
   { type: 'flying-geese' as const, label: 'Flying Geese', icon: '🪿' },
   { type: 'nine-patch' as const, label: 'Nine Patch', icon: '🔲' },
   { type: 'sashiko-cross' as const, label: 'Sashiko Cross', icon: '✦' },
+  { type: 'star' as const, label: 'Ohio Star', icon: '⭐' },
+  { type: 'pinwheel' as const, label: 'Pinwheel', icon: '🌀' },
+  { type: 'bow-tie' as const, label: 'Bow Tie', icon: '🎀' },
+  { type: 'churn-dash' as const, label: 'Churn Dash', icon: '⊞' },
+  { type: 'bear-paw' as const, label: 'Bear Paw', icon: '🐾' },
+  { type: 'drunkard-path' as const, label: "Drunkard's Path", icon: '🌊' },
 ];
 
 type PatternItem = (typeof PATTERN_TYPES)[number];
