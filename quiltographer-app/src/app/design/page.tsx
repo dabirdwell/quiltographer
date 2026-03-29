@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Canvas } from '@/components/canvas/Canvas';
 import { useCanvasStore } from '@/store/canvas-store';
 import { quiltographerTheme as theme } from '@/components/japanese/theme';
 import { WashiSurface } from '@/components/japanese/WashiSurface';
 import { Text, Button, Surface, Stack } from '@/components/ui';
+import { FanRadial } from '@/components/fan/FanRadial';
 import Link from 'next/link';
 
 const PATTERN_TYPES = [
@@ -13,10 +14,19 @@ const PATTERN_TYPES = [
   { type: 'flying-geese' as const, label: 'Flying Geese', icon: '🪿' },
   { type: 'nine-patch' as const, label: 'Nine Patch', icon: '🔲' },
   { type: 'sashiko-cross' as const, label: 'Sashiko Cross', icon: '✦' },
-] as const;
+];
+
+type PatternItem = (typeof PATTERN_TYPES)[number];
 
 export default function DesignPage() {
   const { addPattern, patterns, selectedPatternId, clearCanvas } = useCanvasStore();
+
+  const handleFanSelect = useCallback(
+    (item: PatternItem) => {
+      addPattern(item.type);
+    },
+    [addPattern],
+  );
 
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: theme.colors.washi }}>
@@ -85,6 +95,28 @@ export default function DesignPage() {
           <Canvas width={1200} height={800} />
         </div>
       </main>
+
+      {/* Right-edge radial fan — primary touch interaction for pattern selection */}
+      <FanRadial<PatternItem>
+        edge="right"
+        items={PATTERN_TYPES}
+        onSelect={handleFanSelect}
+        segmentCount={5}
+        renderItem={(item, isActive) => (
+          <div className="flex items-center gap-2" style={{ whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: isActive ? '1.5rem' : '1.125rem' }}>{item.icon}</span>
+            <span
+              style={{
+                fontSize: isActive ? theme.typography.fontSize.base : theme.typography.fontSize.sm,
+                fontFamily: theme.typography.fontFamily.body,
+                fontWeight: isActive ? 600 : 400,
+              }}
+            >
+              {item.label}
+            </span>
+          </div>
+        )}
+      />
     </div>
   );
 }
