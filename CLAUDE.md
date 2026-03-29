@@ -1,12 +1,24 @@
 # CLAUDE.md — Quiltographer
 
-## Scope — READ THESE ONLY
-The active application code is in `quiltographer-app/src/`. Everything else is archived or build artifacts.
+## PRODUCT VISION — READ BEFORE ANY SPRINT
+The current app is Phase 1 (Pattern Reader). The FULL product is a creative design studio.
+**Original spec (527 lines):** `Fawkes/Products and Services/External_References/No other coding AI...md`
+**Original concept (Apple Note):** `Claude_Vault/08_Archives/Interpretive_Archive_July2025/Quiltographer.md`
+**MVP synthesis:** `Fawkes/Products and Services/Quiltographer/QUILTOGRAPHER-MVP-SYNTHESIS-DEC2025.md`
+**Gap analysis:** `Fawkes/Products and Services/Spec_vs_Reality_Gap_Analysis.md`
 
-**Read:** `quiltographer-app/src/app/`, `quiltographer-app/src/components/`, `quiltographer-app/src/lib/`, `quiltographer-app/src/data/`, `quiltographer-app/src/hooks/`
-**Also read:** `quiltographer-app/package.json`, `quiltographer-app/tsconfig.json`, this file
+Key features NOT YET BUILT that are in the spec:
+- Infinite design canvas with layers, grid, snap-to
+- Full Japanese fan radial interface (FanRadial.tsx is a placeholder)
+- Color management with fabric texture simulation
+- AI style transfer (image → quilt pattern)
+- Construction sequence intelligence (build order)
+- Smart Library (catalog scraps/fabric/thread → AI suggests designs)
+- Thread/fabric shopping assistance
+- Pattern translation between machine types
+- 3D preview with draping simulation
 
-**DO NOT read:** `.archive/`, `app_backup/`, `node_modules/`, `.next/`, planning docs from months ago. They are historical and will waste your context.
+Do NOT build features that conflict with this roadmap.
 
 ## Project
 Quiltographer is an AI-powered quilting pattern reader. Upload a PDF pattern → get clear step-by-step instructions, fabric calculations, and difficulty ratings.
