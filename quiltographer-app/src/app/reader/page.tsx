@@ -8,6 +8,15 @@ import { MaterialsList } from '@/components/reader/MaterialsList';
 import { DifficultyEstimator } from '@/components/reader/DifficultyEstimator';
 import { FabricCalculator } from '@/components/reader/FabricCalculator';
 import { PatternResults } from '@/components/reader/PatternResults';
+import { ReaderToolbar, ToolPanel } from '@/components/reader/ReaderToolbar';
+import type { ToolPanelId } from '@/components/reader/ReaderToolbar';
+import { MakeMode } from '@/components/reader/MakeMode';
+import { MiniCalculators } from '@/components/reader/MiniCalculators';
+import { CuttingChecklist, extractCuttingItems } from '@/components/reader/CuttingChecklist';
+import { VisualGuide } from '@/components/reader/VisualGuide';
+import { SessionWelcome } from '@/components/reader/SessionWelcome';
+import { ViewFilters, countStepsByType } from '@/components/reader/ViewFilters';
+import type { ViewFilter } from '@/components/reader/ViewFilters';
 import { quiltographerTheme } from '@/components/japanese/theme';
 import { Text, Stack, Surface, Button, Callout, ProgressBar } from '@/components/ui';
 import { useClarification } from '@/hooks/useClarification';
@@ -280,6 +289,15 @@ export default function PatternReaderPage() {
   const [uploadedFilePreview, setUploadedFilePreview] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
 
+  // Toolbar tool panel state
+  const [activeTool, setActiveTool] = useState<ToolPanelId | null>(null);
+
+  // View filters state (results view)
+  const [viewFilter, setViewFilter] = useState<ViewFilter>('all');
+
+  // Session welcome state
+  const [showSessionWelcome, setShowSessionWelcome] = useState(false);
+
   // Session persistence
   const [pendingSession, setPendingSession] = useState<PatternSession | null>(null);
   const { saveSession, loadSession, clearSession, findLatestSession } = usePatternSession();
@@ -344,6 +362,14 @@ export default function PatternReaderPage() {
     const latest = findLatestSession();
     if (latest && latest.pattern.steps.length > 0) {
       setPendingSession(latest);
+      // Show the richer SessionWelcome overlay if user hasn't permanently dismissed it
+      try {
+        if (localStorage.getItem('quiltographer_welcomed') !== 'dismissed') {
+          setShowSessionWelcome(true);
+        }
+      } catch {
+        setShowSessionWelcome(true);
+      }
     }
   }, [findLatestSession]);
 
@@ -578,6 +604,7 @@ export default function PatternReaderPage() {
       clearSession(pattern.source.fileName);
     }
     setViewState('upload');
+    setActiveTool(null);
     setPattern(null);
     setCurrentStepIndex(0);
     setCompletedSteps([]);
@@ -766,8 +793,47 @@ export default function PatternReaderPage() {
           onNavigate={handleBreadcrumbNavigate}
         />
 
-        {/* Resume session banner */}
-        {viewState === 'upload' && pendingSession && (
+        {/* SessionWelcome overlay — richer resume experience */}
+        {viewState === 'upload' && pendingSession && showSessionWelcome && (
+          <SessionWelcome
+            patternName={pendingSession.pattern.name}
+            currentStep={pendingSession.currentStepIndex + 1}
+            totalSteps={pendingSession.pattern.steps.length}
+            timeSinceLastVisit={pendingSession.lastAccessed
+              ? (() => {
+                  const diff = Date.now() - new Date(pendingSession.lastAccessed).getTime();
+                  const hours = Math.floor(diff / 3600000);
+                  if (hours < 1) return 'just now';
+                  if (hours < 24) return `${hours}h ago`;
+                  const days = Math.floor(hours / 24);
+                  return `${days} day${days === 1 ? '' : 's'} ago`;
+                })()
+              : null}
+            progressSummary={{
+              stepsCompleted: pendingSession.completedSteps.length,
+              percentComplete: Math.round(
+                (pendingSession.completedSteps.length / pendingSession.pattern.steps.length) * 100
+              ),
+              lastPressInfo: null,
+              nextPressHint: null,
+            }}
+            onContinue={() => {
+              setShowSessionWelcome(false);
+              handleResumeSession(pendingSession);
+            }}
+            onStartOver={() => {
+              setShowSessionWelcome(false);
+              handleStartFresh();
+            }}
+            onDismiss={() => {
+              setShowSessionWelcome(false);
+              try { localStorage.setItem('quiltographer_welcomed', 'dismissed'); } catch {}
+            }}
+          />
+        )}
+
+        {/* Compact resume banner — shown if SessionWelcome was permanently dismissed */}
+        {viewState === 'upload' && pendingSession && !showSessionWelcome && (
           <div className="max-w-[600px] mx-auto mb-6">
             <Surface variant="rice" elevated padding="md">
               <Stack direction="horizontal" gap="md" align="center" className="justify-between">
@@ -901,6 +967,18 @@ export default function PatternReaderPage() {
               </div>
             )}
 
+            {/* View filters — filter/organize parsed results */}
+            <div className="max-w-[900px] mx-auto mb-4">
+              <ViewFilters
+                currentFilter={viewFilter}
+                onFilterChange={setViewFilter}
+                stepCounts={{
+                  all: pattern.steps.length,
+                  ...countStepsByType(pattern.steps),
+                }}
+              />
+            </div>
+
             <PatternResults
               pattern={pattern}
               onStartReading={() => setViewState('reading')}
@@ -917,6 +995,85 @@ export default function PatternReaderPage() {
               <Callout variant="info" icon="✨">
                 <strong>Demo mode.</strong> These are sample instructions to show the reading experience.
               </Callout>
+            )}
+
+            {/* Artisan's toolbar — tools within reach */}
+            <ReaderToolbar
+              activeTool={activeTool}
+              onToolChange={setActiveTool}
+              highContrast={highContrast}
+            />
+
+            {/* MakeMode overlay — full-screen focused experience */}
+            {activeTool === 'make' && (
+              <MakeMode
+                step={{
+                  number: currentStepIndex + 1,
+                  title: currentStep.title || `Step ${currentStep.number}`,
+                  instruction: currentStep.instruction,
+                  techniques: currentStep.techniques,
+                  warning: currentStep.warnings?.[0]?.message,
+                  note: currentStep.tips?.[0]?.text,
+                }}
+                totalSteps={pattern.steps.length}
+                patternName={pattern.name}
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                onOpenDrawer={() => setActiveTool(null)}
+                onStepChange={(num) => {
+                  setCurrentStepIndex(num - 1);
+                }}
+                fontSize={fontScale >= 2 ? 'xlarge' : fontScale >= 1.5 ? 'large' : 'normal'}
+              />
+            )}
+
+            {/* MiniCalculators — bottom drawer with binding/backing/conversion */}
+            <MiniCalculators
+              isOpen={activeTool === 'calc'}
+              onClose={() => setActiveTool(null)}
+              defaultWidth={pattern.finishedSize?.width}
+              defaultHeight={pattern.finishedSize?.height}
+            />
+
+            {/* Cutting Checklist — inline panel */}
+            {activeTool === 'cut' && (
+              <ToolPanel
+                isOpen
+                onClose={() => setActiveTool(null)}
+                title="✂️ Cutting Checklist"
+                highContrast={highContrast}
+              >
+                <CuttingChecklist
+                  items={extractCuttingItems(pattern.steps)}
+                  patternId={pattern.id}
+                />
+              </ToolPanel>
+            )}
+
+            {/* Visual Guide — inline panel with technique diagram */}
+            {activeTool === 'guide' && (
+              <ToolPanel
+                isOpen
+                onClose={() => setActiveTool(null)}
+                title="📐 Visual Guide"
+                highContrast={highContrast}
+              >
+                {currentStep.techniques?.includes('1/4" seam') || currentStep.instruction.toLowerCase().includes('seam') ? (
+                  <VisualGuide type="seam" description="Standard ¼″ seam allowance" />
+                ) : currentStep.instruction.toLowerCase().includes('press') || currentStep.instruction.toLowerCase().includes('iron') ? (
+                  <VisualGuide type="press" description="Press seam toward darker fabric" />
+                ) : currentStep.instruction.toLowerCase().includes('cut') ? (
+                  <VisualGuide type="cut" description="Cut along the marked line" />
+                ) : currentStep.instruction.toLowerCase().includes('rotate') ? (
+                  <VisualGuide type="rotate" description="Rotate your unit" />
+                ) : currentStep.techniques?.some(t => t.includes('HST') || t.includes('Half Square')) ? (
+                  <VisualGuide type="technique" technique="HST" description="Half-square triangle construction" />
+                ) : currentStep.instruction.toLowerCase().includes('right sides together') || currentStep.instruction.includes('RST') ? (
+                  <VisualGuide type="technique" technique="RST" description="Place right sides together" />
+                ) : (
+                  <VisualGuide type="seam" description="Standard quilting technique reference" />
+                )}
+              </ToolPanel>
             )}
 
             {/* Toggle buttons — Materials, Analysis & Overview */}
