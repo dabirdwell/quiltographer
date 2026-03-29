@@ -1,0 +1,39 @@
+# Dependencies and build artifacts
+node_modules/
+.next/
+dist/
+build/
+out/
+coverage/
+
+# Lock files (massive token hogs)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Archive — historical, not needed for coding
+.archive/
+app_backup/
+planning-docs/
+
+# Generated files
+*.min.js
+*.map
+*.d.ts
+
+# IDE and OS
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+
+# Prisma migrations (schema.prisma is enough)
+prisma/migrations/
+
+# Public assets CC doesn't need
+public/fonts/
+public/images/
+*.svg
+*.png
+*.ico
+*.jpg
