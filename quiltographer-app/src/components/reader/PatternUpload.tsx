@@ -4,16 +4,33 @@ import React, { useState, useCallback, useRef } from 'react';
 import { quiltographerTheme } from '../japanese/theme';
 import { WashiSurface } from '../japanese/WashiSurface';
 
+const ACCEPTED_TYPES: Record<string, string> = {
+  'application/pdf': 'PDF',
+  'image/png': 'PNG',
+  'image/jpeg': 'JPEG',
+  'image/webp': 'WebP',
+};
+
+const ACCEPT_STRING = Object.keys(ACCEPTED_TYPES).join(',');
+
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
 interface PatternUploadProps {
   onPatternLoaded: (file: File) => void;
   isProcessing?: boolean;
 }
 
 /**
- * PatternUpload - PDF upload with drag-and-drop
+ * PatternUpload - PDF & image upload with drag-and-drop
  *
  * The entry point for the Pattern Reader experience.
- * Accepts PDF patterns via click or drag-drop.
+ * Accepts PDF patterns and pattern images via click or drag-drop.
  */
 export function PatternUpload({
   onPatternLoaded,
@@ -23,6 +40,32 @@ export function PatternUpload({
   const [error, setError] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const dragCountRef = useRef(0);
+
+  const validateFile = useCallback((file: File): string | null => {
+    if (!ACCEPTED_TYPES[file.type]) {
+      const ext = file.name.split('.').pop()?.toLowerCase();
+      if (ext === 'pdf' || ext === 'png' || ext === 'jpg' || ext === 'jpeg' || ext === 'webp') {
+        // File extension looks valid but MIME type doesn't match — allow it
+        return null;
+      }
+      return `"${file.name}" isn't a supported file type. Please upload a PDF or image (PNG, JPG, WebP).`;
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      return `This file is ${formatFileSize(file.size)} — the maximum is ${formatFileSize(MAX_FILE_SIZE)}. Try a smaller file or compress it first.`;
+    }
+    return null;
+  }, []);
+
+  const handleFile = useCallback((file: File) => {
+    const validationError = validateFile(file);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    setError(null);
+    setFileName(file.name);
+    onPatternLoaded(file);
+  }, [validateFile, onPatternLoaded]);
 
   const handleDragEnter = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -46,33 +89,23 @@ export function PatternUpload({
     e.preventDefault();
     setIsDragging(false);
     dragCountRef.current = 0;
-    setError(null);
 
     const files = e.dataTransfer.files;
     if (files.length > 0) {
-      const file = files[0];
-      if (file.type === 'application/pdf') {
-        setFileName(file.name);
-        onPatternLoaded(file);
-      } else {
-        setError('Please upload a PDF file. Other file types are not supported.');
-      }
+      handleFile(files[0]);
     }
-  }, [onPatternLoaded]);
+  }, [handleFile]);
 
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(null);
     const files = e.target.files;
     if (files && files.length > 0) {
-      const file = files[0];
-      if (file.type === 'application/pdf') {
-        setFileName(file.name);
-        onPatternLoaded(file);
-      } else {
-        setError('Please upload a PDF file. Other file types are not supported.');
-      }
+      handleFile(files[0]);
     }
-  }, [onPatternLoaded]);
+    // Reset input so re-selecting the same file triggers onChange
+    e.target.value = '';
+  }, [handleFile]);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
     <WashiSurface elevated>
@@ -81,6 +114,16 @@ export function PatternUpload({
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
+        onClick={() => !isProcessing && fileInputRef.current?.click()}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fileInputRef.current?.click();
+          }
+        }}
+        aria-label="Upload a pattern file. Drag and drop or click to browse."
         style={{
           padding: quiltographerTheme.spacing.meditate,
           textAlign: 'center',
@@ -92,6 +135,7 @@ export function PatternUpload({
           cursor: isProcessing ? 'wait' : 'pointer',
           opacity: isProcessing ? 0.7 : 1,
           transform: isDragging ? 'scale(1.02)' : 'scale(1)',
+          outline: 'none',
         }}
       >
         {isProcessing ? (
@@ -164,7 +208,7 @@ export function PatternUpload({
                 transition: 'all 0.2s ease-out',
               }}
             >
-              {isDragging ? 'Drop it here!' : 'Drop your pattern PDF here'}
+              {isDragging ? 'Drop it here!' : 'Drop your pattern file here'}
             </p>
             <p
               className="sm:hidden"
@@ -175,7 +219,7 @@ export function PatternUpload({
                 marginBottom: '0.5rem',
               }}
             >
-              Upload your pattern PDF
+              Upload your pattern
             </p>
             {!isDragging && (
               <p
@@ -190,9 +234,11 @@ export function PatternUpload({
                 or click to browse your files
               </p>
             )}
-            <label
+            <div
               style={{
-                display: isDragging ? 'none' : 'inline-block',
+                display: isDragging ? 'none' : 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 padding: '0.75rem 1.5rem',
                 minHeight: '48px',
                 minWidth: '160px',
@@ -205,18 +251,17 @@ export function PatternUpload({
                 cursor: 'pointer',
                 transition: `all ${quiltographerTheme.timing.quick} ${quiltographerTheme.timing.easeOut}`,
                 boxShadow: quiltographerTheme.shadows.soft,
-                lineHeight: '48px',
-                textAlign: 'center',
               }}
             >
-              Choose PDF
-              <input
-                type="file"
-                accept="application/pdf"
-                onChange={handleFileSelect}
-                style={{ display: 'none' }}
-              />
-            </label>
+              Choose File
+            </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept={ACCEPT_STRING}
+              onChange={handleFileSelect}
+              style={{ display: 'none' }}
+            />
             <p
               style={{
                 marginTop: '1rem',
@@ -225,13 +270,14 @@ export function PatternUpload({
                 fontFamily: quiltographerTheme.typography.fontFamily.body,
               }}
             >
-              PDF files only. Works best with text-based patterns.
+              PDF, PNG, JPG, or WebP — up to 50 MB
             </p>
           </>
         )}
 
         {error && (
           <div
+            role="alert"
             style={{
               marginTop: quiltographerTheme.spacing.breathe,
               padding: '0.75rem 1rem',
