@@ -874,6 +874,8 @@ export default function LandingPage() {
             <Link href="/gallery" className="hover:opacity-80 transition-opacity">Gallery</Link>
             <Link href="/calculator" className="hover:opacity-80 transition-opacity">Calculator</Link>
             <a href="#pricing" className="hover:opacity-80 transition-opacity">Pricing</a>
+            <Link href="/privacy" className="hover:opacity-80 transition-opacity">Privacy</Link>
+            <Link href="/terms" className="hover:opacity-80 transition-opacity">Terms</Link>
           </div>
         </div>
       </footer>
