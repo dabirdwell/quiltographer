@@ -148,23 +148,47 @@ Keep your response concise (2-4 sentences) but clear. Assume the reader is a beg
  * Mock clarification for development without API key
  */
 function generateMockClarification(instruction: string): string {
-  const upperInstruction = instruction.toUpperCase();
+  const upper = instruction.toUpperCase();
   
-  if (upperInstruction.includes('RST')) {
-    return 'Place the two fabric pieces with their printed/colored sides facing each other. This hides the seam on the inside of your finished quilt.';
+  if (upper.includes('RST')) {
+    return 'Place the two fabric pieces with their printed/colored sides facing each other (Right Sides Together). When you sew and flip them open, the seam will be hidden on the inside of your finished quilt.';
   }
-  if (upperInstruction.includes('HST')) {
-    return 'A Half Square Triangle is made by sewing two squares diagonally, then cutting them apart. You\'ll get two identical triangle-square units.';
+  if (upper.includes('HST') || upper.includes('HALF SQUARE')) {
+    return 'A Half Square Triangle (HST) is made by drawing a diagonal line on a light square, placing it on a dark square RST, sewing ¼" on each side of the line, then cutting on the line. You get two identical triangle-square units from each pair!';
   }
-  if (upperInstruction.includes('WOF')) {
-    return 'Cut across the full width of your fabric (about 42-44 inches from edge to edge). Your strip will be as long as your fabric is wide.';
+  if (upper.includes('WOF') || upper.includes('WIDTH OF FABRIC')) {
+    return 'Cut across the full width of your fabric (about 42-44 inches from selvage to selvage). Your strip will be as long as your fabric is wide. This is the most common way to cut quilting strips.';
   }
-  if (upperInstruction.includes('PRESS')) {
-    return 'Use your iron to flatten the seam. "Press" means lift and set down the iron—don\'t slide it, which can stretch the fabric.';
+  if (upper.includes('PRESS')) {
+    return 'Use your iron to flatten the seam. "Press" means lift and set down the iron — don\'t slide it, which can stretch and distort your fabric. Press seams toward the darker fabric to prevent show-through.';
   }
-  if (upperInstruction.includes('CHAIN')) {
-    return 'Feed pieces through your sewing machine one after another without cutting the thread between them. This saves time and thread!';
+  if (upper.includes('CHAIN')) {
+    return 'Feed pieces through your sewing machine one after another without cutting the thread between them. This saves time, thread, and keeps your pieces in order. Snip them apart when you\'re done with the whole batch.';
+  }
+  if (upper.includes('ROTATE') || upper.includes('CLOCKWISE')) {
+    return 'Turn your pieced unit 90° clockwise (a quarter turn to the right). This sets up the next strip to be added along the correct edge. The rotation creates the spiral pattern that gives log cabin blocks their distinctive look.';
+  }
+  if (upper.includes('TRIM') || upper.includes('SQUARE UP')) {
+    return 'Use your rotary cutter and ruler to trim the edges even. After sewing, the strip will overhang slightly — trimming makes everything flush. This keeps your block accurate as you add more rounds.';
+  }
+  if (upper.includes('SEAM') && upper.includes('¼')) {
+    return 'Sew exactly ¼ inch from the edge of your fabric. This is the standard quilting seam allowance. A consistent ¼" seam is the single most important skill in quilting — even small variations compound over many seams.';
+  }
+  if (upper.includes('CENTER') || upper.includes('HEART')) {
+    return 'The center square is the starting point of your block — everything else builds outward from it. Cut it precisely, because any error here gets magnified with every round of strips you add.';
+  }
+  if (upper.includes('STRIP')) {
+    return 'Strips are long, narrow pieces of fabric cut to a specific width (usually 2½" for standard log cabin blocks). You\'ll sew these around the center square in order, building outward like the logs in a cabin wall.';
+  }
+  if (upper.includes('ROUND') || upper.includes('REPEAT')) {
+    return 'Each "round" means adding strips to all four sides of your growing block. After completing a round, your block gets bigger by one strip width on each side. Continue until you reach the desired finished size.';
+  }
+  if (upper.includes('SELVAGE')) {
+    return 'The selvage is the tightly woven edge on each side of your fabric. Always trim off selvages before cutting pieces — they\'re denser than the rest of the fabric and can cause puckering if included in your quilt.';
+  }
+  if (upper.includes('BIAS')) {
+    return 'The bias is the diagonal direction of fabric, at 45° to the straight grain. Fabric stretches most on the bias. Be careful not to pull or tug bias edges — they can distort your block. Handle gently and press, don\'t iron.';
   }
   
-  return `This step asks you to: ${instruction.toLowerCase()}. Take your time and double-check your measurements before cutting or sewing.`;
+  return 'This step is about assembling your pieces carefully. Take your time with accurate cutting and consistent ¼" seam allowances — precision now saves frustration later. If anything feels unclear, re-read the step and check your measurements twice.';
 }
