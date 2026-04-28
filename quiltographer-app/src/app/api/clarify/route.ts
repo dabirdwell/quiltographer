@@ -122,7 +122,11 @@ Keep your response concise (2-4 sentences) but clear. Assume the reader is a beg
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Claude API error:', errorText);
-      throw new Error('Failed to get AI clarification');
+      // Fall back to mock clarification instead of failing
+      return NextResponse.json({
+        clarification: generateMockClarification(instruction),
+        remaining: rateCheck.remaining,
+      });
     }
 
     const data = await response.json();
@@ -131,10 +135,12 @@ Keep your response concise (2-4 sentences) but clear. Assume the reader is a beg
     return NextResponse.json({ clarification, remaining: rateCheck.remaining });
   } catch (error) {
     console.error('Clarification error:', error);
-    return NextResponse.json(
-      { error: 'Failed to get clarification' },
-      { status: 500 }
-    );
+    // Fall back to mock rather than failing the user experience
+    const { instruction } = await request.clone().json().catch(() => ({ instruction: '' }));
+    return NextResponse.json({
+      clarification: generateMockClarification(instruction || 'this step'),
+      remaining: null,
+    });
   }
 }
 
