@@ -1002,6 +1002,11 @@ export default function PatternReaderPage() {
               activeTool={activeTool}
               onToolChange={setActiveTool}
               highContrast={highContrast}
+              hiddenTools={
+                pattern && extractCuttingItems(pattern.steps).length === 0
+                  ? ['cut']
+                  : []
+              }
             />
 
             {/* MakeMode overlay — full-screen focused experience */}

@@ -12,6 +12,7 @@ interface ReaderToolbarProps {
   activeTool: ToolPanelId | null;
   onToolChange: (tool: ToolPanelId | null) => void;
   highContrast?: boolean;
+  hiddenTools?: ToolPanelId[];
 }
 
 const tools: Array<{ id: ToolPanelId; label: string; icon: string; shortLabel: string }> = [
@@ -28,10 +29,12 @@ const tools: Array<{ id: ToolPanelId; label: string; icon: string; shortLabel: s
  * a wooden tool handle — warm, tactile, with the persimmon
  * accent on active state.
  */
-export function ReaderToolbar({ activeTool, onToolChange, highContrast = false }: ReaderToolbarProps) {
+export function ReaderToolbar({ activeTool, onToolChange, highContrast = false, hiddenTools = [] }: ReaderToolbarProps) {
   const handleClick = (id: ToolPanelId) => {
     onToolChange(activeTool === id ? null : id);
   };
+
+  const visibleTools = tools.filter(t => !hiddenTools.includes(t.id));
 
   if (highContrast) {
     return (
@@ -45,7 +48,7 @@ export function ReaderToolbar({ activeTool, onToolChange, highContrast = false }
           border: '1px solid #444',
         }}
       >
-        {tools.map((tool) => {
+        {visibleTools.map((tool) => {
           const isActive = activeTool === tool.id;
           return (
             <button
@@ -97,7 +100,7 @@ export function ReaderToolbar({ activeTool, onToolChange, highContrast = false }
           padding: '0.75rem 1rem',
         }}
       >
-        {tools.map((tool) => {
+        {visibleTools.map((tool) => {
           const isActive = activeTool === tool.id;
           return (
             <button
