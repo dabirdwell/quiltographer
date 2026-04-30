@@ -109,3 +109,6 @@ Copy `quiltographer-app/.env.example` to `quiltographer-app/.env.local` and fill
 Handles: "Step N:" format, numbered instructions, yardage extraction, fat quarters, strips, precuts, backing/binding/batting, abbreviation expansion, technique detection, section-aware step numbering.
 
 Known limitations: Image-only PDFs (1-page preview cards) contain no extractable text. Some patterns embed early steps in images. Fabric names are approximate when not labeled in the PDF.
+---
+
+<p align="center"><em>Æ</em></p>
